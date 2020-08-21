@@ -13,11 +13,13 @@ html {
     --main-grey: #564a59;
     --light-grey: #a99bab;
     --pale-grey: #ece7ee;
-    --teal-blue: #307888;
+    --teal-blue: #5490A0;
+    --light-teal-blue: #69A4B5;
     --blue: #00a1e0ff;
     --light-blue: #45bdedff;
     --pale-blue: #ebf9ff;
-    --red: #d00000;
+    --red: #CC2836;
+    --light-red: #DA4450;
     --green: #04b439;
     --ligh-green: #54cc78;
 }
@@ -28,4 +30,84 @@ body {
     color: var(--main-grey);
     font-size: 16px;
     line-height: 1.5;
+}
+
+button {
+    font-family: inherit;
+    display: flex;
+	align-items: center;
+	justify-content: space-around;
+	font-size: 1em;
+    cursor: pointer;
+	width: 80px;
+	height: 30px;
+	padding: 5px 10px;
+	border-radius: 3px;
+    border: 0;
+    color: white;
+	background-color: var(--blue);
+	transform: translate(0px, 0px);
+	transition: 0.2s;
+	transition-timing-function: ease;
+	transition-delay: 0.05s;
+	opacity: 1;
+}
+
+button:hover {
+    background-color: var(--light-blue);
+    box-shadow: rgba(4, 74, 111, 0.5) 0px 10px 30px -15px;
+    
+}
+
+@media (hover: none) {
+    button:hover {
+		color: #ffffff;
+		background-color: #0789daff;
+    }
+}
+
+
+/************** NAVIGATION BAR****************/
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: var(--pale-blue); */
+    box-shadow: rgba(4, 74, 111, 0.5) 0px 0px 25px -15px;
+}
+
+.home {
+    margin: 15px 0px 15px 20px;
+}
+
+.upper-right-nav-div {
+    display: flex;
+    align-items: center;
+    margin: 15px 20px 15px 0px;
+}
+
+.upper-right-nav {
+    margin-left: 20px;
+}
+
+.material-icons.upper-right-nav {
+    cursor: pointer;
+    font-size: 30px;
+}
+
+.sign-up-btn {
+    background-color: var(--teal-blue);
+}
+
+.sign-up-btn:hover {
+    background-color: var(--light-teal-blue);
+}
+
+.log-out-btn {
+    background-color: var(--red);
+}
+
+.log-out-btn:hover {
+    background-color: var(--light-red);
 }
