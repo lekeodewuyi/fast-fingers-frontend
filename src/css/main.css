@@ -1,0 +1,31 @@
+html {
+    font-family: 'Source Sans Pro', sans-serif;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+    
+*, *:before, *:after {
+    box-sizing: inherit;
+
+}
+
+:root {
+    --main-grey: #564a59;
+    --light-grey: #a99bab;
+    --pale-grey: #ece7ee;
+    --teal-blue: #307888;
+    --blue: #00a1e0ff;
+    --light-blue: #45bdedff;
+    --pale-blue: #ebf9ff;
+    --red: #d00000;
+    --green: #04b439;
+    --ligh-green: #54cc78;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    color: var(--main-grey);
+    font-size: 16px;
+    line-height: 1.5;
+}
