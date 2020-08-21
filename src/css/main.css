@@ -32,6 +32,15 @@ body {
     line-height: 1.5;
 }
 
+input:hover {
+    border: 1px solid var(--light-blue);
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid var(--light-blue);
+}
+
 button {
     font-family: inherit;
     display: flex;
@@ -70,10 +79,11 @@ button:hover {
 /************** NAVIGATION BAR****************/
 
 nav {
+    z-index: 1;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* background-color: var(--pale-blue); */
+    background-color: white;
     box-shadow: rgba(4, 74, 111, 0.5) 0px 0px 25px -15px;
 }
 
@@ -110,4 +120,80 @@ nav {
 
 .log-out-btn:hover {
     background-color: var(--light-red);
+}
+
+
+/************** MAIN SECTION ****************/
+
+.main-section {
+    display: flex;
+    width: 100vw;
+    height: Calc(100vh - 60px);
+}
+
+.typing-column-div {
+    position: relative;
+    flex-grow: 1;
+}
+
+.chat-column-div {
+    /* z-index: -1; */
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: space-between;
+    background-color: white;
+    box-shadow: rgba(4, 74, 111, 0.5) 0px 0px 30px -15px;
+}
+
+.message-input-and-send-div {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0px 60px 0px;
+}
+
+.message-input-and-send-item {
+    margin: 0px 10px;
+}
+
+.message-input {
+    border: 1px solid var(--pale-grey);
+    border-radius: 3px;
+    width: 250px;
+    padding: 0px 5px;
+}
+
+.send-message-btn {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: var(--blue);
+    border: 1px solid var(--pale-blue);
+    transition: 0.2s;
+    transition-timing-function: ease;
+	transition-delay: 0.05s;
+}
+
+.send-message-btn:hover {
+    background-color: var(--light-blue);
+}
+
+.send-message-btn:active {
+    transform: translateX(20px);
+}
+
+
+
+
+
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
