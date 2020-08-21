@@ -166,6 +166,21 @@ nav {
     resize:vertical;
 }
 
+.timer-and-reset-div {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.timer {
+    font-size: 1.2rem;
+    color: var(--teal-blue);
+    font-family: 'Ubuntu Mono', monospace;
+    margin-right: 25px;
+}
+
+
+
 
 
 /************** CHAT SECTION ****************/
