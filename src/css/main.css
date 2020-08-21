@@ -32,11 +32,17 @@ body {
     line-height: 1.5;
 }
 
-input:hover {
+input, textarea {
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: var(--main-grey)
+}
+
+input:hover, textarea:hover {
     border: 1px solid var(--light-blue);
 }
 
-input:focus {
+input:focus, textarea:focus {
     outline: none;
     border: 1px solid var(--light-blue);
 }
@@ -79,6 +85,8 @@ button:hover {
 /************** NAVIGATION BAR****************/
 
 nav {
+    position: fixed;
+    width: 100vw;
     z-index: 1;
     display: flex;
     justify-content: space-between;
@@ -136,12 +144,40 @@ nav {
     flex-grow: 1;
 }
 
+.typing-column-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 700px;
+    transform: translateX(-200px);
+    margin: auto;
+    margin-top: 150px;
+}
+
+.typing-column-container-item {
+    margin: 20px 0px;
+}
+
+.input-text {
+    font-family: 'Ubuntu Mono', monospace;
+    border: 2px solid var(--pale-grey);
+    border-radius: 5px;
+    padding: 20px 20px;
+    resize:vertical;
+}
+
+
+
+/************** CHAT SECTION ****************/
+
 .chat-column-div {
-    /* z-index: -1; */
+    padding-top: 90px;
+    position: fixed;
+    right: 0;
+    height: 100vh;
     width: 400px;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     justify-content: space-between;
     background-color: white;
     box-shadow: rgba(4, 74, 111, 0.5) 0px 0px 30px -15px;
