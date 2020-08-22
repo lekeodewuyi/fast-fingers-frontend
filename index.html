@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/src/css/reset.css">
-    <link rel="stylesheet" href="/src/css/main.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
       <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&family=Ubuntu+Mono&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="/src/css/main.css">
     <script src="/src/scripts/index.js" defer></script>
     <title>Typing App</title>
 </head>
@@ -33,9 +33,12 @@
         <div class="typing-column-div">
             <div class="typing-column-container">
                 <div class="origin-text typing-column-container-item">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto veniam officiis culpa sunt ut, dignissimos laudantium tenetur! Nobis voluptatem, dignissimos necessitatibus, illo eum in omnis, sed placeat voluptatum cumque nam. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas, maxime quisquam? Dolore dignissimos libero quaerat labore iusto! Iusto at saepe, est deserunt labore dolores non reiciendis repudiandae praesentium facere tempore.
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex vitae delectus fugiat facere fuga accusantium distinctio laborum odit sunt repellendus sequi debitis dolores eligendi repudiandae illo, nemo vero sed! Commodi.</p>
                 </div>
-                <textarea class="input-text typing-column-container-item" cols="30" rows="10" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"></textarea>
+                <div class="input-text-div">
+                    <span class="material-icons hide backspace">backspace</span>
+                    <textarea class="input-text typing-column-container-item" cols="30" rows="10" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"></textarea>
+                </div>
                 <div class="timer-and-reset-div">
                     <p class="timer">00:00:00</p>
                     <button class="reset">Reset</button>
