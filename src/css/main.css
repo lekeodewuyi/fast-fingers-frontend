@@ -20,6 +20,7 @@ html {
     --pale-blue: #ebf9ff;
     --red: #CC2836;
     --light-red: #DA4450;
+    --pale-red: #FDD8E3;
     --green: #04b439;
     --ligh-green: #54cc78;
 }
@@ -35,7 +36,7 @@ body {
 input, textarea {
     font-family: inherit;
     font-size: 0.9rem;
-    color: var(--main-grey)
+    color: var(--main-grey);
 }
 
 input:hover, textarea:hover {
@@ -193,7 +194,7 @@ nav {
 /************** CHAT SECTION ****************/
 
 .chat-column-div {
-    padding-top: 90px;
+    padding: 120px 0px 90px 0px;
     position: fixed;
     right: 0;
     height: 100vh;
@@ -205,10 +206,33 @@ nav {
     box-shadow: rgba(4, 74, 111, 0.5) 0px 0px 30px -15px;
 }
 
+.chat-div {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 40px;
+    padding: 5px 10px;
+    border: 1px solid var(--light-teal-blue);
+    border-radius: 5px;
+}
+
+.chat-user {
+    color: var(--teal-blue);
+    font-weight: 600;
+}
+
+.chat-message {
+    font-size: 0.8rem;
+}
+
+.chat-time {
+    /* align-self: flex-end; */
+    color: var(--light-teal-blue);
+    font-size: 0.7rem;
+}
+
 .message-input-and-send-div {
     display: flex;
     justify-content: center;
-    margin: 30px 0px 60px 0px;
 }
 
 .message-input-and-send-item {
@@ -241,6 +265,102 @@ nav {
 .send-message-btn:active {
     transform: translateX(20px);
 }
+
+
+
+/************* MODALS **************/
+.login-modal {
+    z-index: 4;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* display: none; */
+    background-color: white;
+    padding: 40px;
+    border: 1px solid var(--pale-grey);
+    border-radius: 10px;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+    width: 500px;
+    height: 350px;
+    top: 0px;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    box-shadow: rgba(4, 74, 111, 0.5) 0px 8px 30px -18px;
+    transition: 0.3s;
+}
+
+.login-input-div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-input-div {
+    margin-top: 20px;
+}
+
+.auth-input-div {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--pale-grey);
+    border-radius: 5px;
+    width: 80%;
+    height: 45px;
+    margin-bottom: 30px;
+    transition: 0.2s;
+}
+
+.auth-input {
+    width: 100%;
+    height: 100%;
+    padding: 5px 10px 5px 44px;
+    margin-left: -34px;
+    border-radius: 5px;
+    border: 1px solid var(--pale-grey);
+}
+
+.auth-input:focus, .auth-input:active, .auth-input:hover {
+    border: 1px solid var(--blue);
+    box-shadow: rgba(4, 74, 111, 0.5) 0px 8px 30px -18px;
+}
+
+.auth-modal .material-icons {
+    padding-left: 10px;
+    opacity: 0.5;
+}
+
+.auth-modal .cancel {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 10px;
+    padding: 5px;
+    color: var(--red);
+    opacity: 1;
+    border-radius: 50px;
+    transition: 0.2s;
+}
+
+.auth-modal .cancel:hover {
+    background-color: var(--pale-red);
+}
+
+.modal-login-btn {
+    margin-bottom: 25px;
+}
+
+.register-here {
+    cursor: pointer;
+    color: var(--teal-blue)
+}
+
 
 
 
