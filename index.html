@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/build/jwt-decode.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="/src/css/reset.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
@@ -12,41 +14,71 @@
     <title>Typing App</title>
 </head>
 <body>
+    <div class="screen-fade hide">
+        
+    </div>
+
     <header>
         <nav>
             <div class="home-div">
                 <a class="home" href="/">APP NAME</a>
             </div>
             <div class="upper-right-nav-div">
-                <span class="material-icons upper-right-nav help">help</span>
-                <span class="material-icons upper-right-nav notification">notifications</span>
-                <span class="material-icons upper-right-nav settings">settings</span>
-                <span class="material-icons upper-right-nav user">account_circle</span>
-                <button class="upper-right-nav login-btn">Log in</button>
-                <button class="upper-right-nav sign-up-btn">Sign up</button>
-                <button class="upper-right-nav log-out-btn">Log out</button>
+                <span class="material-icons upper-right-nav help" id="help-icon" >help</span>
+                <span class="material-icons upper-right-nav notification hide" id="notification-icon">notifications</span>
+                <span class="material-icons upper-right-nav settings" id="settings-icon">settings</span>
+                <span class="material-icons upper-right-nav user hide" id="user-icon">account_circle</span>
+                <button class="upper-right-nav login-btn login-link" id="nav-login-btn">Log in</button>
+                <button class="upper-right-nav sign-up-btn signup-link" id="nav-signup-btn">Sign up</button>
+                <button class="upper-right-nav log-out-btn hide" id="nav-logout-btn">Log out</button>
             </div>
         </nav>
     </header>
 
-    <section class="login-modal auth-modal">
-        <span class="material-icons cancel unselectable">cancel</span>
+    <section class="login-modal auth-modal hide">
+        <span class="material-icons cancel login-cancel unselectable">cancel</span>
         <div class="login-input-div">
             <div class="email-login-div auth-input-div">
-                <div class="auth-input-sibling"></div>
                 <span class="material-icons unselectable">email</span>
-                <input class="email-login auth-input" type="text" placeholder="Email">
+                <input class="email-login auth-input email-input" type="text" placeholder="Email">
+                <p class="login-email-error auth-input-error email-error"></p>
             </div>
             <div class="password-login-div auth-input-div">
                 <span class="material-icons">vpn_key</span>
-                <input class="password-login auth-input" type="text" placeholder="Password">
+                <input class="password-login auth-input password-input" type="text" placeholder="Password">
+                <p class="login-password-error auth-input-error password-error"></p>
             </div>
         </div>
-        <button class="modal-login-btn">Log in</button>
-        <p>Don't have an account? <span class="register-here">Register here</span>.</p>
+        <button class="modal-login-btn"  id="modal-login-btn">Log in<span class="loader loader-login hide"></span></button>
+        <p>Don't have an account? <span class="register-here signup-link">Register here</span>.</p>
     </section>
-    <section class="signup-modal">
-
+    
+    <section class="signup-modal auth-modal hide">
+        <span class="material-icons cancel signup-cancel unselectable">cancel</span>
+        <div class="signup-input-div">
+            <div class="name-signup-div auth-input-div">
+                <span class="material-icons unselectable">person</span>
+                <input class="name-signup auth-input name-input" type="text" placeholder="Name">
+                <p class="signup-name-error auth-input-error name-error"></p>
+            </div>
+            <div class="email-signup-div auth-input-div">
+                <span class="material-icons unselectable">email</span>
+                <input class="email-signup auth-input email-input" type="text" placeholder="Email">
+                <p class="signup-email-error auth-input-error email-error"></p>
+            </div>
+            <div class="password-signup-div auth-input-div">
+                <span class="material-icons">vpn_key</span>
+                <input class="password-signup auth-input password-input" type="text" placeholder="Password">
+                <p class="signup-password-error auth-input-error password-error"></p>
+            </div>
+            <div class="confirm-password-signup-div auth-input-div">
+                <span class="material-icons">vpn_key</span>
+                <input class="confirm-password-signup auth-input password-input" type="text" placeholder="Confirm password">
+                <p class="signup-confirm-password-error auth-input-error password-error"></p>
+            </div>
+        </div>
+        <button class="modal-signup-btn">Sign up<span class="loader loader-signup hide"></span></button>
+        <p>Don't have an account? <span class="login-here login-link">Login here</span>.</p>
     </section>
 
     <section class="main-section">
@@ -62,23 +94,31 @@
                 <div class="timer-and-reset-div">
                     <p class="timer">00:00:00</p>
                     <button class="reset">Reset</button>
+                    <button class="pause-timer">Pause</button>
                 </div>
 
             </div>
         </div>
         <div class="chat-column-div">
-            <div class="chat-div">
+            <div class="all-chats-div">
+                <div class="first-child">
+                </div>
+
+            </div>
+            <!-- <div class="chat-div">
                 <p class="chat-user">User</p>
                 <p class="chat-message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut hic impedit tempore. Aspernatur, blanditiis pariatur iusto natus maxime nihil sequi sunt incidunt.</p>
                 <p class="chat-time">50 minutes ago</p>
-            </div>
+            </div> -->
             <div class="message-input-and-send-div">
-                <input class="message-input message-input-and-send-item" type="text" placeholder="message">
+                <input class="message-input message-input-and-send-item" type="text" placeholder="message" onkeydown = "if (event.keyCode == 13)
+                document.querySelector('.send-message-btn').click()">
                 <!-- <button class="send-message-btn message-input-and-send-item">Send</button> -->
                 <span class="material-icons send-message-btn message-input-and-send-item unselectable">send</span>
+                <p class="error message-error"></p>
             </div>  
         </div>
     </section>
-    
+  
 </body>
 </html>
