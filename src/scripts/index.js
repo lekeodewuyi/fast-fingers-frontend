@@ -2,6 +2,19 @@
 // perfect pause functionality
 // work on strict mode and free mode
 
+/****************NAV ELEMENTS************************/
+const screenFade = document.querySelector(".screen-fade");
+const navLoginBtn = document.querySelector("#nav-login-btn");
+const navSignupBtn = document.querySelector("#nav-signup-btn");
+const navLogoutBtn = document.querySelector("#nav-logout-btn");
+
+const helpIcon = document.querySelector("#help-icon");
+const notificationIcon = document.querySelector("#notification-icon");
+const settingsIcon = document.querySelector("#settings-icon");
+const userIcon = document.querySelector("#user-icon");
+
+
+
 
 // Auth status
 let config = {};
@@ -89,8 +102,32 @@ savePreference.addEventListener("click", updatePreference ,false);
 
 
 
+let originText = document.querySelector(".origin-text p");
+function generateText() {
+    getConfig();
+    axios.post(
+        'http://localhost:5000/typing-app-35c2f/us-central1/api/generatetext',
+        {
+        },
+        config
+        )
+        .then(function (response) {
+            console.log(response.data)
+            originText.innerHTML = response.data.result;
+            console.log(originText);
 
-const originText = document.querySelector(".origin-text p").innerHTML;
+            // window.location.href = '/';
+
+        })
+        .catch(function (error) {
+            console.log(error.response)
+        })
+}
+generateText();
+
+document.querySelector("#help-icon").addEventListener("click", generateText, false)
+
+// const originText = document.querySelector(".origin-text p").innerHTML;
 const inputText = document.querySelector(".input-text");
 const inputTextDiv = document.querySelector(".input-text-div");
 const persistentInput = document.querySelector(".persistent-placeholder");
@@ -99,6 +136,8 @@ const resetTimer = document.querySelector(".reset");
 const backspace = document.querySelector(".backspace");
 
 persistentInput.innerHTML = originText;
+
+
 
 
 let counter = [0,0,0,0]
@@ -248,18 +287,6 @@ const loginLink = document.querySelectorAll(".login-link");
 const signupLink = document.querySelectorAll(".signup-link");
 const loaderLogin = document.querySelector(".loader-login");
 const loaderSignup = document.querySelector(".loader-signup");
-
-
-/****************NAV ELEMENTS************************/
-const screenFade = document.querySelector(".screen-fade");
-const navLoginBtn = document.querySelector("#nav-login-btn");
-const navSignupBtn = document.querySelector("#nav-signup-btn");
-const navLogoutBtn = document.querySelector("#nav-logout-btn");
-
-const helpIcon = document.querySelector("#help-icon");
-const notificationIcon = document.querySelector("#notification-icon");
-const settingsIcon = document.querySelector("#settings-icon");
-const userIcon = document.querySelector("#user-icon");
 
 
 /****************MODALS************************/
