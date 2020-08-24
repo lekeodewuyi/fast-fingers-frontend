@@ -29,6 +29,7 @@ const backspace = document.querySelector(".backspace");
 
 persistentInput.innerHTML = originText;
 
+
 let counter = [0,0,0,0]
 let interval;
 let timerRunning = false;
