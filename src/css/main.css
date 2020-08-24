@@ -170,7 +170,7 @@ nav {
     color: var(--blue);
     background-color: white;
     border: 1px solid var(--light-blue);
-    margin: 5px 0px 15px 0px;
+    margin: 0px;
 }
 
 .generate-new-input:hover {
@@ -221,13 +221,26 @@ nav {
 }
 
 .timer {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
     color: var(--teal-blue);
     color: var(--red);
 
     font-family: 'Ubuntu Mono', monospace;
     margin-right: 25px;
 }
+
+
+.pause-timer {
+    color: var(--blue);
+    background-color: white;
+    border: 1px solid var(--light-blue);
+    margin-right: 20px;
+}
+
+.pause-timer:hover {
+    background-color: var(--pale-blue);
+}
+    
 
 
 

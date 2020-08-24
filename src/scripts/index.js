@@ -116,7 +116,7 @@ function generateText() {
             originTextElement.innerHTML = response.data.result;
             console.log(originTextElement);
             originText = originTextElement.innerHTML
-            
+
             // window.location.href = '/';
 
         })
@@ -126,8 +126,6 @@ function generateText() {
 }
 generateText();
 
-document.querySelector("#help-icon").addEventListener("click", generateText, false)
-
 // const originText = document.querySelector(".origin-text p").innerHTML;
 const inputText = document.querySelector(".input-text");
 const inputTextDiv = document.querySelector(".input-text-div");
@@ -135,6 +133,10 @@ const persistentInput = document.querySelector(".persistent-placeholder");
 const timer = document.querySelector(".timer");
 const resetTimer = document.querySelector(".reset");
 const backspace = document.querySelector(".backspace");
+
+const generateInputText = document.querySelector(".generate-new-input");
+
+generateInputText.addEventListener("click", generateText, false)
 
 persistentInput.innerHTML = originText;
 
