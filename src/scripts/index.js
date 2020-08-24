@@ -1,4 +1,6 @@
 // TODO Session timeout modal
+// perfect pause functionality
+// work on strict mode and free mode
 
 // colors
 const mainGrey= "#564a59";
@@ -20,9 +22,12 @@ const lighGreen= "#54cc78";
 const originText = document.querySelector(".origin-text p").innerHTML;
 const inputText = document.querySelector(".input-text");
 const inputTextDiv = document.querySelector(".input-text-div");
+const persistentInput = document.querySelector(".persistent-placeholder");
 const timer = document.querySelector(".timer");
 const resetTimer = document.querySelector(".reset");
 const backspace = document.querySelector(".backspace");
+
+persistentInput.innerHTML = originText;
 
 let counter = [0,0,0,0]
 let interval;
@@ -78,6 +83,7 @@ function spellCheck() {
         inputText.style.backgroundColor = "var(--pale-green)";
     } else {
         if (textEntered == originTextMatch) {
+            inputText.classList.remove("caret-red");
             inputText.style.border = "2px solid var(--blue)";
             inputText.style.backgroundColor = "white";
             if(event.keyCode) {
@@ -87,6 +93,7 @@ function spellCheck() {
             enableKeyboard();
         } else {
             disableKeyboard();
+            inputText.classList.add("caret-red");
             inputText.style.border = `2px solid var(--red)`;
             inputText.style.backgroundColor = "var(--pale-red)";
         }
@@ -616,7 +623,7 @@ function sendMessage() {
         })
         .catch(function (error) {
             console.log(error);
-
+            console.log(error.response)
             console.log(error.response.data.error)
             let responseError = error.response.data;
 

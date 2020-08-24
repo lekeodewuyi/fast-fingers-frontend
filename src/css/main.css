@@ -151,7 +151,7 @@ nav {
     justify-content: center;
     flex-direction: column;
     width: 700px;
-    transform: translateX(-200px);
+    /* transform: translateX(-200px); */
     margin: auto;
     margin-top: 150px;
 }
@@ -160,7 +160,13 @@ nav {
     margin: 20px 0px;
 }
 
+.input-text-div {
+    position: relative;
+
+}
+
 .input-text {
+    /* position: absolute; */
     font-size: 1rem;
     line-height: inherit;
     width: 700px;
@@ -168,8 +174,27 @@ nav {
     border: 2px solid var(--pale-grey);
     border-radius: 5px;
     padding: 20px 20px;
-    resize:vertical;
+    resize: vertical;
     /* background-color: var(--pale-red); */
+    background-color: transparent;
+    z-index: 1;
+}
+
+.persistent-placeholder {
+    position: absolute;
+    color: silver;
+    font-size: 1rem;
+    line-height: inherit;
+    width: 700px;
+    font-family: 'Ubuntu Mono', monospace;
+    border: 2px solid var(--red);
+    border-radius: 5px;
+    padding: 20px 20px;
+    resize:vertical;
+
+    background-color: transparent;
+    margin-top: 20px;
+    z-index: 0;
 }
 
 .backspace {
@@ -199,11 +224,11 @@ nav {
 
 .chat-column-div {
     padding: 90px 0px 90px 0px;
-    position: fixed;
+    /* position: fixed; */
     overflow: auto;
     right: 0;
     height: 100vh;
-    width: 400px;
+    min-width: 400px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -449,6 +474,9 @@ nav {
 }
 
 
+.caret-red {
+    caret-color: var(--red);
+}
 
 .screen-fade {
     position: absolute;
