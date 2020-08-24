@@ -2,6 +2,35 @@
 // perfect pause functionality
 // work on strict mode and free mode
 
+
+// Auth status
+let config = {};
+function getConfig() {
+    const TOKEN = localStorage.FBIdToken;
+    // console.log(`Current Token is ${TOKEN}`)
+    if(TOKEN) {
+        console.log("there is a token")
+        const decodedToken = jwt_decode(TOKEN);
+        if(decodedToken && (decodedToken.exp * 1000 < Date.now())){ //if TOKEN is expired
+            logout();
+        } else {
+          config = {
+            headers: { Authorization: `${TOKEN}` }
+          };
+          console.log("Using token for authorization")
+        }
+      } else {
+        config = {
+          headers: { Authorization: null}
+        }
+        console.log("NOT using token for authorization")
+      }
+
+    console.log(config);
+}
+
+
+
 // colors
 const mainGrey= "#564a59";
 const lightGrey= "#a99bab";
@@ -16,6 +45,48 @@ const lightRed= "#DA4450";
 const paleRed= "#FDD8E3";
 const green= "#04b439";
 const lighGreen= "#54cc78";
+
+// Preferences
+const sentenceChoiceLength = document.querySelectorAll(".choice");
+const customTextInput = document.querySelector(".custom-text-input");
+const savePreference = document.querySelector(".settings-save");
+
+
+function updatePreference() {
+    let preference;
+
+    if (customTextInput.value.trim() !== '') {
+        preference = customTextInput.value;
+    } else {
+        for (let i = 0; i < sentenceChoiceLength.length; i++) {
+            if (sentenceChoiceLength[i].checked) {
+                preference = sentenceChoiceLength[i].value
+                console.log(sentenceChoiceLength[i].value);
+            }
+        }
+    }
+
+    axios.post(
+        'http://localhost:5000/typing-app-35c2f/us-central1/api/setpreference',
+        {
+            "preference": preference
+        },
+        config
+        )
+        .then(function (response) {
+            console.log(response.data)
+
+            // window.location.href = '/';
+
+        })
+        .catch(function (error) {
+            console.log(error.response)
+        })
+}
+
+
+savePreference.addEventListener("click", updatePreference ,false);
+
 
 
 
@@ -474,34 +545,6 @@ function checkTokenStatus() {
 
 checkTokenStatus();
 document.addEventListener("click", checkTokenStatus, false);
-
-
-let config = {};
-function getConfig() {
-    const TOKEN = localStorage.FBIdToken;
-    // console.log(`Current Token is ${TOKEN}`)
-    if(TOKEN) {
-        console.log("there is a token")
-        const decodedToken = jwt_decode(TOKEN);
-        if(decodedToken && (decodedToken.exp * 1000 < Date.now())){ //if TOKEN is expired
-            logout();
-        } else {
-          config = {
-            headers: { Authorization: `${TOKEN}` }
-          };
-          console.log("Using token for authorization")
-        }
-      } else {
-        config = {
-          headers: { Authorization: null}
-        }
-        console.log("NOT using token for authorization")
-      }
-
-    console.log(config);
-}
-
-
 
 function getAllChats() {
 
