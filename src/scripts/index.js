@@ -14,8 +14,6 @@ const settingsIcon = document.querySelector("#settings-icon");
 const userIcon = document.querySelector("#user-icon");
 
 
-
-
 // Auth status
 let config = {};
 function getConfig() {
@@ -102,7 +100,9 @@ savePreference.addEventListener("click", updatePreference ,false);
 
 
 
-let originText = document.querySelector(".origin-text p");
+let originTextElement = document.querySelector(".origin-text p");
+let originText;
+
 function generateText() {
     getConfig();
     axios.post(
@@ -113,9 +113,10 @@ function generateText() {
         )
         .then(function (response) {
             console.log(response.data)
-            originText.innerHTML = response.data.result;
-            console.log(originText);
-
+            originTextElement.innerHTML = response.data.result;
+            console.log(originTextElement);
+            originText = originTextElement.innerHTML
+            
             // window.location.href = '/';
 
         })
