@@ -165,6 +165,19 @@ nav {
 
 }
 
+.generate-new-input {
+    width: 200px;
+    color: var(--blue);
+    background-color: white;
+    border: 1px solid var(--light-blue);
+    margin: 5px 0px 15px 0px;
+}
+
+.generate-new-input:hover {
+    background-color: var(--pale-blue);
+    border: 1px solid var(--light-blue);
+}
+
 .input-text {
     /* position: absolute; */
     font-size: 1rem;
