@@ -240,6 +240,13 @@ nav {
 .pause-timer:hover {
     background-color: var(--pale-blue);
 }
+
+@media (hover: none) {
+    .generate-new-input:hover, .pause-timer:hover {
+		color: var(--blue);
+		background-color: white;
+    }
+}
     
 
 
@@ -249,7 +256,7 @@ nav {
 /************** CHAT SECTION ****************/
 
 .chat-column-div {
-    padding: 90px 0px 90px 0px;
+    padding: 90px 0px 0px 0px;
     /* position: fixed; */
     overflow: auto;
     right: 0;
@@ -299,7 +306,9 @@ nav {
 }
 
 .message-input-and-send-div {
-    position: fixed;
+    /* height: 500px; */
+    /* z-index: 10; */
+    /* position: fixed; */
     bottom: 60px;
     margin-left: 0px;
     bottom: 0;
@@ -344,8 +353,8 @@ nav {
 
 .message-error {
     position: absolute;
-    left: 0;
-    transform: translate(46px, 40px);
+    /* left: 0; */
+    transform: translate(-90px, 40px);
 }
 
 
@@ -400,6 +409,10 @@ nav {
     justify-content: center;
     align-items: center;
     margin: 10px 0px 20px 0px; 
+}
+
+.settings-error {
+    margin-left: 230px;
 }
 
 /****HIDE RADIOS FIRST*****/

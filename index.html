@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/build/jwt-decode.min.js"></script>
+    <script src="/build/txtgen.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="/src/css/reset.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -53,11 +54,12 @@
             </div>
         </div>
         <p class="enter-custom-text">Or enter your custom text in the box below:</p>
-        <textarea name="" class="custom-text-input" id="" rows="10"></textarea>
+        <textarea name="" class="custom-text-input modal-input" id="" rows="10"></textarea>
         <div class="choice-save-div">
             <button class="settings-save">Save</button>
             <p class="settings-cancel">Cancel</p>
         </div>
+        <p class="settings-error error"></p>
     </section>
 
     <section class="login-modal auth-modal hide">
@@ -65,12 +67,12 @@
         <div class="login-input-div">
             <div class="email-login-div auth-input-div">
                 <span class="material-icons unselectable">email</span>
-                <input class="email-login auth-input email-input" type="text" placeholder="Email">
+                <input class="email-login auth-input email-input modal-input" type="text" placeholder="Email">
                 <p class="login-email-error auth-input-error email-error"></p>
             </div>
             <div class="password-login-div auth-input-div">
                 <span class="material-icons">vpn_key</span>
-                <input class="password-login auth-input password-input" type="text" placeholder="Password">
+                <input class="password-login auth-input password-input modal-input" type="text" placeholder="Password">
                 <p class="login-password-error auth-input-error password-error"></p>
             </div>
         </div>
@@ -83,22 +85,22 @@
         <div class="signup-input-div">
             <div class="name-signup-div auth-input-div">
                 <span class="material-icons unselectable">person</span>
-                <input class="name-signup auth-input name-input" type="text" placeholder="Name">
+                <input class="name-signup auth-input name-input modal-input" type="text" placeholder="Name">
                 <p class="signup-name-error auth-input-error name-error"></p>
             </div>
             <div class="email-signup-div auth-input-div">
                 <span class="material-icons unselectable">email</span>
-                <input class="email-signup auth-input email-input" type="text" placeholder="Email">
+                <input class="email-signup auth-input email-input modal-input" type="text" placeholder="Email">
                 <p class="signup-email-error auth-input-error email-error"></p>
             </div>
             <div class="password-signup-div auth-input-div">
                 <span class="material-icons">vpn_key</span>
-                <input class="password-signup auth-input password-input" type="text" placeholder="Password">
+                <input class="password-signup auth-input password-input modal-input" type="text" placeholder="Password">
                 <p class="signup-password-error auth-input-error password-error"></p>
             </div>
             <div class="confirm-password-signup-div auth-input-div">
                 <span class="material-icons">vpn_key</span>
-                <input class="confirm-password-signup auth-input password-input" type="text" placeholder="Confirm password">
+                <input class="confirm-password-signup auth-input password-input modal-input" type="text" placeholder="Confirm password">
                 <p class="signup-confirm-password-error auth-input-error password-error"></p>
             </div>
         </div>
@@ -120,11 +122,11 @@
                     <!-- <span class="material-icons hide backspace">backspace</span> -->
                     <textarea class="input-text typing-column-container-item" cols="30" rows="10" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"></textarea>
                     <textarea class="persistent-placeholder unselectable hide" cols="30" rows="10" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" placeholder="Placeholder"></textarea>
-
                 </div>
+                <p class="input-text-error error hide">Please use the backspace to clear the error</p>
                 <div class="timer-and-reset-div">   
                     <p class="timer">00:00:00</p>
-                    <button class="pause-timer">Pause</button>
+                    <button class="pause-timer">Start</button>
                     <button class="reset">Reset</button>
                 </div>
 
