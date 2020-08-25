@@ -805,7 +805,7 @@ function sendMessage() {
 
             if (responseError.error !== undefined) {
                 if (responseError.error === "Unauthorized") {
-                    messageError.innerHTML = "Please login to use the chat"
+                    messageError.innerHTML = "Please login to use the message board"
                 } else if (responseError.error === "Please enter a message") {
                     messageError.innerHTML = "Please enter a message"
                 }
