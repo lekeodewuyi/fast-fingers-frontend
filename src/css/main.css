@@ -322,12 +322,11 @@ nav {
 }
 
 .message-input-and-send-div {
-    /* z-index: 10; */
-    /* position: fixed; */
     bottom: 60px;
     margin-left: 0px;
     bottom: 0;
     background-color: white;
+    /* background-color: var(--pale-blue); */
     padding: 30px 35px 60px 40px;
     box-shadow: rgba(4, 74, 111, 0.5) 0px 0px 30px -15px;
 
@@ -378,6 +377,13 @@ nav {
 
 
 /************* MODALS **************/
+.auth-modal-header {
+    font-weight: 600;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+
 .login-modal, .signup-modal, .settings-modal {
     z-index: 7;
     position: absolute;
@@ -395,7 +401,7 @@ nav {
     margin-left: auto; 
     margin-right: auto; 
     width: 500px;
-    height: 400px;
+    height: 450px;
     top: 0px;
     bottom: 0;
     margin-top: auto;
@@ -522,7 +528,7 @@ nav {
     border-radius: 5px;
     width: 80%;
     height: 55px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     transition: 0.2s;
 }
 
@@ -588,8 +594,8 @@ nav {
 }
 
 .modal-login-btn {
-    margin-top: 10px;
-    margin-bottom: 25px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .register-here {
