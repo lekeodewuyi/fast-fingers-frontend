@@ -247,9 +247,19 @@ function spellCheck() {
 
 }
 
+// function startTimer() {
+//     let textEnterdLength = inputText.value.length;
+//     if (textEnterdLength === 0 && !timerRunning) {
+//         timerRunning = true;
+//         interval = setInterval(runTimer, 10);
+//     }
+//     console.log(textEnterdLength);
+// }
+
 function startTimer() {
     let textEnterdLength = inputText.value.length;
-    if (textEnterdLength === 0 && !timerRunning) {
+    if (!timerRunning) {
+        document.querySelector(".pause-timer").innerHTML = "Pause"
         timerRunning = true;
         interval = setInterval(runTimer, 10);
     }
@@ -289,11 +299,12 @@ document.querySelector(".pause-timer").addEventListener("click", function(){
 } ,false)
 
 function reset() {
-    document.querySelector(".pause-timer").innerHTML = "Start"
     clearInterval(interval);
     interval = null;
     counter = [0,0,0,0];
     timerRunning = false;
+
+    document.querySelector(".pause-timer").innerHTML = "Start"
 
     inputText.value = "";
     timer.innerHTML = "00:00:00";
