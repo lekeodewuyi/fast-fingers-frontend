@@ -216,6 +216,7 @@ function disableKeyboard() {
         if (event.keyCode !== 8) {
             inputText.readOnly = true;
         } else {
+            extraCharacters++;
             inputText.readOnly = false;
         }
     }
