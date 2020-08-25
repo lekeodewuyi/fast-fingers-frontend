@@ -758,6 +758,9 @@ function sendMessage() {
         )
         .then(function (response) {
 
+            messageInput.value = "";
+            console.log(messageInput)
+
             let currentUser = JSON.parse(localStorage.currentUser)
             let loggedinUser = currentUser.name;
             console.log(loggedinUser);
@@ -797,6 +800,7 @@ function sendMessage() {
             console.log(error);
             console.log(error.response)
             console.log(error.response.data.error)
+            messageInput.value = "";
             let responseError = error.response.data;
 
             if (responseError.error !== undefined) {
