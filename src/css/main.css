@@ -134,6 +134,13 @@ nav {
 
 
 /************** MAIN SECTION ****************/
+#page-header {
+    font-weight: 700;
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 2.5rem;
+    margin-top: -30px;
+
+}
 
 .main-section {
     display: flex;
