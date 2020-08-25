@@ -160,8 +160,12 @@ nav {
     margin: 20px 0px;
 }
 
-.origin-text {
+.origin-text-div {
+
+    /* width: 100vw; */
     height: 350px;
+    border-top: 1px solid var(--pale-grey);
+    border-bottom: 1px solid var(--pale-grey);
 }
 
 .input-text-div {
