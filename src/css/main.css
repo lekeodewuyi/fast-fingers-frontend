@@ -265,15 +265,31 @@ nav {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    /* align-items: center; */
     background-color: white;
     box-shadow: rgba(4, 74, 111, 0.5) 0px 0px 30px -15px;
+}
+
+.message-board-div {
+    color: var(--blue);
+    font-weight: 600;
+    font-size: 1.8em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0px 40px 0px;
+    box-shadow: rgba(4, 74, 111, 0.2) 0px 20px 30px -15px;
+}
+
+.message-board {
+    margin: 0px 10px;
 }
 
 .all-chats-div {
     padding-bottom: 100px;
     display: flex;
     flex-direction: column-reverse;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 .chat-div {
