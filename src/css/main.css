@@ -611,8 +611,8 @@ nav {
 
 .modal-signup-btn {
     background-color: var(--teal-blue);
-    margin-top: 10px;
-    margin-bottom: 25px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .modal-signup-btn:hover,  .modal-signup-btn:active{
