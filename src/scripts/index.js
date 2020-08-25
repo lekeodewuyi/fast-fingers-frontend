@@ -266,7 +266,17 @@ function pauseTimer() {
         clearInterval(interval);
         timerRunning = false;
         console.log(timerRunning)
-    } else if (!timerRunning && textEnterdLength !== 0 && textEntered !== originText) {
+    // } else if (!timerRunning && textEnterdLength !== 0 && textEntered !== originText) {
+    } else if (!timerRunning) {
+        inputText.addEventListener("keypress", function(){
+            if(timerRunning) {
+                clearInterval(interval);
+                timerRunning = false;
+                document.querySelector(".pause-timer").innerHTML = "Pause"
+            }
+            timerRunning = true
+            interval = setInterval(runTimer, 10);
+        }, false);
         document.querySelector(".pause-timer").innerHTML = "Pause"
         timerRunning = true
         interval = setInterval(runTimer, 10);
@@ -279,6 +289,7 @@ document.querySelector(".pause-timer").addEventListener("click", function(){
 } ,false)
 
 function reset() {
+    document.querySelector(".pause-timer").innerHTML = "Start"
     clearInterval(interval);
     interval = null;
     counter = [0,0,0,0];
