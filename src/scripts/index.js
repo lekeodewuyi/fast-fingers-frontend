@@ -61,6 +61,9 @@ const lighGreen= "#54cc78";
 const sentenceChoiceLength = document.querySelectorAll(".choice");
 const customTextInput = document.querySelector(".custom-text-input");
 const savePreference = document.querySelector(".settings-save");
+const settingsError = document.querySelector(".settings-error");
+
+const modalInput = document.querySelectorAll(".modal-input");
 
 
 function updatePreference() {
@@ -77,21 +80,29 @@ function updatePreference() {
         }
     }
 
+
+
     axios.post(
-        'http://localhost:5000/typing-app-35c2f/us-central1/api/setpreference',
+        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/setpreference',
         {
             "preference": preference
         },
         config
         )
         .then(function (response) {
+
+            settingsModal.classList.add("hide");
+            screenFade.classList.add("hide");
+
             console.log(response.data)
 
             // window.location.href = '/';
 
         })
         .catch(function (error) {
-            console.log(error.response)
+            if(error.response.data.error == "Unauthorized") {
+                settingsError.innerHTML = "Please login to use this feature";
+            }
         })
 }
 
@@ -106,7 +117,7 @@ let originText;
 function generateText() {
     getConfig();
     axios.post(
-        'http://localhost:5000/typing-app-35c2f/us-central1/api/generatetext',
+        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/generatetext',
         {
         },
         config
@@ -138,6 +149,8 @@ const generateInputText = document.querySelector(".generate-new-input");
 
 generateInputText.addEventListener("click", generateText, false)
 
+const inputTextError = document.querySelector(".input-text-error");
+
 persistentInput.innerHTML = originText;
 
 
@@ -166,19 +179,38 @@ function runTimer() {
 }
 
 
+// function disableKeyboard() {
+//     document.onkeydown = function (event) {
+//         if (event.keyCode !== 8) {
+//             return false;
+//         }
+//     }
+// }
+
+
+// function enableKeyboard() {
+//     document.onkeydown = function (e) {
+//         return true;
+//     }
+// }
+
 function disableKeyboard() {
+    inputTextError.classList.remove("hide");
     document.onkeydown = function (event) {
         if (event.keyCode !== 8) {
-            return false;
+            inputText.readOnly = true;
+        } else {
+            inputText.readOnly = false;
         }
     }
-    
 }
 
 
+
 function enableKeyboard() {
+    inputTextError.classList.add("hide");
     document.onkeydown = function (e) {
-        return true;
+        inputText.readOnly = false;
     }
 }
 
@@ -295,6 +327,7 @@ const loaderSignup = document.querySelector(".loader-signup");
 /****************MODALS************************/
 const loginModal = document.querySelector(".login-modal");
 const signupModal = document.querySelector(".signup-modal");
+const settingsModal = document.querySelector(".settings-modal");
 
 loginLink.forEach((link) => {
     link.addEventListener("click", function(){
@@ -313,9 +346,38 @@ signupLink.forEach((link) => {
 })
 
 
+settingsIcon.addEventListener("click", function(){
+    settingsModal.classList.remove("hide");
+    screenFade.classList.remove("hide");
+    loginModal.classList.add("hide");
+    signupModal.classList.add("hide");
+}, false)
+
+
+
+settingsCancel = document.querySelectorAll(".settings-cancel");
+
+settingsCancel.forEach((cancel) => {
+    cancel.addEventListener("click", function(){
+        settingsError.innerHTML = "";
+        modalInput.forEach((input) => {
+            input.value = ""
+        })
+        // customTextInput.value = "";
+        settingsModal.classList.add("hide");
+        screenFade.classList.add("hide");
+    } , false)
+})
+
+
+
+
 /****************LOG IN************************/
 const closeLoginModal = document.querySelector(".login-cancel");
 closeLoginModal.addEventListener("click", function(){
+    modalInput.forEach((input) => {
+        input.value = ""
+    })
     loginModal.classList.add("hide");
     screenFade.classList.add("hide");
 } ,false)
@@ -333,18 +395,26 @@ function login() {
     loaderLogin.classList.remove("hide");
 
     axios.post(
-        'http://localhost:5000/typing-app-35c2f/us-central1/api/login',
+        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/login',
         {
             "email": loginEmail.value,
             "password": loginPassword.value
         }
         )
         .then(function (response) {
+            modalInput.forEach((input) => {
+                input.value = ""
+            });
             modalLoginBtn.style.width = "";
             loaderLogin.classList.add("hide");
 
             let token = response.data.loginResponse.token;
             let userData = response.data.loginResponse.userData;
+            // console.log(userData)
+
+            if (userData.preference !== null || userData.preference !== "sentence" || userData.preference !== "paragraph") {
+                customTextInput.value = userData.preference;
+            }
 
             setAuthorizationHeader(token);
             setCurrentUser(userData);
@@ -395,6 +465,9 @@ modalLoginBtn.addEventListener("click", login , false);
 
 const closeSignupModal = document.querySelector(".signup-cancel");
 closeSignupModal.addEventListener("click", function(){
+    modalInput.forEach((input) => {
+        input.value = ""
+    })
     signupModal.classList.add("hide");
     screenFade.classList.add("hide");
 } ,false)
@@ -414,7 +487,7 @@ function signup() {
     modalSignupBtn.style.width = "110px";
     loaderSignup.classList.remove("hide");
     axios.post(
-        'http://localhost:5000/typing-app-35c2f/us-central1/api/signup',
+        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/signup',
         {
             "name": signupName.value,
             "email": signupEmail.value,
@@ -423,6 +496,9 @@ function signup() {
         }
         )
         .then(function (response) {
+            modalInput.forEach((input) => {
+                input.value = ""
+            });
             modalSignupBtn.style.width = "";
             loaderSignup.classList.add("hide");
 
@@ -584,7 +660,7 @@ function getAllChats() {
       };
     // getConfig();
     axios.post(
-        'http://localhost:5000/typing-app-35c2f/us-central1/api/getchats',
+        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/getchats',
         {},
         config
         )
@@ -652,7 +728,7 @@ getAllChats();
 function sendMessage() {
     getConfig();
     axios.post(
-        'http://localhost:5000/typing-app-35c2f/us-central1/api/postchat',
+        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/postchat',
         {
             "message": messageInput.value
         },
