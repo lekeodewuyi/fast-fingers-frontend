@@ -159,6 +159,7 @@ persistentInput.innerHTML = originText;
 let counter = [0,0,0,0]
 let interval;
 let timerRunning = false;
+let extraCharacters = 0;
 
 
 function leadingZero(time) {
@@ -176,6 +177,21 @@ function runTimer() {
     counter[0] = Math.floor((counter[3]/100)/60);
     counter[1] = Math.floor((counter[3]/100) - (counter[0] * 60));
     counter[2] = Math.floor(counter[3] - (counter[1] * 100) - (counter[0] * 6000));
+
+
+    let totalTimeInMinutes = counter[0] + counter[1]/60 + counter[2]/6000
+
+    let textEntered = inputText.value;
+    let textCharacters = textEntered.length;
+
+    // console.log(textEntered, textCharacters);
+
+    let charactersPerMinute;
+
+    charactersPerMinute = textCharacters/totalTimeInMinutes
+
+    // console.log(charactersPerMinute)
+    // console.log(totalTimeInMinutes)
 }
 
 
@@ -229,6 +245,7 @@ function spellCheck() {
         inputText.style.backgroundColor = "var(--pale-green)";
     } else {
         if (textEntered == originTextMatch) {
+            console.log(counter[0], counter[1], counter[2])
             inputText.classList.remove("caret-red");
             inputText.style.border = "2px solid var(--blue)";
             inputText.style.backgroundColor = "white";
@@ -238,7 +255,10 @@ function spellCheck() {
             }
             enableKeyboard();
         } else {
+            extraCharacters++;
+            console.log("extraCharacters", extraCharacters);
             disableKeyboard();
+            console.log(counter[0], counter[1], counter[2])
             inputText.classList.add("caret-red");
             inputText.style.border = `2px solid var(--red)`;
             inputText.style.backgroundColor = "var(--pale-red)";
@@ -299,6 +319,7 @@ document.querySelector(".pause-timer").addEventListener("click", function(){
 } ,false)
 
 function reset() {
+    extraCharacters = 0;
     clearInterval(interval);
     interval = null;
     counter = [0,0,0,0];
