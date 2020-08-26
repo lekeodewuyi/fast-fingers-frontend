@@ -150,6 +150,8 @@ function generateText() {
             console.log(originTextElement);
             originText = originTextElement.innerHTML
 
+            persistentInput.placeholder = originTextElement.innerHTML;
+
             // window.location.href = '/';
 
         })
@@ -173,9 +175,23 @@ generateInputText.addEventListener("click", generateText, false)
 
 const inputTextError = document.querySelector(".input-text-error");
 
-persistentInput.innerHTML = originText;
+// persistentInput.placeholder = originText;
 
 
+let inputTextHeight = inputText.clientHeight;
+let persistentInputHeight = persistentInput.clientHeight;
+
+console.log(inputTextHeight)
+console.log(inputTextHeight)
+
+inputText.addEventListener("mouseup", function(){
+    console.log(inputText.clientHeight)
+    persistentInput.style.height = `${inputText.clientHeight}px`;
+    console.log(persistentInput.clientHeight)
+    console.log(persistentInput)
+    console.log(persistentInput.style.display)
+    // persistentInput.style.display = "none";
+}, false)
 
 
 let counter = [0,0,0,0]
@@ -284,16 +300,18 @@ function spellCheck() {
     if (textEntered == originText) {
         clearInterval(interval);
         inputText.style.border = "2px solid green";
-        inputText.style.backgroundColor = "var(--pale-green)";
+        // inputText.style.backgroundColor = "var(--pale-green)";
 
         getResults();
         reset();
+        generateText();
     } else {
         if (textEntered == originTextMatch) {
             console.log(counter[0], counter[1], counter[2])
             inputText.classList.remove("caret-red");
             inputText.style.border = "2px solid var(--blue)";
-            inputText.style.backgroundColor = "white";
+            // inputText.style.backgroundColor = "white";
+            persistentInput.style.backgroundColor = "transparent";
             if(event.keyCode) {
                 event.returnValue = true;
                 console.log(event.keyCode)
@@ -306,7 +324,8 @@ function spellCheck() {
             console.log(counter[0], counter[1], counter[2])
             inputText.classList.add("caret-red");
             inputText.style.border = `2px solid var(--red)`;
-            inputText.style.backgroundColor = "var(--pale-red)";
+            // inputText.style.backgroundColor = "var(--pale-red)";
+            persistentInput.style.backgroundColor = "var(--pale-red)";
         }
     }
 
@@ -376,7 +395,7 @@ function reset() {
     timer.innerHTML = "00:00:00";
     inputTextDiv.style.borderColor = "grey";
 
-    inputText.style.backgroundColor = "white";
+    // inputText.style.backgroundColor = "white";
     inputText.style.border = "2px solid var(--pale-grey)";
 }
 
@@ -420,7 +439,7 @@ function getResults() {
     cpmElement.innerHTML = (characterCount/timeElaped).toFixed(2);
     sampleWordsElement.innerHTML = wordCount;
     wpmElement.innerHTML = (wordCount/timeElaped).toFixed(2);
-    errorRateElement.innerHTML = ((userChars - characterCount)/characterCount).toFixed(2) + "%";
+    errorRateElement.innerHTML = ((userChars - characterCount)/characterCount * 100).toFixed(2) + "%";
 
     charsInSampleText.forEach((element) => {
         element.innerHTML = `<span class="res-number">${characterCount}</span> characters in sample text`;
