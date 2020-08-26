@@ -382,6 +382,23 @@ function reset() {
 
 
 function getResults() {
+    const timeElapsedElement = document.querySelector(".time-elapsed");
+    const sampleCharsElement = document.querySelector(".sample-characters");
+    const userCharsElement = document.querySelector(".user-characters");
+    const cpmElement = document.querySelector(".cpm");
+    const sampleWordsElement = document.querySelector(".sample-words");
+    const wpmElement = document.querySelector(".wpm");
+    const errorRateElement = document.querySelector(".error-rate");
+
+    const charsInSampleText = document.querySelectorAll(".chars-in-sample-text");
+    const incorrectlyTypedChars = document.querySelector(".incorectly-typed-chars");
+    const backspaces = document.querySelector(".backspaces");
+    const timeElapsedCalc = document.querySelectorAll(".time-elapsed-calc");
+    const wordsInSampleText = document.querySelector(".words-in-sample-text");
+    const errorCalcUpper = document.querySelector(".error-calc-upper");
+
+
+
     characterCount = originText.length
     console.log("characterCount", characterCount)
     countWords(originText);
@@ -389,6 +406,33 @@ function getResults() {
     console.log("backspaceCount", backspaceCount);
     console.log("extraCharacterCount", extraCharacterCount)
     console.log(counter)
+
+    timeElaped = (counter[0] + counter[1]/60 + counter[2]/6000).toFixed(2);
+    userChars = (characterCount + backspaceCount + extraCharacterCount)
+
+    timeElapsedElement.innerHTML = timeElaped + " mins";
+    sampleCharsElement.innerHTML = characterCount + " characters";
+    userCharsElement.innerHTML = userChars;
+    cpmElement.innerHTML = (characterCount/timeElaped).toFixed(2);
+    sampleWordsElement.innerHTML = wordCount;
+    wpmElement.innerHTML = (wordCount/timeElaped).toFixed(2);
+    errorRateElement.innerHTML = ((userChars - characterCount)/characterCount).toFixed(2) + "%";
+
+    charsInSampleText.forEach((element) => {
+        element.innerHTML = `${characterCount} characters in sample text`;
+    })
+    incorrectlyTypedChars.innerHTML = `${extraCharacterCount} incorrectly typed characters`;
+    backspaces.innerHTML = `${backspaceCount} backspaces`;
+    timeElapsedCalc.forEach((element) => {
+        element.innerHTML = `${timeElaped} minutes`;
+    })
+    wordsInSampleText.innerHTML = `${wordCount} words in sample text`
+    errorCalcUpper.innerHTML = `${userChars} characters types - ${characterCount} characters in sample text`;
+
+
+
+
+
 }
 
 
