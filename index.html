@@ -37,28 +37,52 @@
 
 
     <section class="results-modal">
+        <span class="material-icons cancel results-cancel unselectable">cancel</span>
         <h2 class="result-header">Result Statistics</h2>
-        <div class="description-div">
-            <p>Time elapsed</p>
-            <p>Characters in sample text:</p>
-            <p>Characters you typed:</p>
-            <p>Characters per minute:</p>
-            <p>Words in sample text:</p>
-            <p>Words in sample text:</p>
-            <p>Words per minute:</p>
-            <p>Error rate:</p>
+        <div class="result-body">
+            <div class="description-div">
+                <p>Time elapsed:</p>
+                <p>Characters in sample text:</p>
+                <p>Characters you typed:</p>
+                <p>Characters per minute:</p>
+                <p>Words in sample text:</p>
+                <p>Words in sample text:</p>
+                <p>Words per minute:</p>
+                <p>Error rate:</p>
+            </div>
+            <div class="numbers-div">
+                <p class="time-elapsed">a</p>
+                <p class="sample-characters">b</p>
+                <p class="user-characters">c</p>
+                <p class="cpm">d</p>
+                <p class="sample-words">e</p>
+                <p class="user-words">f</p>
+                <p class="wpm">g</p>
+                <p class="error-rate">h</p>
+            </div>
+            <div class="calculations-div">
+                <div class="characters-calc">
+                    <p class="chars-in-sample-text">x characters in sample text</p>
+                    <p class="incorectly-typed-chars">y incorrectly typed characters</p>
+                    <p class="backspaces">z backspaces</p>
+                </div>
+                <div class="cpm-calc">
+                    <p class="upper-calc chars-in-sample-text">x (characters in sample text)</p>
+                    <p class="time-elapsed-calc">a (time elapsed)</p>
+                </div>
+                <div class="wpm-calc">
+                    <p class="upper-calc">f (words in sample text)</p>
+                    <p class="time-elapsed-calc">a (time elapsed)</p>
+                </div>
+                <div class="error-calc">
+                    <p class="upper-calc error-calc-upper">c (total characters typed) - b (characters in sample text)</p>
+                    <p class="chars-in-sample-text">b (characters in sample text)</p>
+                </div>
+            </div>
         </div>
-        <div class="numbers-div">
-            <p class="time-elapsed">a</p>
-            <p class="sample-characters">b</p>
-            <p class="user-characters">c</p>
-            <p class="cpm">d</p>
-            <p class="sample-words">e</p>
-            <p class="user-words">f</p>
-            <p class="wpm">g</p>
-            <p class="error-rate">h</p>
+        <div>
+            <button id="results-cancel" class="results-calcel">Close</button>
         </div>
-
     </section>
 
     <section class="settings-modal hide">
