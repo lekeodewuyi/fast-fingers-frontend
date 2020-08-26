@@ -210,10 +210,11 @@ nav {
 }
 
 .input-text {
-    /* position: absolute; */
+    position: absolute;
     font-size: 1rem;
     line-height: inherit;
     width: 700px;
+    height: 300px;
     font-family: 'Ubuntu Mono', monospace;
     border: 2px solid var(--pale-grey);
     border-radius: 5px;
@@ -222,14 +223,17 @@ nav {
     /* background-color: var(--pale-red); */
     background-color: transparent;
     z-index: 1;
+    border: 2px solid var(--blue);
 }
 
 .persistent-placeholder {
+    /* display: none; */
     position: absolute;
     color: silver;
     font-size: 1rem;
     line-height: inherit;
     width: 700px;
+    height: 300px;
     font-family: 'Ubuntu Mono', monospace;
     border: 2px solid var(--red);
     border-radius: 5px;
@@ -237,8 +241,11 @@ nav {
     resize:vertical;
 
     background-color: transparent;
+    /* background-color: var(--pale-blue); */
     margin-top: 20px;
+
     z-index: 0;
+
 }
 
 .backspace {
@@ -247,6 +254,7 @@ nav {
 
 .input-bottom-elements {
     display: flex;
+    display: none;;
     align-items: center;
     justify-content: space-between;
 }
