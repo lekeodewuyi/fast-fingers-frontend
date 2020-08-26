@@ -411,7 +411,7 @@ function getResults() {
     userChars = (characterCount + backspaceCount + extraCharacterCount)
 
     timeElapsedElement.innerHTML = timeElaped + " mins";
-    sampleCharsElement.innerHTML = characterCount + " characters";
+    sampleCharsElement.innerHTML = characterCount;
     userCharsElement.innerHTML = userChars;
     cpmElement.innerHTML = (characterCount/timeElaped).toFixed(2);
     sampleWordsElement.innerHTML = wordCount;
@@ -419,15 +419,15 @@ function getResults() {
     errorRateElement.innerHTML = ((userChars - characterCount)/characterCount).toFixed(2) + "%";
 
     charsInSampleText.forEach((element) => {
-        element.innerHTML = `${characterCount} characters in sample text`;
+        element.innerHTML = `<span class="res-number">${characterCount}</span> characters in sample text`;
     })
-    incorrectlyTypedChars.innerHTML = `${extraCharacterCount} incorrectly typed characters`;
-    backspaces.innerHTML = `${backspaceCount} backspaces`;
+    incorrectlyTypedChars.innerHTML = `<span class="res-number">${extraCharacterCount}</span> incorrectly typed characters`;
+    backspaces.innerHTML = `<span class="res-number red">${backspaceCount}</span> backspaces`;
     timeElapsedCalc.forEach((element) => {
-        element.innerHTML = `${timeElaped} minutes`;
+        element.innerHTML = `<span class="res-number">${timeElaped}</span> minutes`;
     })
-    wordsInSampleText.innerHTML = `${wordCount} words in sample text`
-    errorCalcUpper.innerHTML = `${userChars} characters types - ${characterCount} characters in sample text`;
+    wordsInSampleText.innerHTML = `<span class="res-number">${wordCount}</span> words in sample text`
+    errorCalcUpper.innerHTML = `<span class="res-number">${userChars}</span> characters types - <span class="res-number">${characterCount}</span> characters in sample text`;
 
 
 
