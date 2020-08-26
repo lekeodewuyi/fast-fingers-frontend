@@ -168,6 +168,12 @@ nav {
 }
 
 .origin-text-div {
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
+    padding: 0;
+    white-space: pre-line;
+    width: 700px;
 
     /* width: 100vw; */
     height: 350px;

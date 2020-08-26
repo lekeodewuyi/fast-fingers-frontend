@@ -94,9 +94,31 @@ function updatePreference() {
             settingsModal.classList.add("hide");
             screenFade.classList.add("hide");
 
-            console.log(response.data)
+            localStorage.setItem('currentUser', JSON.stringify(response.data.userData[0]));
 
-            // window.location.href = '/';
+            let currentUser = localStorage.currentUser;
+            
+            let userData = JSON.parse(currentUser);
+
+            console.log(userData);
+            if (userData.preference !== null && userData.preference !== "sentence" && userData.preference !== "paragraph") {
+
+                // console.log(generateInputText)
+                // userData = Object.assign({}, userData, {preference: preference});
+                // currentUser = localStorage.setItem('currentUser', JSON.stringify(userData))
+
+                generateInputText.classList.add("hide");
+
+                console.log(userData);
+                console.log(userData.preference)
+                customTextInput.value = userData.preference;
+                originTextElement.innerHTML = userData.preference;
+            }
+
+
+            console.log(response.data.userData)
+
+            window.location.href = '/';
 
         })
         .catch(function (error) {
@@ -231,9 +253,10 @@ function enableKeyboard() {
     }
 }
 
-
-
 function spellCheck() {
+
+    // originText = originText.replace(/\n/g, " ");
+
     let textEntered = inputText.value;
     console.log(textEntered)
     console.log(originText.substring(0, textEntered.length))
@@ -391,6 +414,19 @@ signupLink.forEach((link) => {
 
 
 settingsIcon.addEventListener("click", function(){
+    
+    let currentUser;
+    let userData;
+
+    currentUser = localStorage.currentUser
+
+    if (currentUser !== undefined) {
+        userData = JSON.parse(currentUser);
+        if (userData.preference !== "paragraph" && userData.preference !== "sentence") {
+            customTextInput.value = userData.preference;
+        }
+    }
+
     settingsModal.classList.remove("hide");
     screenFade.classList.remove("hide");
     loginModal.classList.add("hide");
@@ -449,6 +485,7 @@ function login() {
             modalInput.forEach((input) => {
                 input.value = ""
             });
+
             modalLoginBtn.style.width = "";
             loaderLogin.classList.add("hide");
 
@@ -456,8 +493,13 @@ function login() {
             let userData = response.data.loginResponse.userData;
             // console.log(userData)
 
-            if (userData.preference !== null || userData.preference !== "sentence" || userData.preference !== "paragraph") {
-                customTextInput.value = userData.preference;
+            console.log(userData.preference)
+            console.log(customTextInput.value)
+            if (userData.preference !== null && userData.preference !== "sentence" && userData.preference !== "paragraph") {
+                console.log(generateInputText)
+                generateInputText.classList.add("hide");
+                // customTextInput.value = userData.preference;
+                // originTextElement.innerHTML = userData.preference;
             }
 
             setAuthorizationHeader(token);
@@ -690,11 +732,19 @@ function checkTokenStatus() {
         navLogoutBtn.classList.remove("hide");
         userIcon.classList.remove("hide");
         notificationIcon.classList.remove("hide");
+        
+        let userData = JSON.parse(currentUser);
+        console.log(userData);
+        if (userData.preference !== null && userData.preference !== "sentence" && userData.preference !== "paragraph") {
+            console.log(generateInputText)
+            generateInputText.classList.add("hide");
+        }
     }
 };
 
 checkTokenStatus();
-document.addEventListener("click", checkTokenStatus, false);
+
+document.addEventListener("mouseup", checkTokenStatus, false);
 
 function getAllChats() {
 
