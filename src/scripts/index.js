@@ -181,7 +181,8 @@ persistentInput.innerHTML = originText;
 let counter = [0,0,0,0]
 let interval;
 let timerRunning = false;
-let extraCharacters = 0;
+let extraCharacterCount = 0;
+let backspaceCount = 0
 
 
 function leadingZero(time) {
@@ -238,7 +239,7 @@ function disableKeyboard() {
         if (event.keyCode !== 8) {
             inputText.readOnly = true;
         } else {
-            extraCharacters++;
+            backspaceCount++;
             inputText.readOnly = false;
         }
     }
@@ -253,9 +254,26 @@ function enableKeyboard() {
     }
 }
 
+
+let matches;
+let characterCount;
+function countWords(str) {
+    matches = str.match(/[\w\d\’\'-]+/gi);
+    wordCount = matches.length;
+    return matches ? matches.length : 0;
+  }
+
+
 function spellCheck() {
 
     // originText = originText.replace(/\n/g, " ");
+
+    characterCount = originText.length
+    console.log("characterCount", characterCount)
+
+    countWords(originText);
+    console.log("wordCount", wordCount);
+
 
     let textEntered = inputText.value;
     console.log(textEntered)
@@ -267,6 +285,9 @@ function spellCheck() {
         clearInterval(interval);
         inputText.style.border = "2px solid green";
         inputText.style.backgroundColor = "var(--pale-green)";
+
+        getResults();
+        reset();
     } else {
         if (textEntered == originTextMatch) {
             console.log(counter[0], counter[1], counter[2])
@@ -279,8 +300,8 @@ function spellCheck() {
             }
             enableKeyboard();
         } else {
-            extraCharacters++;
-            console.log("extraCharacters", extraCharacters);
+            extraCharacterCount++;
+            console.log("extraCharacterCount", extraCharacterCount);
             disableKeyboard();
             console.log(counter[0], counter[1], counter[2])
             inputText.classList.add("caret-red");
@@ -301,13 +322,12 @@ function spellCheck() {
 // }
 
 function startTimer() {
-    let textEnterdLength = inputText.value.length;
     if (!timerRunning) {
         document.querySelector(".pause-timer").innerHTML = "Pause"
         timerRunning = true;
         interval = setInterval(runTimer, 10);
     }
-    console.log(textEnterdLength);
+    // console.log(textEnterdLength);
 }
 
 function pauseTimer() {
@@ -343,7 +363,8 @@ document.querySelector(".pause-timer").addEventListener("click", function(){
 } ,false)
 
 function reset() {
-    extraCharacters = 0;
+    backspaceCount = 0;
+    extraCharacterCount = 0;
     clearInterval(interval);
     interval = null;
     counter = [0,0,0,0];
@@ -357,6 +378,17 @@ function reset() {
 
     inputText.style.backgroundColor = "white";
     inputText.style.border = "2px solid var(--pale-grey)";
+}
+
+
+function getResults() {
+    characterCount = originText.length
+    console.log("characterCount", characterCount)
+    countWords(originText);
+    console.log("wordCount", wordCount);
+    console.log("backspaceCount", backspaceCount);
+    console.log("extraCharacterCount", extraCharacterCount)
+    console.log(counter)
 }
 
 
