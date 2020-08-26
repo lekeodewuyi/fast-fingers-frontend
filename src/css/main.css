@@ -413,7 +413,7 @@ nav {
 }
 
 
-.login-modal, .signup-modal, .settings-modal {
+.login-modal, .signup-modal, .settings-modal, .results-modal {
     z-index: 7;
     position: absolute;
     display: flex;
@@ -438,6 +438,100 @@ nav {
     box-shadow: rgba(4, 74, 111, 0.5) 0px 8px 30px -18px;
     transition: 0.3s;
 }
+
+.results-modal {
+    height: 700px;
+    width: 650px;
+}
+
+.result-header {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    margin-top:  -15px;
+}
+
+.result-body {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+}
+
+.description-div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.numbers-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.description-div p {
+    font-size: 0.9rem;
+    margin: 15px  20px 15px 0px;
+}
+
+.numbers-div p {
+    color: var(--blue);
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0px 15px 10px;
+}
+
+#results-cancel {
+    margin-top: 50px;
+    background-color: var(--red);
+}
+
+.calculations-div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.characters-calc {
+    margin-top: 102.5px;
+}
+
+.calculations-div p {
+    color: var(--light-grey);
+    font-size: 0.7rem;
+    margin: 0px 0px 0px 30px;
+}
+
+.cpm-calc {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wpm-calc {
+    margin-top: 118px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.error-calc {
+    margin-top: 19px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+.upper-calc {
+    border-bottom: 1px solid var(--light-grey);
+}
+
+
+
 
 .settings-modal {
     height: 550px;
