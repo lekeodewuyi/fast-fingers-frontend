@@ -380,8 +380,12 @@ function reset() {
     inputText.style.border = "2px solid var(--pale-grey)";
 }
 
+let resultModal = document.querySelector(".results-modal");
+let closeResultModal = document.querySelectorAll(".results-cancel");
 
 function getResults() {
+
+
     const timeElapsedElement = document.querySelector(".time-elapsed");
     const sampleCharsElement = document.querySelector(".sample-characters");
     const userCharsElement = document.querySelector(".user-characters");
@@ -429,12 +433,16 @@ function getResults() {
     wordsInSampleText.innerHTML = `<span class="res-number">${wordCount}</span> words in sample text`
     errorCalcUpper.innerHTML = `<span class="res-number">${userChars}</span> characters types - <span class="res-number">${characterCount}</span> characters in sample text`;
 
-
-
-
-
+    resultModal.classList.remove("hide");
+    screenFade.classList.remove("hide");
 }
 
+closeResultModal.forEach((element) => {
+    element.addEventListener("click", function(){
+        resultModal.classList.add("hide");
+        screenFade.classList.add("hide");
+    }, false)
+})
 
 
 inputText.addEventListener("keypress", startTimer, false);
