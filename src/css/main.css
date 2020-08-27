@@ -38,6 +38,10 @@ input, textarea {
     font-family: inherit;
     font-size: 0.9rem;
     color: var(--main-grey);
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 input:hover, textarea:hover {
@@ -87,7 +91,7 @@ button:hover {
 /************** NAVIGATION BAR****************/
 
 nav {
-    position: fixed;
+    /* position: fixed; */
     width: 100vw;
     z-index: 1;
     display: flex;
