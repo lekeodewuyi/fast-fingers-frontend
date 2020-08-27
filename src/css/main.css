@@ -573,6 +573,10 @@ nav {
     margin: 10px 0px 20px 0px; 
 }
 
+.settings-explanation {
+    font-size: 0.7em;
+}
+
 .settings-error {
     margin-left: 230px;
 }
@@ -625,7 +629,7 @@ nav {
     width: 420px;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     margin-top: 20px;
 }
 
