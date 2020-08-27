@@ -19,6 +19,7 @@ const mobileModal = document.querySelector(".mobile-modal");
 (function() {   
     let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
     if (isMobile) {
+        document.querySelector(".origin-text-div").style.height = "";
         mobileModal.classList.remove("hide");
         screenFade.classList.remove("hide");
     }
