@@ -91,7 +91,8 @@ button:hover {
 /************** NAVIGATION BAR****************/
 
 nav {
-    /* position: fixed; */
+    position: fixed;
+    z-index: 2;
     width: 100vw;
     z-index: 1;
     display: flex;
