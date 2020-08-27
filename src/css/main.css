@@ -413,7 +413,7 @@ nav {
 }
 
 
-.login-modal, .signup-modal, .settings-modal, .results-modal {
+.login-modal, .signup-modal, .settings-modal, .results-modal, .help-modal, .mobile-modal {
     z-index: 7;
     position: absolute;
     display: flex;
@@ -437,6 +437,32 @@ nav {
     margin-bottom: auto;
     box-shadow: rgba(4, 74, 111, 0.5) 0px 8px 30px -18px;
     transition: 0.3s;
+}
+
+.mobile-modal {
+    width: 340px;
+    height: 250px;
+}
+
+.help-header, .mobile-header {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 35px;
+    margin-top: -20px;
+}
+
+.help-modal {
+    font-size: 1em;
+    line-height: 1.8rem;
+    height: 550px;
+    width: 500px;
+}
+
+.help-header, .mobile-header {
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 35px;
+    margin-top: -20px;
 }
 
 .results-modal {
@@ -939,6 +965,19 @@ nav {
 
 @media (max-width: 550px) {
 
+    .help-modal {
+        font-size: 0.9em;
+        line-height: 1.5rem;
+        height: 450px;
+        width: 400px;
+    }
+    
+    .help-header {
+        font-weight: 600;
+        font-size: 1.5rem;
+        margin-bottom: 35px;
+        margin-top: -20px;
+    }
     #page-header {
         font-size: 2rem;
         margin-top: -40px;
@@ -1002,6 +1041,20 @@ nav {
 
 
 @media (max-width: 380px) {
+
+    .help-modal {
+        font-size: 0.8em;
+        line-height: 1.5rem;
+        height: 500px;
+        width: 350px;
+    }
+    
+    .help-header {
+        font-weight: 600;
+        font-size: 1.5rem;
+        margin-bottom: 35px;
+        margin-top: -20px;
+    }
 
     #page-header {
         font-size: 1.8rem;

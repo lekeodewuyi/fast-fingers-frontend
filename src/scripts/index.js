@@ -13,6 +13,23 @@ const notificationIcon = document.querySelector("#notification-icon");
 const settingsIcon = document.querySelector("#settings-icon");
 const userIcon = document.querySelector("#user-icon");
 
+const closeMobileModal = document.querySelector(".mobile-cancel");
+const mobileModal = document.querySelector(".mobile-modal");
+
+(function() {   
+    let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+    if (isMobile) {
+        mobileModal.classList.remove("hide");
+        screenFade.classList.remove("hide");
+    }
+ }());
+
+closeMobileModal.addEventListener("click", function(){
+    mobileModal.classList.add("hide");
+    screenFade.classList.add("hide");
+}, false)
+
+
 
 // Auth status
 let config = {};
@@ -380,8 +397,8 @@ function reset() {
     inputText.style.border = "2px solid var(--pale-grey)";
 }
 
-let resultModal = document.querySelector(".results-modal");
-let closeResultModal = document.querySelectorAll(".results-cancel");
+const resultModal = document.querySelector(".results-modal");
+const closeResultModal = document.querySelectorAll(".results-cancel");
 
 function getResults() {
 
@@ -533,6 +550,21 @@ settingsCancel.forEach((cancel) => {
     } , false)
 })
 
+
+// Help modal
+const helpModal = document.querySelector(".help-modal");
+const closeHelpModal = document.querySelector(".help-cancel");
+
+helpIcon.addEventListener("click", function(){
+    screenFade.classList.remove("hide");
+    helpModal.classList.remove("hide");
+}, false)
+
+closeHelpModal.addEventListener("click", function(){
+    screenFade.classList.add("hide");
+    helpModal.classList.add("hide");
+}, false)
+console.log("hey")
 
 
 
