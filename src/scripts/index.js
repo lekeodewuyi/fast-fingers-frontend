@@ -341,6 +341,7 @@ function spellCheck() {
 
 function startTimer() {
     if (!timerRunning) {
+        document.querySelector(".pause-timer").classList.remove("hide");
         document.querySelector(".pause-timer").innerHTML = "Pause"
         timerRunning = true;
         interval = setInterval(runTimer, 10);
@@ -388,6 +389,7 @@ function reset() {
     counter = [0,0,0,0];
     timerRunning = false;
 
+    document.querySelector(".pause-timer").classList.add("hide");
     document.querySelector(".pause-timer").innerHTML = "Start"
 
     inputText.value = "";
@@ -403,6 +405,7 @@ const closeResultModal = document.querySelectorAll(".results-cancel");
 
 function getResults() {
 
+    const resultHeader = document.querySelector(".result-header");
 
     const timeElapsedElement = document.querySelector(".time-elapsed");
     const sampleCharsElement = document.querySelector(".sample-characters");
@@ -418,6 +421,18 @@ function getResults() {
     const timeElapsedCalc = document.querySelectorAll(".time-elapsed-calc");
     const wordsInSampleText = document.querySelector(".words-in-sample-text");
     const errorCalcUpper = document.querySelector(".error-calc-upper");
+
+    let possibleHeaders = [
+        "Sensational!",
+        "Good work!",
+        "Well done!",
+        "Way to go!",
+        "Good Job!",
+        "Bravo!",
+        "Nice!!!"
+    ]
+
+    resultHeader.innerHTML = possibleHeaders[Math.floor(Math.random() * possibleHeaders.length)] + " Here is how you performed";
 
 
 
@@ -438,7 +453,7 @@ function getResults() {
     cpmElement.innerHTML = (characterCount/timeElaped).toFixed(2);
     sampleWordsElement.innerHTML = wordCount;
     wpmElement.innerHTML = (wordCount/timeElaped).toFixed(2);
-    errorRateElement.innerHTML = ((userChars - characterCount)/characterCount).toFixed(2) + "%";
+    errorRateElement.innerHTML = (100 - (((userChars - characterCount)/characterCount) * 100)).toFixed(2) + "%";
 
     charsInSampleText.forEach((element) => {
         element.innerHTML = `<span class="res-number">${characterCount}</span> characters in sample text`;

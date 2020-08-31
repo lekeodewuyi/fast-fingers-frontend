@@ -48,9 +48,9 @@
     </section>
 
 
-    <section class="results-modal hide">
+    <section class="results-modal">
         <span class="material-icons cancel results-cancel unselectable">cancel</span>
-        <h2 class="result-header">Result Statistics</h2>
+        <h2 class="result-header">Well done! Here is how you performed</h2>
         <div class="result-body">
             <div class="description-div">
                 <p class= "sample">Time elapsed:</p>
@@ -59,7 +59,7 @@
                 <p class="char-you-type">Characters you typed:</p>
                 <p>Characters per minute:</p>
                 <p>Words per minute:</p>
-                <p>Error rate:</p>
+                <p>Accuracy:</p>
             </div>
             <div class="numbers-div">
                 <p class="sample time-elapsed">a</p>
@@ -84,7 +84,7 @@
                     <p class="upper-calc words-in-sample-text">f (words in sample text)</p>
                     <p class="time-elapsed-calc">a (time elapsed)</p>
                 </div>
-                <div class="error-calc">
+                <div class="error-calc hide">
                     <p class="upper-calc error-calc-upper">c (total characters typed) - b (characters in sample text)</p>
                     <p class="chars-in-sample-text">b (characters in sample text)</p>
                 </div>
@@ -185,7 +185,7 @@
                 </div>
                 <div class="input-text-div">
                     <!-- <span class="material-icons hide backspace">backspace</span> -->
-                    <textarea class="input-text typing-column-container-item" cols="30" rows="10" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" placeholder="Use this input box to reproduce the sample text above"></textarea>
+                    <textarea class="input-text typing-column-container-item" cols="30" rows="10" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" placeholder="Use this input box to reproduce the sample text above. The timer will start once you start typing. You can pause the timer at any time during the practice session."></textarea>
                     <textarea class="persistent-placeholder unselectable hide" cols="30" rows="10" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" placeholder="Placeholder"></textarea>
                 </div>
                 <p class="input-text-error error hide">Use the backspace button to clear the error</p>
@@ -196,7 +196,7 @@
                     </button>
                     <div class="timer-and-reset-div">
                         <p class="timer">00:00:00</p>
-                        <button class="pause-timer">Start</button>
+                        <button class="pause-timer hide">Start</button>
                         <button class="reset">Reset</button>
                     </div>
                 </div>
