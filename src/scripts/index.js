@@ -223,11 +223,20 @@ generateInputText.addEventListener("click", generateText, false)
 const inputTextError = document.querySelector(".input-text-error");
 
 // persistentInput.placeholder = originText;
+<<<<<<< HEAD
+=======
 
+>>>>>>> f0d6912f472b8a5004a2248cd787f7180e7a8555
 
 let inputTextHeight = inputText.clientHeight;
 let persistentInputHeight = persistentInput.clientHeight;
 
+<<<<<<< HEAD
+let inputTextHeight = inputText.clientHeight;
+let persistentInputHeight = persistentInput.clientHeight;
+
+=======
+>>>>>>> f0d6912f472b8a5004a2248cd787f7180e7a8555
 console.log(inputTextHeight)
 console.log(inputTextHeight)
 
@@ -501,10 +510,14 @@ function getResults() {
     sampleWordsElement.innerHTML = wordCount;
     wpmElement.innerHTML = (wordCount/timeElaped).toFixed(2);
 <<<<<<< HEAD
+<<<<<<< HEAD
     errorRateElement.innerHTML = (100 - (((userChars - characterCount)/characterCount) * 100)).toFixed(2) + "%";
 =======
     errorRateElement.innerHTML = ((userChars - characterCount)/characterCount * 100).toFixed(2) + "%";
 >>>>>>> f0d6912... Implements origin text as a placeholder in input box
+=======
+    errorRateElement.innerHTML = ((userChars - characterCount)/characterCount * 100).toFixed(2) + "%";
+>>>>>>> f0d6912f472b8a5004a2248cd787f7180e7a8555
 
     charsInSampleText.forEach((element) => {
         element.innerHTML = `<span class="res-number">${characterCount}</span> characters in sample text`;
