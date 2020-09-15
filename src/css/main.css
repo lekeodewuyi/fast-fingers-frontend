@@ -451,7 +451,26 @@ nav {
 
 .mobile-modal {
     width: 340px;
-    height: 250px;
+    height: 300px;
+}
+
+.mobile-modal input {
+    appearance: checkbox;
+    -webkit-appearance: checkbox;
+    -moz-appearance: checkbox;
+    margin-right: 10px;
+}
+
+.mobile-modal input:checked {
+    appearance: auto;
+    margin-right: 8px;
+}
+
+.mobile-checkbox-div {
+    font-size: 0.8rem;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
 }
 
 .help-header, .mobile-header {
@@ -900,8 +919,7 @@ nav {
         white-space: pre-line;
         width: 550px;
     
-        /* width: 100vw; */
-        height: 350px;
+        /* height: 350px; */
         border-top: 1px solid var(--pale-grey);
         border-bottom: 1px solid var(--pale-grey);
     }
@@ -939,7 +957,7 @@ nav {
         padding: 0;
         white-space: pre-line;
         width: 500px;
-        height: 350px;
+        /* height: 350px; */
         border-top: 1px solid var(--pale-grey);
         border-bottom: 1px solid var(--pale-grey);
     }
@@ -1011,7 +1029,7 @@ nav {
         padding: 0;
         white-space: pre-line;
         width: 350px;
-        height: 450px;
+        /* height: 450px; */
         border-top: 1px solid var(--pale-grey);
         border-bottom: 1px solid var(--pale-grey);
     }
@@ -1096,7 +1114,7 @@ nav {
         padding: 0;
         white-space: pre-line;
         width: 300px;
-        height: 550px;
+        /* height: 550px; */
         border-top: 1px solid var(--pale-grey);
         border-bottom: 1px solid var(--pale-grey);
     }

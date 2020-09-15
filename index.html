@@ -34,11 +34,14 @@
             </div>
         </nav>
     </header>
-
     <section class="mobile-modal hide">
         <span class="material-icons cancel mobile-cancel unselectable">cancel</span>
         <h3 class="mobile-header">Please switch to a computer</h3>
         <p>This application is best enjoyed on a computer screen.</p>
+        <div class="mobile-checkbox-div">
+            <input type="checkbox" id="dont-show-modal" name="dont-show-modal" value="dont-show-modal">
+            <label for="dont-show-modal"> Don't show this message again</label><br>
+        </div>
     </section>
 
     <section class="help-modal hide">
@@ -48,7 +51,7 @@
     </section>
 
 
-    <section class="results-modal">
+    <section class="results-modal hide">
         <span class="material-icons cancel results-cancel unselectable">cancel</span>
         <h2 class="result-header">Well done! Here is how you performed</h2>
         <div class="result-body">

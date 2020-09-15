@@ -2,6 +2,10 @@
 // perfect pause functionality
 // work on strict mode and free mode
 
+let body = document.querySelector("body");
+
+console.log(body)
+
 /****************NAV ELEMENTS************************/
 const screenFade = document.querySelector(".screen-fade");
 const navLoginBtn = document.querySelector("#nav-login-btn");
@@ -13,19 +17,44 @@ const notificationIcon = document.querySelector("#notification-icon");
 const settingsIcon = document.querySelector("#settings-icon");
 const userIcon = document.querySelector("#user-icon");
 
+
 const closeMobileModal = document.querySelector(".mobile-cancel");
 const mobileModal = document.querySelector(".mobile-modal");
+const showMobileModal = document.querySelector("#dont-show-modal");
+
+document.addEventListener("click", function(){
+    if (showMobileModal.checked) {
+        console.log(showMobileModal.value)
+    } else {
+        console.log("not checked")
+    }
+}, false);
 
 (function() {   
     let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
     if (isMobile) {
+        document.querySelector(".input-text").style.height = "11em";
         document.querySelector(".origin-text-div").style.height = "";
-        mobileModal.classList.remove("hide");
-        screenFade.classList.remove("hide");
+
+        let showPrompt = localStorage.getItem("dontShowMobileModal");
+
+        console.log(showPrompt);
+        if(showPrompt === "true") {
+            mobileModal.classList.add("hide");
+            screenFade.classList.add("hide");
+        } else {
+            mobileModal.classList.remove("hide");
+            screenFade.classList.remove("hide");
+        }
     }
  }());
 
 closeMobileModal.addEventListener("click", function(){
+    if (showMobileModal.checked) {
+        localStorage.setItem("dontShowMobileModal", "true")
+    } else {
+        localStorage.setItem("dontShowMobileModal", "false")
+    }
     mobileModal.classList.add("hide");
     screenFade.classList.add("hide");
 }, false)
@@ -404,7 +433,6 @@ const resultModal = document.querySelector(".results-modal");
 const closeResultModal = document.querySelectorAll(".results-cancel");
 
 function getResults() {
-
     const resultHeader = document.querySelector(".result-header");
 
     const timeElapsedElement = document.querySelector(".time-elapsed");
