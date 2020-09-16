@@ -522,7 +522,7 @@ function getResults() {
     let wpm = Number(wpmElement.innerHTML);
 
 
-    score = Number(1000 + (uniqueChars * 20) + (upperCaseChars * 10) + (characterCount * 10) + (accuracy * 10) + (cpm * 10) - (repeatedChars * 20) - (backspaceCount * 20) - (easyChars * 10))
+    score = Number(5000 + (uniqueChars * 20) + (upperCaseChars * 10) + (characterCount * 10) + (accuracy * 10) + (cpm * 10) - (repeatedChars * 20) - ((backspaceCount + extraCharacterCount) * 20) - (easyChars * 10))
 
     console.log(uniqueChars, upperCaseChars, characterCount, accuracy, cpm, repeatedChars, backspaceCount, easyChars)
     score = Math.floor(score);
@@ -1131,9 +1131,20 @@ console.log("hey")
 console.log(tableBody)
 
 function appendLeaderBoard(results){
-    tableBody.innerHTML = "";
+    let user = localStorage.currentUser;
+    let identifier = "";
+    if(user) {
+        user = JSON.parse(user);
+        identifier = user.identifier;
+    }
+    // tableBody.innerHTML = "";
     for (let i = 0; i < results.length; i++) {
         let tRow = document.createElement("tr");
+        if (identifier === results[i].identifier) {
+            console.log("yaaaaay")
+            console.log(identifier)
+            tRow.style.backgroundColor = paleBlue;
+        }
 
         let tPosition = document.createElement("td");
         tPosition.classList.add("leaderboard-position-col");
@@ -1156,4 +1167,17 @@ function appendLeaderBoard(results){
     }
 }
 
-document.addEventListener("click", getLeaderBoard)
+
+
+const leaderboardBtn = document.querySelector(".leaderboard-btn");
+const leaderboardModal = document.querySelector(".leaderboard-modal");
+const leaderboardClose = document.querySelector(".leaderboard-cancel");
+
+leaderboardBtn.addEventListener("click", function(){
+    leaderboardModal.classList.remove("hide");
+    getLeaderBoard();
+}, false)
+
+leaderboardClose.addEventListener("click", function(){
+    leaderboardModal.classList.add("hide");
+}, false)

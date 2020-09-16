@@ -28,6 +28,7 @@
                 <p class="hide"><span class="material-icons upper-right-nav notification hide" id="notification-icon">notifications</span></p>
                 <span class="material-icons upper-right-nav settings" id="settings-icon">settings</span>
                 <p class="hide"><span class="material-icons upper-right-nav user hide" id="user-icon">account_circle</span></p>
+                <button class="leaderboard-btn upper-right-nav">Leaderboard</button>
                 <button class="upper-right-nav login-btn login-link" id="nav-login-btn">Log in</button>
                 <button class="upper-right-nav sign-up-btn signup-link" id="nav-signup-btn">Sign up</button>
                 <button class="upper-right-nav log-out-btn hide" id="nav-logout-btn">Log out</button>
@@ -35,10 +36,11 @@
         </nav>
     </header>
 
-    <div class="leaderboard modal hide">
+    <div class="leaderboard-modal modal hide">
+        <span class="material-icons cancel leaderboard-cancel unselectable">cancel</span>
         <article class="leaderboard-article">
             <h1>Leaderboard</h1>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam optio adipisci iste esse dolore delectus saepe quisquam omnis. Commodi, assumenda?</p>
+            <p>These are the users with the highest ranking scores. The scoring system is based on a number of factors - typing speed, accuracy, errors(i.e. incorrectly typed characters), text length, and complexity of the text.</p>
 
             <figure class="leaderboard-figure">
                 <table class="leaderboard-table">
@@ -60,7 +62,7 @@
                     </tbody>
                 </table>
             </figure>
-
+            <p> *Custom texts are not eligible to get on the leaderboard.</p>
         </article>
     </div>
     <section class="mobile-modal hide">

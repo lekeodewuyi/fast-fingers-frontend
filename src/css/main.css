@@ -107,14 +107,35 @@ button:hover {
     margin-bottom: auto;
     box-shadow: rgba(4, 74, 111, 0.5) 0px 8px 30px -18px;
     transition: 0.3s;
-    
+    overflow-y: scroll;
+}
 
+.leaderboard-btn {
+    width: 100px;
+    color: var(--blue);
+    background-color: white;
+    border: 1px solid var(--blue);
+}
+
+.leaderboard-btn:hover, .leaderboard-btn:active {
+    background-color: var(--pale-blue);
 }
 
 .leaderboard-article {
+    font-size: 0.9rem;
     width: 90vw;
     max-width: 650px;
     padding: 10px;
+}
+
+.leaderboard-article h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 50px;
+}
+
+.leaderboard-article p {
+    margin: 10px 0px;
 }
 
 .leaderboard-figure {
@@ -123,7 +144,7 @@ button:hover {
     border: 1px solid var(--pale-grey);
 }
 
-.leaderboard table {
+.leaderboard-modal table {
     width: 100%;
     table-layout: fixed;
 }
@@ -140,10 +161,10 @@ button:hover {
     width: 150px;
 }
 
-.leaderboard th, .leaderboard td {
-    font-size: 0.9rem;
+.leaderboard-modal th, .leaderboard-modal td {
+    font-size: 0.8rem;
     text-align: left;
-    padding: 10px 15px;
+    padding: 5px 15px;
     border-bottom: 1px solid var(--pale-grey);
 }
 
@@ -374,6 +395,7 @@ nav {
     /* align-items: center; */
     background-color: white;
     box-shadow: rgba(4, 74, 111, 0.5) 0px 0px 30px -15px;
+    display: none;
 }
 
 .message-board-div {
@@ -1065,6 +1087,9 @@ nav {
 
 
 @media (max-width: 550px) {
+    .sign-up-btn {
+        display: none;
+    }
 
     .help-modal {
         font-size: 0.9em;
@@ -1153,7 +1178,6 @@ nav {
 
 
 @media (max-width: 380px) {
-
     .help-modal {
         font-size: 0.8em;
         line-height: 1.5rem;
