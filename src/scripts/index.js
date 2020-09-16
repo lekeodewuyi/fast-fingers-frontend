@@ -529,7 +529,6 @@ function getResults() {
     console.log("score", score);
 
     updateUserStats(score, cpm, wpm, accuracy)
-
 }
 
 closeResultModal.forEach((element) => {
@@ -1090,16 +1089,15 @@ messageInput.addEventListener("keyup", function(){
 
 
 
-
 function updateUserStats(score, cpm, wpm, accuracy){
     getConfig();
     axios.post(
-        'http://localhost:5000/typing-app-35c2f/us-central1/api/user/stats/update',
+        'http://localhost:5000/typing-app-35c2f/us-central1/api/stats/user/update',
         {
             "score": score,
-            "cpm": `${cpm} cpm`,
-            "wpm": `${wpm} wpm`,
-            "accuracy": `${accuracy}%`
+            "cpm": cpm,
+            "wpm": wpm,
+            "accuracy": accuracy
         },
         config
         )
@@ -1111,3 +1109,51 @@ function updateUserStats(score, cpm, wpm, accuracy){
             console.log(error.response)
         })
 }
+
+function getLeaderBoard(){
+    axios.post(
+        'http://localhost:5000/typing-app-35c2f/us-central1/api/leaderboard/retrieve'
+        )
+        .then(function (response) {
+            console.log(response.data);
+            appendLeaderBoard(response.data.leaderboard)
+
+
+        })
+        .catch(function (error) {
+            console.log(error);
+            console.log(error.response)
+        })
+}
+
+const tableBody = document.querySelector(".leaderboard-table tbody");
+console.log("hey")
+console.log(tableBody)
+
+function appendLeaderBoard(results){
+    tableBody.innerHTML = "";
+    for (let i = 0; i < results.length; i++) {
+        let tRow = document.createElement("tr");
+
+        let tPosition = document.createElement("td");
+        tPosition.classList.add("leaderboard-position-col");
+        tPosition.innerHTML = i + 1;
+
+        let tUser = document.createElement("td");
+        tUser.classList.add("leaderboard-user-col");
+        tUser.innerHTML = results[i].name;
+
+        let tScore = document.createElement("td");
+        tScore.classList.add("leaderboard-user-col");
+        tScore.innerHTML = results[i].score + " points";
+
+        let tStats = document.createElement("td");
+        tStats.classList.add("leaderboard-stats-col");
+        tStats.innerHTML = `${results[i].wpm}, ${results[i].cpm} / ${results[i].accuracy}`;
+
+        tRow.append(tPosition, tUser, tScore, tStats)
+        tableBody.appendChild(tRow);
+    }
+}
+
+document.addEventListener("click", getLeaderBoard)

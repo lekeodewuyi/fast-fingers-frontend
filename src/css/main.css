@@ -132,7 +132,16 @@ button:hover {
     width: 40px;
 }
 
+.leaderboard-user-col {
+    width: 100px;
+}
+
+.leaderboard-score-col {
+    width: 150px;
+}
+
 .leaderboard th, .leaderboard td {
+    font-size: 0.9rem;
     text-align: left;
     padding: 10px 15px;
     border-bottom: 1px solid var(--pale-grey);
