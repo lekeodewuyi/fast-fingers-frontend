@@ -496,6 +496,40 @@ function getResults() {
 
     resultModal.classList.remove("hide");
     screenFade.classList.remove("hide");
+
+
+    let score;
+    let counts = {};
+    let ch, index, count;
+    let repeatedChars = 0;
+    let easyChars = 0;
+    let upperCaseChars = (originText.match(/[A-Z]/g) || []).length;
+    for (i = 0; i < originText.length; ++i) {
+        ch = originText.charAt(i);
+        if (originText.charAt(i) === originText.charAt(i + 1)) {
+            repeatedChars++
+        }
+        if (ch === " " || ch === "n"  || ch === "o" || ch === "p" || ch === "v" || ch === "a" || ch === "r" || ch === "i" || ch === "w" || ch === "g" || ch === "y" || ch === "|" || ch === "k" || ch === "u" || ch === "r" || ch === ";" || ch === "s" || ch === "d" || ch === "f" || ch === "l" || ch === "k" || ch === "j" || ch === "h") {
+            easyChars++
+        }
+        count = counts[ch];
+        counts[ch] = count ? count + 1 : 1;
+    }
+
+    let uniqueChars = Object.keys([...originText].reduce((res, char) => (res[char] = (res[char] || 0) + 1, res), {})).length
+    let accuracy = Number((100 - (((userChars - characterCount)/characterCount) * 100)).toFixed(2));
+    let cpm = Number(cpmElement.innerHTML);
+    let wpm = Number(wpmElement.innerHTML);
+
+
+    score = Number(1000 + (uniqueChars * 20) + (upperCaseChars * 10) + (characterCount * 10) + (accuracy * 10) + (cpm * 10) - (repeatedChars * 20) - (backspaceCount * 20) - (easyChars * 10))
+
+    console.log(uniqueChars, upperCaseChars, characterCount, accuracy, cpm, repeatedChars, backspaceCount, easyChars)
+    score = Math.floor(score);
+    console.log("score", score);
+
+    updateUserStats(score, cpm, wpm, accuracy)
+
 }
 
 closeResultModal.forEach((element) => {
@@ -1048,9 +1082,32 @@ function sendMessage() {
         })
 }
 
-
 sendMessageBtn.addEventListener("click", sendMessage , false);
 
 messageInput.addEventListener("keyup", function(){
     messageError.innerHTML = "";
-} , false)
+} , false);
+
+
+
+
+function updateUserStats(score, cpm, wpm, accuracy){
+    getConfig();
+    axios.post(
+        'http://localhost:5000/typing-app-35c2f/us-central1/api/user/stats/update',
+        {
+            "score": score,
+            "cpm": `${cpm} cpm`,
+            "wpm": `${wpm} wpm`,
+            "accuracy": `${accuracy}%`
+        },
+        config
+        )
+        .then(function (response) {
+            console.log(response.data)
+        })
+        .catch(function (error) {
+            console.log(error);
+            console.log(error.response)
+        })
+}
