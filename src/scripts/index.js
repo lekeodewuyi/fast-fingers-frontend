@@ -563,7 +563,7 @@ closeUserModal.addEventListener("click", function(){
 }, false)
 
 function appendCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ", ");
 }
 
 const setCurrentUser = (user) => {
@@ -577,7 +577,7 @@ const setCurrentUser = (user) => {
         userCpm.innerHTML = `Characters per minute:<span class="bold"> ${user.cpm} cpm</span> `;
         userWpm.innerHTML = `Words per minute:<span class="bold"> ${user.wpm} wpm </span>`;
         userAccuracy.innerHTML = `Accuracy:<span class="bold"> ${user.accuracy}% </span>`;
-        userTopScore.innerHTML = `Top score: <span class="bold"> ${user.topScore} points </span>`
+        userTopScore.innerHTML = `Top score: <span class="bold"> ${appendCommas(user.topScore)} points </span>`
         userScore.innerHTML = `Cummulative score:<span class="bold"> ${appendCommas(user.score)} points </span>`;
     }
 }
@@ -971,7 +971,7 @@ function checkTokenStatus() {
             userCpm.innerHTML = `Characters per minute: <span class="bold">${user.cpm} cpm</span> `;
             userWpm.innerHTML = `Words per minute:<span class="bold"> ${user.wpm} wpm </span>`;
             userAccuracy.innerHTML = `Accuracy:<span class="bold"> ${user.accuracy}% </span>`;
-            userTopScore.innerHTML = `Top score: <span class="bold"> ${user.topScore} points </span>`
+            userTopScore.innerHTML = `Top score: <span class="bold"> ${appendCommas(user.topScore)} points </span>`
             userScore.innerHTML = `Cummulative score:<span class="bold"> ${appendCommas(user.score)} points </span>`;
         }
     }
@@ -1143,6 +1143,8 @@ function updateUserStats(score, cpm, wpm, accuracy){
         )
         .then(function (response) {
             console.log(response.data)
+            setCurrentUser(response.data.userDetails);
+
         })
         .catch(function (error) {
             console.log(error);

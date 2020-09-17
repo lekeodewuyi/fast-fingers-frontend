@@ -268,7 +268,7 @@ nav {
 .upper-right-nav-div {
     display: flex;
     align-items: center;
-    margin: 15px 20px 15px 0px;
+    margin: 15px 100px 15px 0px;
 }
 
 .upper-right-nav {
@@ -1091,6 +1091,10 @@ nav {
 
 
 @media (max-width: 650px) {
+
+    .upper-right-nav-div {
+        margin-right: 20px;
+    }
 
     .leaderboard-user-col {
         width: 90px;
