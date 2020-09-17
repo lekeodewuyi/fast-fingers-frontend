@@ -446,6 +446,7 @@ function getResults() {
     const timeElapsedCalc = document.querySelectorAll(".time-elapsed-calc");
     const wordsInSampleText = document.querySelector(".words-in-sample-text");
     const errorCalcUpper = document.querySelector(".error-calc-upper");
+    const sessionScore = document.querySelector(".session-score");
 
     let possibleHeaders = [
         "Sensational!",
@@ -524,6 +525,8 @@ function getResults() {
     console.log(uniqueChars, upperCaseChars, characterCount, accuracy, cpm, repeatedChars, backspaceCount, easyChars)
     score = Math.floor(score);
     console.log("score", score);
+
+    sessionScore.innerHTML = `SESSION SCORE: <span class="color-blue">${appendCommas(score)} POINTS</span>`
 
     updateUserStats(score, cpm, wpm, accuracy)
 }
