@@ -13,7 +13,7 @@
     <script src="/src/scripts/index.js" defer></script>
     <title>Typing App</title>
 </head>
-<body>
+<body oncopy="return false" oncut="return false" onpaste="return false">
     <div class="screen-fade hide">
         
     </div>
@@ -35,6 +35,11 @@
             </div>
         </nav>
     </header>
+
+    <div class ="session-over-modal hide">
+        <span class="material-icons cancel session-over-cancel unselectable">cancel</span>
+        <p>Your current session has expired, You can login to continue.</p>
+    </div>
 
     <div class="user-profile-modal hide">
         <span class="material-icons cancel user-profile-cancel unselectable">cancel</span>
@@ -64,12 +69,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <!-- <tr>
                             <td class="leaderboard-position-col">1</td>
                             <td class="leaderboard-user-col">user one</td>
                             <td class="leaderboard-score-col"> 1000pts </td>
                             <td class="leaderboard-stats-col">500wpm/1200cpm/98%</td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </figure>

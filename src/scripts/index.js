@@ -333,6 +333,7 @@ function spellCheck() {
             console.log(counter[0], counter[1], counter[2])
             inputText.classList.remove("caret-red");
             inputText.style.border = "2px solid var(--blue)";
+            inputText.style.border = "2px solid var(--light-green)";
             inputText.style.backgroundColor = "white";
             if(event.keyCode) {
                 event.returnValue = true;
@@ -415,11 +416,14 @@ function reset() {
     document.querySelector(".pause-timer").innerHTML = "Start"
 
     inputText.value = "";
+    inputText.classList.remove("caret-red");
+    inputTextError.classList.add("hide");
+
     timer.innerHTML = "00:00:00";
     inputTextDiv.style.borderColor = "grey";
 
     inputText.style.backgroundColor = "white";
-    inputText.style.border = "2px solid var(--pale-grey)";
+    inputText.style.border = "2px solid var(--pale-blue)";
 }
 
 const resultModal = document.querySelector(".results-modal");
@@ -931,6 +935,15 @@ navLogoutBtn.addEventListener("click", logout, false);
 
 // Check token status
 
+const sessionOverModal = document.querySelector(".session-over-modal");
+const closeSessionOverModal = document.querySelector(".session-over-cancel");
+
+closeSessionOverModal.addEventListener("click", function(){
+    sessionOverModal.classList.add("hide");
+    screenFade.classList.add("hide");
+    logout();
+}, false)
+
 function checkTokenStatus() {
     let currentUser = localStorage.currentUser
     const TOKEN = localStorage.FBIdToken;
@@ -940,6 +953,8 @@ function checkTokenStatus() {
         console.log(decodedToken.exp * 1000);
         console.log(Date.now())
         if(decodedToken.exp * 1000 < Date.now()){ //if TOKEN is expired
+            sessionOverModal.classList.remove("hide");
+            screenFade.classList.remove("hide");
             logout();
         }
     } else if (!TOKEN) {
@@ -1132,7 +1147,7 @@ messageInput.addEventListener("keyup", function(){
 function updateUserStats(score, cpm, wpm, accuracy){
     getConfig();
     axios.post(
-        'http://localhost:5000/typing-app-35c2f/us-central1/api/stats/user/update',
+        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/stats/user/update',
         {
             "score": score,
             "cpm": cpm,
@@ -1154,7 +1169,7 @@ function updateUserStats(score, cpm, wpm, accuracy){
 
 function getLeaderBoard(){
     axios.post(
-        'http://localhost:5000/typing-app-35c2f/us-central1/api/leaderboard/retrieve'
+        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/leaderboard/retrieve'
         )
         .then(function (response) {
             console.log(response.data);
@@ -1179,7 +1194,7 @@ function appendLeaderBoard(results){
         user = JSON.parse(user);
         identifier = user.identifier;
     }
-    // tableBody.innerHTML = "";
+    tableBody.innerHTML = "";
     for (let i = 0; i < results.length; i++) {
         let tRow = document.createElement("tr");
         if (identifier === results[i].identifier) {
@@ -1202,7 +1217,7 @@ function appendLeaderBoard(results){
 
         let tStats = document.createElement("td");
         tStats.classList.add("leaderboard-stats-col");
-        tStats.innerHTML = `${results[i].wpm}<span class="leaderboard-extra"><span class="leaderboard-cpm">, ${results[i].cpm}</span> / ${results[i].accuracy}</span>`;
+        tStats.innerHTML = `${results[i].wpm} wpm<span class="leaderboard-extra"><span class="leaderboard-cpm">, ${results[i].cpm} cpm</span> / ${results[i].accuracy}%</span>`;
 
         tRow.append(tPosition, tUser, tScore, tStats)
         tableBody.appendChild(tRow);

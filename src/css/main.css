@@ -80,7 +80,7 @@ button:hover {
     
 }
 
-.modal {
+.modal, .session-over-modal {
     height: 70vh;
     max-height: 700px;
 
@@ -106,6 +106,7 @@ button:hover {
     margin-top: auto;
     margin-bottom: auto;
     box-shadow: rgba(4, 74, 111, 0.5) 0px 8px 30px -18px;
+    box-shadow: rgba(4, 74, 111, 0.5) 0px 0px 3000px 1800px;
     transition: 0.3s;
     overflow-y: scroll;
 }
@@ -128,6 +129,13 @@ button:hover {
     padding: 20px;
     border-radius: 15px;
     box-shadow: rgba(4, 74, 111, 0.5) 0px 8px 30px -18px;
+    box-shadow: rgba(4, 74, 111, 0.5) 0px 0px 3000px 1800px;
+}
+
+.session-over-modal {
+    width: 320px;
+    height: 200px;
+    box-shadow: rgba(4, 74, 111, 0.5) 0px 0px 3000px 1800px;
 }
 
 
@@ -370,13 +378,18 @@ nav {
     line-height: inherit;
     width: 700px;
     font-family: 'Ubuntu Mono', monospace;
-    border: 2px solid var(--pale-grey);
+    border: 2px solid var(--pale-blue);
     border-radius: 5px;
     padding: 20px 20px;
     resize: vertical;
     /* background-color: var(--pale-red); */
     background-color: transparent;
     z-index: 1;
+    box-shadow: rgba(4, 74, 111, 0.5) 0px 0px 30px -15px;
+}
+
+.input-text:hover {
+    border: 2px solid var(--blue);
 }
 
 .persistent-placeholder {
@@ -932,6 +945,7 @@ nav {
 }
 
 .cancel {
+    font-size: 35px !important;
     cursor: pointer;
     position: absolute;
     right: 0;
@@ -1407,7 +1421,7 @@ nav {
         font-size: 1rem;
         width: 350px;
         height: 500px;
-        min-height: 85vh;
+        min-height: 80vh;
 
     }
 
