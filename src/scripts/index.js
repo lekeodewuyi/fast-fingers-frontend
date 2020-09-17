@@ -471,9 +471,9 @@ function getResults() {
     timeElapsedElement.innerHTML = timeElaped + " mins";
     sampleCharsElement.innerHTML = characterCount;
     userCharsElement.innerHTML = userChars;
-    cpmElement.innerHTML = (characterCount/timeElaped).toFixed(2);
+    cpmElement.innerHTML = Math.floor(characterCount/timeElaped);
     sampleWordsElement.innerHTML = wordCount;
-    wpmElement.innerHTML = (wordCount/timeElaped).toFixed(2);
+    wpmElement.innerHTML = Math.floor(wordCount/timeElaped);
     errorRateElement.innerHTML = (100 - (((userChars - characterCount)/characterCount) * 100)).toFixed(2) + "%";
 
     charsInSampleText.forEach((element) => {

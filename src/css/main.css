@@ -1087,6 +1087,18 @@ nav {
         justify-content: center;
         width: 550px;
     }
+
+    .results-modal {
+        width: 90vw;
+    }
+
+    .description-div {
+        align-items: flex-start;
+    }
+
+    .calculations-div {
+        display: none;
+    }
 }
 
 
@@ -1170,11 +1182,22 @@ nav {
         width: 90vw;
         height: 80vh;
     }
+
+    .calculations-div {
+        display: none;
+    }
+
+    .description-div p, .numbers-div p {
+        margin-bottom: 20px;
+    }
+
+    .description-div {
+        align-items: flex-start;
+    }
 }
 
 
 @media (max-width: 550px) {
-
     .modal {
         padding: 300px 0px;
     }
@@ -1288,6 +1311,11 @@ nav {
 
     .leaderboard-score-col {
         width: 80px;
+    }
+
+
+    .result-body p {
+        font-size: 0.8rem;
     }
 }
 
@@ -1431,105 +1459,6 @@ nav {
         transform: translateY(30px);
     }
 
-
-
-
-
-    .results-modal {
-        height: 800px;
-        width: 750px;
-    }
-    
-    .result-header {
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin-bottom: 30px;
-        margin-top: 10px;
-    }
-    
-    .result-body {
-        width: 90%;
-        display: flex;
-        justify-content: center;
-    }
-    
-    .description-div {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-    }
-    
-    .numbers-div {
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .description-div p {
-        font-size: 0.9rem;
-        margin: 0px  20px 80px 0px;
-    }
-    
-    .numbers-div p {
-        color: var(--blue);
-        font-size: 0.9rem;
-        font-weight: 600;
-        display: flex;
-        flex-direction: column;
-        margin: 0px 0px 80px 10px;
-    }
-    
-    #results-cancel {
-        /* margin-top: 50px; */
-        /* margin-bottom: -85px; */
-        background-color: var(--red);
-    }
-    
-    .calculations-div {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .characters-calc {
-        margin-top: 154px;
-    }
-    
-    .calculations-div p {
-        color: var(--light-grey);
-        font-size: 0.7rem;
-        margin: 0px 0px 0px 30px;
-    }
-    
-    .cpm-calc {
-        margin-top: 64px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .wpm-calc {
-        margin-top: 68px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .error-calc {
-        margin-top: 65px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .upper-calc {
-        border-bottom: 1px solid var(--light-grey);
-    }
-    
-    .description-div .sample,  .numbers-div .sample{
-        margin-top: 0px;
-        margin-bottom: 15px;
-    }
-    
     .description-div .char-you-type, .numbers-div .char-you-type {
         margin-top: 60px;
     }
