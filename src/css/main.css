@@ -110,6 +110,61 @@ button:hover {
     overflow-y: scroll;
 }
 
+.user-profile-modal {
+    z-index: 7;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 300px;
+    height: 350px;
+    right: 0px;
+    top: 0px;
+    margin-right: 20px;
+    margin-top: 70px;
+    background-color: white;
+    border: 1px solid var(--pale-blue);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: rgba(4, 74, 111, 0.5) 0px 8px 30px -18px;
+}
+
+
+.log-out-btn {
+    background-color: var(--red);
+    margin: 0px;
+    margin-top: 15px;
+    align-self: center;
+    width: 100%;
+}
+
+.user-profile-modal .name {
+    text-transform: uppercase;
+}
+
+.user-profile-modal p {
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+}
+
+.color-blue {
+    color: var(--blue);
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.user-name {
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+
+
+
 .leaderboard-btn {
     width: 100px;
     color: var(--blue);
@@ -231,10 +286,6 @@ nav {
 
 .sign-up-btn:hover {
     background-color: var(--light-teal-blue);
-}
-
-.log-out-btn {
-    background-color: var(--red);
 }
 
 .log-out-btn:hover {

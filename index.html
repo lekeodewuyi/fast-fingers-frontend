@@ -24,17 +24,28 @@
                 <!-- <a class="home" href="/">APP NAME</a> -->
             </div>
             <div class="upper-right-nav-div">
+                <button class="leaderboard-btn upper-right-nav">Leaderboard</button>
                 <span class="material-icons upper-right-nav help" id="help-icon" >help</span>
                 <p class="hide"><span class="material-icons upper-right-nav notification hide" id="notification-icon">notifications</span></p>
                 <span class="material-icons upper-right-nav settings" id="settings-icon">settings</span>
-                <p class="hide"><span class="material-icons upper-right-nav user hide" id="user-icon">account_circle</span></p>
-                <button class="leaderboard-btn upper-right-nav">Leaderboard</button>
                 <button class="upper-right-nav login-btn login-link" id="nav-login-btn">Log in</button>
                 <button class="upper-right-nav sign-up-btn signup-link" id="nav-signup-btn">Sign up</button>
-                <button class="upper-right-nav log-out-btn hide" id="nav-logout-btn">Log out</button>
+                <button class="log-out-btn hide" id="nav-logout-btn">Log out</button>
+                <span class="material-icons upper-right-nav user hide" id="user-icon">face</span>
             </div>
         </nav>
     </header>
+
+    <div class="user-profile-modal hide">
+        <span class="material-icons cancel user-profile-cancel unselectable">cancel</span>
+        <h1 class="user-name">Hey User</h1>
+        <p class="user-top-stats">After your first typing session, your top stats will show up here.</p>
+        <p class="user-cpm"></p>
+        <p class="user-wpm"></p>
+        <p class="user-accuracy"></p>
+        <p class="user-top-score"></p>
+        <p class="user-score"></p>
+    </div>
 
     <div class="leaderboard-modal modal hide">
         <span class="material-icons cancel leaderboard-cancel unselectable">cancel</span>

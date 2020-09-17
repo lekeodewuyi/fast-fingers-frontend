@@ -22,14 +22,6 @@ const closeMobileModal = document.querySelector(".mobile-cancel");
 const mobileModal = document.querySelector(".mobile-modal");
 const showMobileModal = document.querySelector("#dont-show-modal");
 
-document.addEventListener("click", function(){
-    if (showMobileModal.checked) {
-        console.log(showMobileModal.value)
-    } else {
-        console.log("not checked")
-    }
-}, false);
-
 (function() {   
     let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
     if (isMobile) {
@@ -551,8 +543,43 @@ const setAuthorizationHeader = (token) => {
     axios.defaults.headers.common['Authorization'] = FBIdToken;
 }
 
+const userModal = document.querySelector(".user-profile-modal");
+const closeUserModal = document.querySelector(".user-profile-cancel");
+const userName = document.querySelector(".user-name");
+const userTopStats = document.querySelector(".user-top-stats");
+const userCpm = document.querySelector(".user-cpm");
+const userWpm = document.querySelector(".user-wpm");
+const userAccuracy = document.querySelector(".user-accuracy");
+const userTopScore = document.querySelector(".user-top-score");
+const userScore = document.querySelector(".user-score");
+
+
+userIcon.addEventListener("click", function(){
+    userModal.classList.toggle("hide");
+}, false);
+
+closeUserModal.addEventListener("click", function(){
+    userModal.classList.add("hide");
+}, false)
+
+function appendCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 const setCurrentUser = (user) => {
     localStorage.setItem('currentUser', JSON.stringify(user));
+
+    userName.innerHTML = `Hey, <span class="color-blue name">${user.name}</span>`
+    userIcon.classList.add("color-blue");
+
+    if(user.stats) {
+        userTopStats.innerHTML = "YOUR TOP STATS:";
+        userCpm.innerHTML = `Characters per minute:<span class="bold"> ${user.cpm} cpm</span> `;
+        userWpm.innerHTML = `Words per minute:<span class="bold"> ${user.wpm} wpm </span>`;
+        userAccuracy.innerHTML = `Accuracy:<span class="bold"> ${user.accuracy}% </span>`;
+        userTopScore.innerHTML = `Top score: <span class="bold"> ${user.topScore} points </span>`
+        userScore.innerHTML = `Cummulative score:<span class="bold"> ${appendCommas(user.score)} points </span>`;
+    }
 }
 
 const retrieveCurrentUser = (user) => {
@@ -921,24 +948,36 @@ function checkTokenStatus() {
     if (currentUser) {
         // CURRENT_USER.innerHTML = `Hello, ${currentUser}`
 
+        userModal.appendChild(navLogoutBtn);
         navLoginBtn.classList.add("hide");
         navSignupBtn.classList.add("hide");
         navLogoutBtn.classList.remove("hide");
         userIcon.classList.remove("hide");
         notificationIcon.classList.remove("hide");
         
-        let userData = JSON.parse(currentUser);
-        console.log(userData);
-        if (userData.preference !== null && userData.preference !== "sentence" && userData.preference !== "paragraph") {
+        let user = JSON.parse(currentUser);
+
+        userName.innerHTML = `Hey, <span class="color-blue name">${user.name}</span>`
+        userIcon.classList.add("color-blue");
+
+        console.log(user);
+        if (user.preference !== null && user.preference !== "sentence" && user.preference !== "paragraph") {
             console.log(generateInputText)
             generateInputText.classList.add("hide");
+        }
+
+        if(user.stats) {
+            userTopStats.innerHTML = `<span class="bold">YOUR TOP STATS:</span>`;
+            userCpm.innerHTML = `Characters per minute: <span class="bold">${user.cpm} cpm</span> `;
+            userWpm.innerHTML = `Words per minute:<span class="bold"> ${user.wpm} wpm </span>`;
+            userAccuracy.innerHTML = `Accuracy:<span class="bold"> ${user.accuracy}% </span>`;
+            userTopScore.innerHTML = `Top score: <span class="bold"> ${user.topScore} points </span>`
+            userScore.innerHTML = `Cummulative score:<span class="bold"> ${appendCommas(user.score)} points </span>`;
         }
     }
 };
 
 checkTokenStatus();
-
-document.addEventListener("mouseup", checkTokenStatus, false);
 
 function getAllChats() {
 
