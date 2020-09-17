@@ -94,7 +94,7 @@ button:hover {
     align-items: center;
     justify-content: center;
     background-color: white;
-    padding: 40px;
+    padding: 100px 40px;
     border: 1px solid var(--pale-grey);
     border-radius: 10px;
     left: 0; 
@@ -140,8 +140,10 @@ button:hover {
 
 .leaderboard-figure {
     border-radius: 10px;
-    padding: 20px 15px 20px 15px;
+    padding: 15px 15px 15px 15px;
     border: 1px solid var(--pale-grey);
+    border: 1px solid var(--pale-blue);
+    box-shadow: rgba(4, 74, 111, 0.5) 0px 10px 30px -15px;
 }
 
 .leaderboard-modal table {
@@ -164,8 +166,22 @@ button:hover {
 .leaderboard-modal th, .leaderboard-modal td {
     font-size: 0.8rem;
     text-align: left;
-    padding: 5px 15px;
+    padding: 7px 15px;
+}
+
+.leaderboard-modal tr {
     border-bottom: 1px solid var(--pale-grey);
+}
+
+.leaderboard-modal tr:last-child {
+    border-bottom: 1px solid transparent;
+}
+
+
+.leaderboard-modal th {
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--blue);
 }
 
 @media (hover: none) {
@@ -567,6 +583,7 @@ nav {
     font-size: 1.2rem;
     margin-bottom: 35px;
     margin-top: -20px;
+    align-self: flex-start;
 }
 
 .help-modal {
@@ -700,7 +717,7 @@ nav {
 .settings-header {
     display: flex;
     align-items: center;
-    font-size: 2.0rem;
+    font-size: 1.5rem;
     font-weight: 600px;
     margin-bottom: 20px;
 }
@@ -1022,7 +1039,22 @@ nav {
 }
 
 
+@media (max-width: 650px) {
+
+    .leaderboard-user-col {
+        width: 90px;
+    }
+    .leaderboard-score-col {
+        width: 100px;
+    }
+}
+
+
 @media (max-width: 600px) {
+
+    .leaderboard-cpm {
+        display: none;
+    }
 
     #page-header {
         margin-top: -40px;
@@ -1087,6 +1119,15 @@ nav {
 
 
 @media (max-width: 550px) {
+
+    .modal {
+        padding: 300px 0px;
+    }
+
+    .leaderboard-extra {
+        display: none;
+    }
+
     .sign-up-btn {
         display: none;
     }
@@ -1176,8 +1217,35 @@ nav {
     }
 }
 
+@media (max-width: 450px) {
+
+    .leaderboard-modal th, .leaderboard-modal td {
+        padding: 5px 5px;
+    }
+
+    .leaderboard-position-col {
+        width: 20px;
+    }
+
+    .leaderboard-user-col {
+        width: 80px;
+    }
+
+    .leaderboard-score-col {
+        width: 80px;
+    }
+}
 
 @media (max-width: 380px) {
+
+    .leaderboard-modal p {
+        font-size: 0.8rem;
+    }
+
+    .leaderboard-modal th, .leaderboard-modal td {
+        font-size: 0.7rem;
+    }
+
     .help-modal {
         font-size: 0.8em;
         line-height: 1.5rem;

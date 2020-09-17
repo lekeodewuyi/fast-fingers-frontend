@@ -335,6 +335,7 @@ function spellCheck() {
 
         getResults();
         reset();
+        generateText();
     } else {
         if (textEntered == originTextMatch) {
             console.log(counter[0], counter[1], counter[2])
@@ -1156,11 +1157,11 @@ function appendLeaderBoard(results){
 
         let tScore = document.createElement("td");
         tScore.classList.add("leaderboard-user-col");
-        tScore.innerHTML = results[i].score + " points";
+        tScore.innerHTML = results[i].score + " pts";
 
         let tStats = document.createElement("td");
         tStats.classList.add("leaderboard-stats-col");
-        tStats.innerHTML = `${results[i].wpm}, ${results[i].cpm} / ${results[i].accuracy}`;
+        tStats.innerHTML = `${results[i].wpm}<span class="leaderboard-extra"><span class="leaderboard-cpm">, ${results[i].cpm}</span> / ${results[i].accuracy}</span>`;
 
         tRow.append(tPosition, tUser, tScore, tStats)
         tableBody.appendChild(tRow);
