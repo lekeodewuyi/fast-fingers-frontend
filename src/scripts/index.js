@@ -554,13 +554,23 @@ closeResultModal.forEach((element) => {
     }, false)
 })
 
-inputText.addEventListener("paste", function(event){
-    console.log("paste detected");
-    // reset();
+body.oncopy = function(){
     inputText = inputText.cloneNode(true);
     originTextElement.innerHTML = "Please don't copy and paste. Use the reset button to start over."
-    event.stopImmediatePropagation();
-}, false);
+    return false;
+}
+
+body.onpaste = function(){
+    inputText = inputText.cloneNode(true);
+    originTextElement.innerHTML = "Please don't copy and paste. Use the reset button to start over."
+    return false;
+}
+
+body.oncut = function(){
+    inputText = inputText.cloneNode(true);
+    originTextElement.innerHTML = "Please don't copy and paste. Use the reset button to start over."
+    return false;
+}
 
 inputText.addEventListener("keypress", startTimer, false);
 inputText.addEventListener("keyup", spellCheck, false);
