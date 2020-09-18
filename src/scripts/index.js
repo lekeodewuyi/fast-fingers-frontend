@@ -122,7 +122,7 @@ function updatePreference() {
 
 
     axios.post(
-        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/setpreference',
+        'http://localhost:5000/typing-app-35c2f/us-central1/api/setpreference',
         {
             "preference": preference
         },
@@ -178,7 +178,7 @@ let originText;
 function generateText() {
     getConfig();
     axios.post(
-        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/generatetext',
+        'http://localhost:5000/typing-app-35c2f/us-central1/api/generatetext',
         {
         },
         config
@@ -536,7 +536,7 @@ function getResults() {
     let wpm = Number(wpmElement.innerHTML);
 
 
-    score = Number(5000 + (uniqueChars * 20) + (upperCaseChars * 10) + (characterCount * 10) + (accuracy * 10) + (cpm * 10) - (repeatedChars * 20) - ((backspaceCount + extraCharacterCount) * 20) - (easyChars * 10))
+    score = Number(1000 + (uniqueChars * 20) + (upperCaseChars * 10) + (characterCount * 10) + (accuracy * 10) + (cpm * 10) - (repeatedChars * 20) - ((backspaceCount + extraCharacterCount) * 20) - (easyChars * 10))
 
     console.log(uniqueChars, upperCaseChars, characterCount, accuracy, cpm, repeatedChars, backspaceCount, easyChars)
     score = Math.floor(score);
@@ -576,12 +576,19 @@ const setAuthorizationHeader = (token) => {
 const userModal = document.querySelector(".user-profile-modal");
 const closeUserModal = document.querySelector(".user-profile-cancel");
 const userName = document.querySelector(".user-name");
-const userTopStats = document.querySelector(".user-top-stats");
-const userCpm = document.querySelector(".user-cpm");
-const userWpm = document.querySelector(".user-wpm");
-const userAccuracy = document.querySelector(".user-accuracy");
+const userTopStats = document.querySelector(".user-stats");
+
+const userTopSpeed = document.querySelector(".user-top-speed");
+const userAveSpeed = document.querySelector(".user-ave-speed");
+
+const userTopAccuracy = document.querySelector(".user-top-accuracy");
+const userAveAccuracy = document.querySelector(".user-ave-accuracy");
+
 const userTopScore = document.querySelector(".user-top-score");
-const userScore = document.querySelector(".user-score");
+const userAveScore = document.querySelector(".user-ave-score");
+const userCumScore = document.querySelector(".user-cum-score");
+
+const userSummary = document.querySelector(".user-summary");
 
 
 userIcon.addEventListener("click", function(){
@@ -603,12 +610,15 @@ const setCurrentUser = (user) => {
     userIcon.classList.add("color-blue");
 
     if(user.stats) {
-        userTopStats.innerHTML = "YOUR TOP STATS:";
-        userCpm.innerHTML = `Characters per minute:<span class="bold"> ${user.cpm} cpm</span> `;
-        userWpm.innerHTML = `Words per minute:<span class="bold"> ${user.wpm} wpm </span>`;
-        userAccuracy.innerHTML = `Accuracy:<span class="bold"> ${user.accuracy}% </span>`;
-        userTopScore.innerHTML = `Top score: <span class="bold"> ${appendCommas(user.topScore)} points </span>`
-        userScore.innerHTML = `Cummulative score:<span class="bold"> ${appendCommas(user.score)} points </span>`;
+        userSummary.classList.remove("hide");
+        userTopStats.innerHTML = `<span class="bold">YOUR STATS: </span>`;
+        userTopSpeed.innerHTML = `Top speed: <span class="bold"> ${user.cpm}  cpm</span>, <span class="bold"> ${user.wpm} wpm</span>`;
+        userAveSpeed.innerHTML = `Average speed: <span class="bold"> ${user.aveCpm}  cpm</span>, <span class="bold"> ${user.aveWpm} wpm</span>`;
+        userTopAccuracy.innerHTML = `Top accuracy: <span class="bold"> ${user.accuracy}%</span>`;
+        userAveAccuracy.innerHTML = `Average accuracy:<span class="bold"> ${user.aveAccuracy}%</span>`;
+        userTopScore.innerHTML = `Top score: <span class="bold"> <span class="bold">${appendCommas(user.topScore)}</span> points </span>`;
+        userAveScore.innerHTML = `Average score: <span class="bold"> <span class="bold">${appendCommas(user.aveScore)}</span> points </span>`;
+        userCumScore.innerHTML = `Cummulative score: <span class="bold"> <span class="bold">${appendCommas(user.score)}</span> points </span>`
     }
 }
 
@@ -726,7 +736,7 @@ function login() {
     loaderLogin.classList.remove("hide");
 
     axios.post(
-        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/login',
+        'http://localhost:5000/typing-app-35c2f/us-central1/api/login',
         {
             "email": loginEmail.value,
             "password": loginPassword.value
@@ -824,7 +834,7 @@ function signup() {
     modalSignupBtn.style.width = "110px";
     loaderSignup.classList.remove("hide");
     axios.post(
-        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/signup',
+        'http://localhost:5000/typing-app-35c2f/us-central1/api/signup',
         {
             "name": signupName.value,
             "email": signupEmail.value,
@@ -1008,12 +1018,15 @@ function checkTokenStatus() {
         }
 
         if(user.stats) {
-            userTopStats.innerHTML = `<span class="bold">YOUR TOP STATS:</span>`;
-            userCpm.innerHTML = `Characters per minute: <span class="bold">${user.cpm} cpm</span> `;
-            userWpm.innerHTML = `Words per minute:<span class="bold"> ${user.wpm} wpm </span>`;
-            userAccuracy.innerHTML = `Accuracy:<span class="bold"> ${user.accuracy}% </span>`;
-            userTopScore.innerHTML = `Top score: <span class="bold"> ${appendCommas(user.topScore)} points </span>`
-            userScore.innerHTML = `Cummulative score:<span class="bold"> ${appendCommas(user.score)} points </span>`;
+            userSummary.classList.remove("hide");
+            userTopStats.innerHTML = `<span class="bold">YOUR STATS: </span>`;
+            userTopSpeed.innerHTML = `Top speed: <span class="bold"> ${user.cpm}  cpm</span>, <span class="bold"> ${user.wpm} wpm</span>`;
+            userAveSpeed.innerHTML = `Average speed: <span class="bold"> ${user.aveCpm}  cpm</span>, <span class="bold"> ${user.aveWpm} wpm</span>`;
+            userTopAccuracy.innerHTML = `Top accuracy: <span class="bold"> ${user.accuracy}%</span>`;
+            userAveAccuracy.innerHTML = `Average accuracy:<span class="bold"> ${user.aveAccuracy}%</span>`;
+            userTopScore.innerHTML = `Top score: <span class="bold"> <span class="bold">${appendCommas(user.topScore)}</span> points </span>`;
+            userAveScore.innerHTML = `Average score: <span class="bold"> <span class="bold">${appendCommas(user.aveScore)}</span> points </span>`;
+            userCumScore.innerHTML = `Cummulative score: <span class="bold"> <span class="bold">${appendCommas(user.score)}</span> points </span>`
         }
     }
 };
@@ -1028,7 +1041,7 @@ function getAllChats() {
       };
     // getConfig();
     axios.post(
-        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/getchats',
+        'http://localhost:5000/typing-app-35c2f/us-central1/api/getchats',
         {},
         config
         )
@@ -1096,7 +1109,7 @@ getAllChats();
 function sendMessage() {
     getConfig();
     axios.post(
-        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/postchat',
+        'http://localhost:5000/typing-app-35c2f/us-central1/api/postchat',
         {
             "message": messageInput.value
         },
@@ -1173,7 +1186,7 @@ messageInput.addEventListener("keyup", function(){
 function updateUserStats(score, cpm, wpm, accuracy){
     getConfig();
     axios.post(
-        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/stats/user/update',
+        'http://localhost:5000/typing-app-35c2f/us-central1/api/stats/user/update',
         {
             "score": score,
             "cpm": cpm,
@@ -1195,7 +1208,7 @@ function updateUserStats(score, cpm, wpm, accuracy){
 
 function getLeaderBoard(){
     axios.post(
-        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/leaderboard/retrieve'
+        'http://localhost:5000/typing-app-35c2f/us-central1/api/leaderboard/retrieve'
         )
         .then(function (response) {
             console.log(response.data);

@@ -118,8 +118,8 @@ button:hover {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    width: 300px;
-    height: 350px;
+    width: 320px;
+    height: 500px;
     right: 0px;
     top: 0px;
     margin-right: 20px;
@@ -130,6 +130,19 @@ button:hover {
     border-radius: 15px;
     box-shadow: rgba(4, 74, 111, 0.5) 0px 8px 30px -18px;
     box-shadow: rgba(4, 74, 111, 0.5) 0px 0px 3000px 1800px;
+}
+
+.user-stats {
+    margin-bottom: 15px !important;
+}
+
+.user-summary {
+    margin-top: 10px;
+    font-size: 0.7rem !important;
+}
+
+.user-profile-modal div {
+    margin-bottom: 10px;
 }
 
 .session-over-modal {
@@ -153,7 +166,7 @@ button:hover {
 
 .user-profile-modal p {
     font-size: 0.85rem;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .color-blue {

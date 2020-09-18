@@ -44,13 +44,22 @@
 
     <div class="user-profile-modal hide">
         <span class="material-icons cancel user-profile-cancel unselectable">cancel</span>
-        <h1 class="user-name">Hey User</h1>
-        <p class="user-top-stats">After your first typing session, your top stats will show up here.</p>
-        <p class="user-cpm"></p>
-        <p class="user-wpm"></p>
-        <p class="user-accuracy"></p>
-        <p class="user-top-score"></p>
-        <p class="user-score"></p>
+        <h1 class="user-name"></h1>
+        <p class="user-stats">After your first typing session, your stats will show up here.</p>
+        <div class="user-speed-div">
+            <p class="user-top-speed"></p>
+            <p class="user-ave-speed"></p>
+        </div>
+        <div class="user-accuracy-div">
+            <p class="user-top-accuracy"></p>
+            <p class="user-ave-accuracy"></p>
+        </div>
+        <div class="user-score-div">
+            <p class="user-top-score"></p>
+            <p class="user-ave-score"></p>
+        </div>
+        <p class="user-cum-score"></p>
+        <p class="user-summary hide">Averages are calculated using the last 30 sessions.<br><span class="bold">cpm</span> - characters per minute; <span class="bold">wpm</span> - words per minute</p>
     </div>
 
     <div class="leaderboard-modal modal hide">
@@ -99,7 +108,7 @@
     </section>
 
 
-    <section class="results-modal">
+    <section class="results-modal hide">
         <span class="material-icons cancel results-cancel unselectable">cancel</span>
         <h2 class="result-header">Well done! Here is how you performed</h2>
         <div class="result-body">
