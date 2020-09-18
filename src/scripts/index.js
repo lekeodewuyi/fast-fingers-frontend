@@ -199,7 +199,7 @@ function generateText() {
 generateText();
 
 // const originText = document.querySelector(".origin-text p").innerHTML;
-const inputText = document.querySelector(".input-text");
+let inputText = document.querySelector(".input-text");
 const inputTextDiv = document.querySelector(".input-text-div");
 const persistentInput = document.querySelector(".persistent-placeholder");
 const timer = document.querySelector(".timer");
@@ -232,6 +232,11 @@ function leadingZero(time) {
 }
 
 function runTimer() {
+    if (originTextElement.innerHTML === "Please don't copy and paste. Use the reset button to start over.") {
+        return;
+    }
+
+
     let currentTime = leadingZero(counter[0]) + ":" + leadingZero(counter[1]) + ":" + leadingZero(counter[2]);
     timer.innerHTML = currentTime;
     counter[3]++;
@@ -304,6 +309,11 @@ function countWords(str) {
 
 
 function spellCheck() {
+
+    if (originTextElement.innerHTML === "Please don't copy and paste. Use the reset button to start over.") {
+        return;
+    }
+
 
     // originText = originText.replace(/\n/g, " ");
 
@@ -405,6 +415,8 @@ document.querySelector(".pause-timer").addEventListener("click", function(){
 } ,false)
 
 function reset() {
+    inputText = document.querySelector(".input-text");
+
     backspaceCount = 0;
     extraCharacterCount = 0;
     clearInterval(interval);
@@ -424,6 +436,10 @@ function reset() {
 
     inputText.style.backgroundColor = "white";
     inputText.style.border = "2px solid var(--pale-blue)";
+
+    if (originTextElement.innerHTML === "Please don't copy and paste. Use the reset button to start over.") {
+        generateText();
+    }
 }
 
 const resultModal = document.querySelector(".results-modal");
@@ -538,6 +554,13 @@ closeResultModal.forEach((element) => {
     }, false)
 })
 
+inputText.addEventListener("paste", function(event){
+    console.log("paste detected");
+    // reset();
+    inputText = inputText.cloneNode(true);
+    originTextElement.innerHTML = "Please don't copy and paste. Use the reset button to start over."
+    event.stopImmediatePropagation();
+}, false);
 
 inputText.addEventListener("keypress", startTimer, false);
 inputText.addEventListener("keyup", spellCheck, false);
