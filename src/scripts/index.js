@@ -62,7 +62,8 @@ function getConfig() {
         console.log("there is a token")
         const decodedToken = jwt_decode(TOKEN);
         if(decodedToken && (decodedToken.exp * 1000 < Date.now())){ //if TOKEN is expired
-            logout();
+            sessionOverModal.classList.remove("hide");
+            screenFade.classList.remove("hide");
         } else {
           config = {
             headers: { Authorization: `${TOKEN}` }
@@ -602,8 +603,8 @@ const userSummary = document.querySelector(".user-summary");
 
 
 userIcon.addEventListener("click", function(){
-    userModal.classList.toggle("hide");
-}, false);
+    userModal.classList.remove("hide");
+}, true);
 
 closeUserModal.addEventListener("click", function(){
     userModal.classList.add("hide");
@@ -990,20 +991,23 @@ closeSessionOverModal.addEventListener("click", function(){
     logout();
 }, false)
 
+document.addEventListener("click", checkTokenStatus, false)
+
 function checkTokenStatus() {
     let currentUser = localStorage.currentUser
     const TOKEN = localStorage.FBIdToken;
 
     if(TOKEN) {
+        console.log("heyyyy")
         const decodedToken = jwt_decode(TOKEN);
         console.log(decodedToken.exp * 1000);
         console.log(Date.now())
         if(decodedToken.exp * 1000 < Date.now()){ //if TOKEN is expired
             sessionOverModal.classList.remove("hide");
             screenFade.classList.remove("hide");
-            logout();
         }
     } else if (!TOKEN) {
+        console.log("hi")
         localStorage.removeItem('currentUser');    
     }
     if (currentUser) {
