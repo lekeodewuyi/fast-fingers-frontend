@@ -554,19 +554,19 @@ closeResultModal.forEach((element) => {
     }, false)
 })
 
-body.oncopy = function(){
+originTextElement.oncopy = function(){
     inputText = inputText.cloneNode(true);
     originTextElement.innerHTML = "Please don't copy and paste. Use the reset button to start over."
     return false;
 }
 
-body.onpaste = function(){
+inputText.onpaste = function(){
     inputText = inputText.cloneNode(true);
     originTextElement.innerHTML = "Please don't copy and paste. Use the reset button to start over."
     return false;
 }
 
-body.oncut = function(){
+originTextElement.oncut = function(){
     inputText = inputText.cloneNode(true);
     originTextElement.innerHTML = "Please don't copy and paste. Use the reset button to start over."
     return false;
