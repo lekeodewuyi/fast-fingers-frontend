@@ -1262,7 +1262,7 @@ function appendLeaderBoard(results){
 
         let tScore = document.createElement("td");
         tScore.classList.add("leaderboard-user-col");
-        tScore.innerHTML = results[i].score + " pts";
+        tScore.innerHTML = appendCommas(results[i].score) + " pts";
 
         let tStats = document.createElement("td");
         tStats.classList.add("leaderboard-stats-col");
