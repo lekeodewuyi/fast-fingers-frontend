@@ -1080,15 +1080,15 @@ function getAllChats() {
 
                 const chatUser = document.createElement("p");
                 chatUser.classList.add("chat-user");
-                chatUser.innerHTML = chat.name;
+                chatUser.innerText = chat.name;
 
                 const chatMessage = document.createElement("p");
                 chatMessage.classList.add("chat-message");
-                chatMessage.innerHTML = chat.message;
+                chatMessage.innerText = chat.message;
 
                 const chatTime = document.createElement("p");
                 chatTime.classList.add("chat-time");
-                chatTime.innerHTML = chat.createdAt;
+                chatTime.innerText = dayjs(chat.createdAt).format('MMM DD YYYY - (h:mm a)');
 
                 chatDiv.append(chatUser, chatMessage, chatTime);
                 allChatsDiv.append(chatDiv);
@@ -1150,15 +1150,15 @@ function sendMessage() {
 
             const chatUser = document.createElement("p");
             chatUser.classList.add("chat-user");
-            chatUser.innerHTML = chat.name;
+            chatUser.innerText = chat.name;
 
             const chatMessage = document.createElement("p");
             chatMessage.classList.add("chat-message");
-            chatMessage.innerHTML = chat.message;
+            chatMessage.innerText = chat.message;
 
             const chatTime = document.createElement("p");
             chatTime.classList.add("chat-time");
-            chatTime.innerHTML = chat.createdAt;
+            chatTime.innerText = dayjs(chat.createdAt).format('MMM DD YYYY - (h:mm a)');
 
             chatDiv.append(chatUser, chatMessage, chatTime);
             // allChatsDiv.append(chatDiv);

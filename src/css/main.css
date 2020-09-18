@@ -481,7 +481,8 @@ nav {
     overflow: auto;
     right: 0;
     height: 100vh;
-    min-width: 400px;
+    /* min-width: 400px; */
+    width: 400px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -512,6 +513,10 @@ nav {
     overflow-y: scroll;
 }
 
+.all-chats-div-outer {
+    overflow-y: scroll;
+}
+
 .chat-div {
     flex-direction: column;
     margin: 0px 40px;
@@ -532,6 +537,7 @@ nav {
 }
 
 .chat-message {
+    white-space: pre-wrap;
     font-size: 0.8rem;
 }
 
