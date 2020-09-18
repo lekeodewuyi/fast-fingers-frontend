@@ -1043,153 +1043,153 @@ function checkTokenStatus() {
 
 checkTokenStatus();
 
-function getAllChats() {
+// function getAllChats() {
 
-    const TOKEN = localStorage.FBIdToken;
-    config = {
-        headers: { Authorization: `${TOKEN}` }
-      };
-    // getConfig();
-    axios.post(
-        'http://localhost:5000/typing-app-35c2f/us-central1/api/getchats',
-        {},
-        config
-        )
-        .then(function (response) {
-            let currentUser = JSON.parse(localStorage.currentUser)
-            let loggedinUser = currentUser.name;
+//     const TOKEN = localStorage.FBIdToken;
+//     config = {
+//         headers: { Authorization: `${TOKEN}` }
+//       };
+//     // getConfig();
+//     axios.post(
+//         'http://localhost:5000/typing-app-35c2f/us-central1/api/getchats',
+//         {},
+//         config
+//         )
+//         .then(function (response) {
+//             let currentUser = JSON.parse(localStorage.currentUser)
+//             let loggedinUser = currentUser.name;
 
-            const allChatsDiv = document.querySelector(".all-chats-div");
-            console.log(allChatsDiv.innerHTML);
-            allChatsDiv.innerHTML = "";
+//             const allChatsDiv = document.querySelector(".all-chats-div");
+//             console.log(allChatsDiv.innerHTML);
+//             allChatsDiv.innerHTML = "";
 
-            let allChats = response.data.allChats;
+//             let allChats = response.data.allChats;
 
-            for (let i = 0; i < allChats.length; i++) {
-                // console.log(allChats[i])
-                let chat = allChats[i];
-
-
-                const chatDiv = document.createElement("div");
-                chatDiv.classList.add("chat-div");
+//             for (let i = 0; i < allChats.length; i++) {
+//                 // console.log(allChats[i])
+//                 let chat = allChats[i];
 
 
-                if (loggedinUser === chat.name) {
-                    chatDiv.classList.add("owner");
-                }
-
-                const chatUser = document.createElement("p");
-                chatUser.classList.add("chat-user");
-                chatUser.innerText = chat.name;
-
-                const chatMessage = document.createElement("p");
-                chatMessage.classList.add("chat-message");
-                chatMessage.innerText = chat.message;
-
-                const chatTime = document.createElement("p");
-                chatTime.classList.add("chat-time");
-                chatTime.innerText = dayjs(chat.createdAt).format('MMM DD YYYY - (h:mm a)');
-
-                chatDiv.append(chatUser, chatMessage, chatTime);
-                allChatsDiv.append(chatDiv);
-
-                // chatColumnDiv.insertBefore(chatDiv, messageInputAndSendDiv)
+//                 const chatDiv = document.createElement("div");
+//                 chatDiv.classList.add("chat-div");
 
 
+//                 if (loggedinUser === chat.name) {
+//                     chatDiv.classList.add("owner");
+//                 }
 
-            }
+//                 const chatUser = document.createElement("p");
+//                 chatUser.classList.add("chat-user");
+//                 chatUser.innerText = chat.name;
+
+//                 const chatMessage = document.createElement("p");
+//                 chatMessage.classList.add("chat-message");
+//                 chatMessage.innerText = chat.message;
+
+//                 const chatTime = document.createElement("p");
+//                 chatTime.classList.add("chat-time");
+//                 chatTime.innerText = dayjs(chat.createdAt).format('MMM DD YYYY - (h:mm a)');
+
+//                 chatDiv.append(chatUser, chatMessage, chatTime);
+//                 allChatsDiv.append(chatDiv);
+
+//                 // chatColumnDiv.insertBefore(chatDiv, messageInputAndSendDiv)
+
+
+
+//             }
 
 
             
 
-        })
-        .catch(function (error) {
-            console.log(error.response.data.error)
+//         })
+//         .catch(function (error) {
+//             console.log(error.response.data.error)
            
-        })
-    // setTimeout( getAllChats, 2000);
-}
+//         })
+//     // setTimeout( getAllChats, 2000);
+// }
 
-getAllChats();
+// getAllChats();
 
-// setTimeout( getAllChats, 2000);
-
-
-
-function sendMessage() {
-    getConfig();
-    axios.post(
-        'http://localhost:5000/typing-app-35c2f/us-central1/api/postchat',
-        {
-            "message": messageInput.value
-        },
-        config
-        )
-        .then(function (response) {
-
-            messageInput.value = "";
-            console.log(messageInput)
-
-            let currentUser = JSON.parse(localStorage.currentUser)
-            let loggedinUser = currentUser.name;
-            console.log(loggedinUser);
-
-            let chat = response.data.chat
-            console.log(chat);
-
-            const allChatsDiv = document.querySelector(".all-chats-div");
-            const firstChild = document.querySelector(".first-child")
+// // setTimeout( getAllChats, 2000);
 
 
-            const chatDiv = document.createElement("div");
-            chatDiv.classList.add("chat-div");
 
-            if (loggedinUser === chat.name) {
-                chatDiv.classList.add("owner");
-            }
+// function sendMessage() {
+//     getConfig();
+//     axios.post(
+//         'http://localhost:5000/typing-app-35c2f/us-central1/api/postchat',
+//         {
+//             "message": messageInput.value
+//         },
+//         config
+//         )
+//         .then(function (response) {
 
-            const chatUser = document.createElement("p");
-            chatUser.classList.add("chat-user");
-            chatUser.innerText = chat.name;
+//             messageInput.value = "";
+//             console.log(messageInput)
 
-            const chatMessage = document.createElement("p");
-            chatMessage.classList.add("chat-message");
-            chatMessage.innerText = chat.message;
+//             let currentUser = JSON.parse(localStorage.currentUser)
+//             let loggedinUser = currentUser.name;
+//             console.log(loggedinUser);
 
-            const chatTime = document.createElement("p");
-            chatTime.classList.add("chat-time");
-            chatTime.innerText = dayjs(chat.createdAt).format('MMM DD YYYY - (h:mm a)');
+//             let chat = response.data.chat
+//             console.log(chat);
 
-            chatDiv.append(chatUser, chatMessage, chatTime);
-            // allChatsDiv.append(chatDiv);
-            allChatsDiv.insertBefore(chatDiv, allChatsDiv.firstChild);
+//             const allChatsDiv = document.querySelector(".all-chats-div");
+//             const firstChild = document.querySelector(".first-child")
 
-        })
-        .catch(function (error) {
-            console.log(error);
-            console.log(error.response)
-            console.log(error.response.data.error)
-            messageInput.value = "";
-            let responseError = error.response.data;
 
-            if (responseError.error !== undefined) {
-                if (responseError.error === "Unauthorized") {
-                    messageError.innerHTML = "Please login to use the message board"
-                } else if (responseError.error === "Please enter a message") {
-                    messageError.innerHTML = "Please enter a message"
-                }
-             } else {
-                 messageError.innerHTML = "";
-             }
+//             const chatDiv = document.createElement("div");
+//             chatDiv.classList.add("chat-div");
+
+//             if (loggedinUser === chat.name) {
+//                 chatDiv.classList.add("owner");
+//             }
+
+//             const chatUser = document.createElement("p");
+//             chatUser.classList.add("chat-user");
+//             chatUser.innerText = chat.name;
+
+//             const chatMessage = document.createElement("p");
+//             chatMessage.classList.add("chat-message");
+//             chatMessage.innerText = chat.message;
+
+//             const chatTime = document.createElement("p");
+//             chatTime.classList.add("chat-time");
+//             chatTime.innerText = dayjs(chat.createdAt).format('MMM DD YYYY - (h:mm a)');
+
+//             chatDiv.append(chatUser, chatMessage, chatTime);
+//             // allChatsDiv.append(chatDiv);
+//             allChatsDiv.insertBefore(chatDiv, allChatsDiv.firstChild);
+
+//         })
+//         .catch(function (error) {
+//             console.log(error);
+//             console.log(error.response)
+//             console.log(error.response.data.error)
+//             messageInput.value = "";
+//             let responseError = error.response.data;
+
+//             if (responseError.error !== undefined) {
+//                 if (responseError.error === "Unauthorized") {
+//                     messageError.innerHTML = "Please login to use the message board"
+//                 } else if (responseError.error === "Please enter a message") {
+//                     messageError.innerHTML = "Please enter a message"
+//                 }
+//              } else {
+//                  messageError.innerHTML = "";
+//              }
            
-        })
-}
+//         })
+// }
 
-sendMessageBtn.addEventListener("click", sendMessage , false);
+// sendMessageBtn.addEventListener("click", sendMessage , false);
 
-messageInput.addEventListener("keyup", function(){
-    messageError.innerHTML = "";
-} , false);
+// messageInput.addEventListener("keyup", function(){
+//     messageError.innerHTML = "";
+// } , false);
 
 
 
