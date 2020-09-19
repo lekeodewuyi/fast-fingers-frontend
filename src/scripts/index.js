@@ -1,6 +1,11 @@
-// TODO Session timeout modal
-// perfect pause functionality
-// work on strict mode and free mode
+import "../css/reset.css";
+import "../css/main.css";
+
+import jwt_decode from 'jwt-decode';
+import axios from 'axios';
+
+
+
 
 let body = document.querySelector("body");
 
@@ -301,6 +306,7 @@ function enableKeyboard() {
 
 
 let matches;
+let wordCount;
 let characterCount;
 function countWords(str) {
     matches = str.match(/[\w\d\’\'-]+/gi);
@@ -487,15 +493,15 @@ function getResults() {
     console.log("extraCharacterCount", extraCharacterCount)
     console.log(counter)
 
-    timeElaped = (counter[0] + counter[1]/60 + counter[2]/6000).toFixed(2);
-    userChars = (characterCount + backspaceCount + extraCharacterCount)
+    let timeElapsed = (counter[0] + counter[1]/60 + counter[2]/6000).toFixed(2);
+    let userChars = (characterCount + backspaceCount + extraCharacterCount)
 
-    timeElapsedElement.innerHTML = timeElaped + " mins";
+    timeElapsedElement.innerHTML = timeElapsed + " mins";
     sampleCharsElement.innerHTML = characterCount;
     userCharsElement.innerHTML = userChars;
-    cpmElement.innerHTML = Math.floor(characterCount/timeElaped);
+    cpmElement.innerHTML = Math.floor(characterCount/timeElapsed);
     sampleWordsElement.innerHTML = wordCount;
-    wpmElement.innerHTML = Math.floor(wordCount/timeElaped);
+    wpmElement.innerHTML = Math.floor(wordCount/timeElapsed);
     errorRateElement.innerHTML = (100 - (((userChars - characterCount)/characterCount) * 100)).toFixed(2) + "%";
 
     charsInSampleText.forEach((element) => {
@@ -504,7 +510,7 @@ function getResults() {
     incorrectlyTypedChars.innerHTML = `<span class="res-number">${extraCharacterCount}</span> incorrectly typed characters`;
     backspaces.innerHTML = `<span class="res-number red">${backspaceCount}</span> backspaces`;
     timeElapsedCalc.forEach((element) => {
-        element.innerHTML = `<span class="res-number">${timeElaped}</span> minutes`;
+        element.innerHTML = `<span class="res-number">${timeElapsed}</span> minutes`;
     })
     wordsInSampleText.innerHTML = `<span class="res-number">${wordCount}</span> words in sample text`
     errorCalcUpper.innerHTML = `<span class="res-number">${userChars}</span> characters types - <span class="res-number">${characterCount}</span> characters in sample text`;
@@ -519,7 +525,7 @@ function getResults() {
     let repeatedChars = 0;
     let easyChars = 0;
     let upperCaseChars = (originText.match(/[A-Z]/g) || []).length;
-    for (i = 0; i < originText.length; ++i) {
+    for (let i = 0; i < originText.length; ++i) {
         ch = originText.charAt(i);
         if (originText.charAt(i) === originText.charAt(i + 1)) {
             repeatedChars++
@@ -603,7 +609,7 @@ const userSummary = document.querySelector(".user-summary");
 
 
 userIcon.addEventListener("click", function(){
-    userModal.classList.remove("hide");
+    userModal.classList.toggle("hide");
 }, true);
 
 closeUserModal.addEventListener("click", function(){
@@ -692,7 +698,7 @@ settingsIcon.addEventListener("click", function(){
 
 
 
-settingsCancel = document.querySelectorAll(".settings-cancel");
+const settingsCancel = document.querySelectorAll(".settings-cancel");
 
 settingsCancel.forEach((cancel) => {
     cancel.addEventListener("click", function(){
@@ -1290,4 +1296,9 @@ leaderboardBtn.addEventListener("click", function(){
 
 leaderboardClose.addEventListener("click", function(){
     leaderboardModal.classList.add("hide");
-}, false)
+}, false);
+
+
+
+
+// element.dispatchEvent(new KeyboardEvent('keypress',{'key':'a'}));
