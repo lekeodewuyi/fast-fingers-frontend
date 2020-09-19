@@ -128,7 +128,7 @@ function updatePreference() {
 
 
     axios.post(
-        'http://localhost:5000/typing-app-35c2f/us-central1/api/setpreference',
+        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/setpreference',
         {
             "preference": preference
         },
@@ -184,7 +184,7 @@ let originText;
 function generateText() {
     getConfig();
     axios.post(
-        'http://localhost:5000/typing-app-35c2f/us-central1/api/generatetext',
+        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/generatetext',
         {
         },
         config
@@ -767,7 +767,7 @@ function login() {
     loaderLogin.classList.remove("hide");
 
     axios.post(
-        'http://localhost:5000/typing-app-35c2f/us-central1/api/login',
+        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/login',
         {
             "email": loginEmail.value,
             "password": loginPassword.value
@@ -865,7 +865,7 @@ function signup() {
     modalSignupBtn.style.width = "110px";
     loaderSignup.classList.remove("hide");
     axios.post(
-        'http://localhost:5000/typing-app-35c2f/us-central1/api/signup',
+        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/signup',
         {
             "name": signupName.value,
             "email": signupEmail.value,
@@ -1075,7 +1075,7 @@ checkTokenStatus();
 //       };
 //     // getConfig();
 //     axios.post(
-//         'http://localhost:5000/typing-app-35c2f/us-central1/api/getchats',
+//         'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/getchats',
 //         {},
 //         config
 //         )
@@ -1143,7 +1143,7 @@ checkTokenStatus();
 // function sendMessage() {
 //     getConfig();
 //     axios.post(
-//         'http://localhost:5000/typing-app-35c2f/us-central1/api/postchat',
+//         'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/postchat',
 //         {
 //             "message": messageInput.value
 //         },
@@ -1220,7 +1220,7 @@ checkTokenStatus();
 function updateUserStats(score, cpm, wpm, accuracy){
     getConfig();
     axios.post(
-        'http://localhost:5000/typing-app-35c2f/us-central1/api/stats/user/update',
+        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/stats/user/update',
         {
             "score": score,
             "cpm": cpm,
@@ -1242,7 +1242,7 @@ function updateUserStats(score, cpm, wpm, accuracy){
 
 function getLeaderBoard(){
     axios.post(
-        'http://localhost:5000/typing-app-35c2f/us-central1/api/leaderboard/retrieve'
+        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/leaderboard/retrieve'
         )
         .then(function (response) {
             console.log(response.data);
