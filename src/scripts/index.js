@@ -344,7 +344,7 @@ function spellCheck() {
 
         getResults();
         reset();
-        generateText();
+        // generateText();
     } else {
         if (textEntered == originTextMatch) {
             console.log(counter[0], counter[1], counter[2])
@@ -443,11 +443,15 @@ function reset() {
 
     inputText.style.backgroundColor = "white";
     inputText.style.border = "2px solid var(--pale-blue)";
+}
 
-    if (originTextElement.innerHTML === "Please don't copy and paste. Use the reset button to start over.") {
+resetTimer.addEventListener("click", function(){
+    if (originTextElement.innerHTML === "Please don't copy and paste. Use the reset button to start over." || originTextElement.innerHTML === "Your stats are a little unrealistic, please use the reset button to start over") {
         generateText();
     }
-}
+}, false)
+
+
 
 const resultModal = document.querySelector(".results-modal");
 const closeResultModal = document.querySelectorAll(".results-cancel");
@@ -494,8 +498,14 @@ function getResults() {
     console.log(counter)
 
     let timeElapsed = (counter[0] + counter[1]/60 + counter[2]/6000).toFixed(2);
-    let userChars = (characterCount + backspaceCount + extraCharacterCount)
+    let userChars = (characterCount + backspaceCount + extraCharacterCount);
 
+    let wpmCheck = Number(Math.floor(wordCount/timeElapsed));
+
+    if (wpmCheck > 160) {
+        originTextElement.innerHTML = "Your stats are a little unrealistic, please use the reset button to start over"
+        return;
+    }
     timeElapsedElement.innerHTML = timeElapsed + " mins";
     sampleCharsElement.innerHTML = characterCount;
     userCharsElement.innerHTML = userChars;
@@ -550,7 +560,7 @@ function getResults() {
     console.log("score", score);
 
     sessionScore.innerHTML = `SESSION SCORE: <span class="color-blue">${appendCommas(score)} POINTS</span>`
-
+    generateText();
     updateUserStats(score, cpm, wpm, accuracy)
 }
 
@@ -610,10 +620,14 @@ const userSummary = document.querySelector(".user-summary");
 
 userIcon.addEventListener("click", function(){
     userModal.classList.toggle("hide");
+    document.querySelector(".user-up-arrow").classList.toggle("hide");
+    document.querySelector(".user-down-arrow").classList.toggle("hide");
 }, true);
 
 closeUserModal.addEventListener("click", function(){
     userModal.classList.add("hide");
+    document.querySelector(".user-up-arrow").classList.toggle("hide");
+    document.querySelector(".user-down-arrow").classList.toggle("hide");
 }, false)
 
 function appendCommas(x) {
