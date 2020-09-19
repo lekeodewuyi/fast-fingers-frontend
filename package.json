@@ -1,0 +1,52 @@
+{
+  "name": "fast-fingers",
+  "version": "1.0.0",
+  "description": "A fun typing app!",
+  "main": "./src/scripts/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack -p",
+    "start": "webpack-dev-server --output-public-path=/build",
+    "start:dev": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lekeodewuyi/typing-app-frontend.git"
+  },
+  "keywords": [
+    "Type",
+    "Practice",
+    "Lesson"
+  ],
+  "author": "Leke Odewuyi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lekeodewuyi/typing-app-frontend/issues"
+  },
+  "homepage": "https://github.com/lekeodewuyi/typing-app-frontend#readme",
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "autoprefixer": "^10.0.0",
+    "axios": "^0.20.0",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^4.3.0",
+    "dayjs": "^1.8.36",
+    "file-loader": "^6.1.0",
+    "html-webpack-plugin": "^4.4.1",
+    "jwt-decode": "^3.0.0-beta.2",
+    "mini-css-extract-plugin": "^0.11.2",
+    "optimize-css-assets-webpack-plugin": "^5.0.4",
+    "postcss": "^8.0.5",
+    "postcss-loader": "^4.0.2",
+    "style-loader": "^1.2.1",
+    "terser-webpack-plugin": "^4.2.1",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "js-beautify": "^1.13.0"
+  }
+}
