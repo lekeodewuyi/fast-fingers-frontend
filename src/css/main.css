@@ -1269,7 +1269,7 @@ footer .big-footer {
 
 @media (max-width: 550px) {
     .modal {
-        padding: 300px 0px;
+        padding: 0px 0px;
     }
 
     .leaderboard-extra {
