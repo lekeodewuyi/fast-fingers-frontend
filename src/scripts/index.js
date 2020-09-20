@@ -630,8 +630,12 @@ closeUserModal.addEventListener("click", function(){
     document.querySelector(".user-down-arrow").classList.toggle("hide");
 }, false)
 
+// function appendCommas(x) {
+//     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ", ");
+// }
+
 function appendCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ", ");
+    return String(x).replace(/\B(?=(\d{3})+(?!\d))/g, ", ");
 }
 
 const setCurrentUser = (user) => {

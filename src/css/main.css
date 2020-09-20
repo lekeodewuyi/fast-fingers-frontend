@@ -106,7 +106,7 @@ button:hover {
     align-items: center;
     justify-content: center;
     background-color: white;
-    padding: 100px 40px;
+    padding: 0px 40px;
     border: 1px solid var(--pale-grey);
     border-radius: 10px;
     left: 0; 
