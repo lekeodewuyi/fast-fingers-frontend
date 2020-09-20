@@ -1078,6 +1078,7 @@ footer {
 
 footer .big-footer {
    margin: 0;
+   margin-bottom: 15px;
    padding: 0;
    white-space: pre;
 }
