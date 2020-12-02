@@ -13,7 +13,9 @@ let body = document.querySelector("body");
 const pageLoaderDiv = document.querySelector(".page-loader-div");
 
 window.addEventListener("load", function() {
-    pageLoaderDiv.classList.add("hide");
+    setTimeout(function(){
+        pageLoaderDiv.classList.add("hide");
+    }, 1000)
 })
 
 /****************NAV ELEMENTS************************/

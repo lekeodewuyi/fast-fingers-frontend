@@ -1572,10 +1572,6 @@ footer .big-footer {
     user-select: none;
 }
 
-.hide {
-    display: none;
-}
-
 
 .page-loader-div {
     position: fixed;
@@ -1610,3 +1606,8 @@ footer .big-footer {
     border-radius: 50%;
     margin-right: 10px;
   }
+
+
+.hide {
+    display: none;
+}
