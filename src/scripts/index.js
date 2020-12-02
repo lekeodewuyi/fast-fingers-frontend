@@ -3,6 +3,7 @@ import "../css/main.css";
 
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
+import DOMPurify from 'dompurify';
 
 
 
@@ -1286,7 +1287,7 @@ function appendLeaderBoard(results){
 
         let tUser = document.createElement("td");
         tUser.classList.add("leaderboard-user-col");
-        tUser.innerText = results[i].name;
+        tUser.innerHTML = results[i].name;
 
         let tScore = document.createElement("td");
         tScore.classList.add("leaderboard-user-col");
