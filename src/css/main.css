@@ -1574,16 +1574,14 @@ footer .big-footer {
 
 
 .page-loader-div {
+    z-index: 100;
     position: fixed;
     display: flex;
     height: 100vh;
     width: 100vw;
     align-items: center;
     justify-content: center;
-    color: blue;
-    background: rgb(255,255,255);
-    background-color: blue;
-    
+    background-color: white; 
     transition: 1s;
 
   }
@@ -1617,4 +1615,11 @@ footer .big-footer {
 .hidden {
     animation: fadeOut 1s;
     animation-fill-mode: forwards; /*  When animation finishes, the fadeOut properties stay */
+}
+
+@keyframes fadeOut {
+	100% {
+		opacity: 0;
+		visibility: hidden;
+	}
 }
