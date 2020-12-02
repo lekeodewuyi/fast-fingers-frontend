@@ -157,7 +157,7 @@ function updatePreference() {
                 console.log(userData);
                 console.log(userData.preference)
                 customTextInput.value = userData.preference;
-                originTextElement.innerHTML = userData.preference;
+                originTextElement.innerText = userData.preference;
             }
 
 
