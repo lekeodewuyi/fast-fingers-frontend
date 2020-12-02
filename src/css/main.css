@@ -1580,7 +1580,9 @@ footer .big-footer {
     width: 100vw;
     align-items: center;
     justify-content: center;
+    color: blue;
     background: rgb(255,255,255);
+    background-color: blue;
     
     transition: 1s;
 
@@ -1610,4 +1612,9 @@ footer .big-footer {
 
 .hide {
     display: none;
+}
+
+.hidden {
+    animation: fadeOut 1s;
+    animation-fill-mode: forwards; /*  When animation finishes, the fadeOut properties stay */
 }

@@ -14,7 +14,7 @@ const pageLoaderDiv = document.querySelector(".page-loader-div");
 
 window.addEventListener("load", function() {
     setTimeout(function(){
-        pageLoaderDiv.classList.add("hide");
+        pageLoaderDiv.classList.add("hidden");
     }, 1000)
 })
 
