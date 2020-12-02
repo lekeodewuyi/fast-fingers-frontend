@@ -10,7 +10,11 @@ import DOMPurify from 'dompurify';
 
 let body = document.querySelector("body");
 
-console.log(body)
+const pageLoaderDiv = document.querySelector(".page-loader-div");
+
+window.addEventListener("load", function() {
+    pageLoaderDiv.classList.add("hide");
+})
 
 /****************NAV ELEMENTS************************/
 const screenFade = document.querySelector(".screen-fade");

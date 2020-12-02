@@ -1575,3 +1575,38 @@ footer .big-footer {
 .hide {
     display: none;
 }
+
+
+.page-loader-div {
+    position: fixed;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    background: rgb(255,255,255);
+    
+    transition: 1s;
+
+  }
+  
+  @keyframes arrows {
+    0%,
+    100% {
+      background-color: #0088c1;
+      transform: translateY(0);
+    }
+    50% {
+      background-color: #00d4ff;
+      transform: translateY(20px);
+    }
+  }
+  
+  .page-loader-div span {
+    --delay: 0s;
+    animation: arrows 1s var(--delay) infinite ease-in;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
