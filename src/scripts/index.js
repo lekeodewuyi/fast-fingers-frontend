@@ -169,7 +169,7 @@ function updatePreference() {
         })
         .catch(function (error) {
             if(error.response.data.error == "Unauthorized") {
-                settingsError.innerHTML = "Please login to use this feature";
+                settingsError.innerText = "Please login to use this feature";
             }
         })
 }
@@ -192,9 +192,9 @@ function generateText() {
         )
         .then(function (response) {
             console.log(response.data)
-            originTextElement.innerHTML = response.data.result;
+            originTextElement.innerText = response.data.result;
             console.log(originTextElement);
-            originText = originTextElement.innerHTML
+            originText = originTextElement.innerText
 
             // window.location.href = '/';
 
@@ -205,7 +205,7 @@ function generateText() {
 }
 generateText();
 
-// const originText = document.querySelector(".origin-text p").innerHTML;
+// const originText = document.querySelector(".origin-text p").innerText;
 let inputText = document.querySelector(".input-text");
 const inputTextDiv = document.querySelector(".input-text-div");
 const persistentInput = document.querySelector(".persistent-placeholder");
@@ -219,7 +219,7 @@ generateInputText.addEventListener("click", generateText, false)
 
 const inputTextError = document.querySelector(".input-text-error");
 
-persistentInput.innerHTML = originText;
+persistentInput.innerText = originText;
 
 
 
@@ -239,13 +239,13 @@ function leadingZero(time) {
 }
 
 function runTimer() {
-    if (originTextElement.innerHTML === "Please don't copy and paste. Use the reset button to start over.") {
+    if (originTextElement.innerText === "Please don't copy and paste. Use the reset button to start over.") {
         return;
     }
 
 
     let currentTime = leadingZero(counter[0]) + ":" + leadingZero(counter[1]) + ":" + leadingZero(counter[2]);
-    timer.innerHTML = currentTime;
+    timer.innerText = currentTime;
     counter[3]++;
 
     counter[0] = Math.floor((counter[3]/100)/60);
@@ -318,7 +318,7 @@ function countWords(str) {
 
 function spellCheck() {
 
-    if (originTextElement.innerHTML === "Please don't copy and paste. Use the reset button to start over.") {
+    if (originTextElement.innerText === "Please don't copy and paste. Use the reset button to start over.") {
         return;
     }
 
@@ -383,7 +383,7 @@ function spellCheck() {
 function startTimer() {
     if (!timerRunning) {
         document.querySelector(".pause-timer").classList.remove("hide");
-        document.querySelector(".pause-timer").innerHTML = "Pause"
+        document.querySelector(".pause-timer").innerText = "Pause"
         timerRunning = true;
         interval = setInterval(runTimer, 10);
     }
@@ -396,7 +396,7 @@ function pauseTimer() {
     let originTextMatch = originText.substring(0, textEntered.length);
     console.log(textEnterdLength)
     if(timerRunning) {
-        document.querySelector(".pause-timer").innerHTML = "Continue"
+        document.querySelector(".pause-timer").innerText = "Continue"
         clearInterval(interval);
         timerRunning = false;
         console.log(timerRunning)
@@ -406,12 +406,12 @@ function pauseTimer() {
             if(timerRunning) {
                 clearInterval(interval);
                 timerRunning = false;
-                document.querySelector(".pause-timer").innerHTML = "Pause"
+                document.querySelector(".pause-timer").innerText = "Pause"
             }
             timerRunning = true
             interval = setInterval(runTimer, 10);
         }, false);
-        document.querySelector(".pause-timer").innerHTML = "Pause"
+        document.querySelector(".pause-timer").innerText = "Pause"
         timerRunning = true
         interval = setInterval(runTimer, 10);
         console.log(timerRunning)
@@ -433,13 +433,13 @@ function reset() {
     timerRunning = false;
 
     document.querySelector(".pause-timer").classList.add("hide");
-    document.querySelector(".pause-timer").innerHTML = "Start"
+    document.querySelector(".pause-timer").innerText = "Start"
 
     inputText.value = "";
     inputText.classList.remove("caret-red");
     inputTextError.classList.add("hide");
 
-    timer.innerHTML = "00:00:00";
+    timer.innerText = "00:00:00";
     inputTextDiv.style.borderColor = "grey";
 
     inputText.style.backgroundColor = "white";
@@ -447,7 +447,7 @@ function reset() {
 }
 
 resetTimer.addEventListener("click", function(){
-    if (originTextElement.innerHTML === "Please don't copy and paste. Use the reset button to start over." || originTextElement.innerHTML === "Your stats are a little unrealistic, please use the reset button to start over") {
+    if (originTextElement.innerText === "Please don't copy and paste. Use the reset button to start over." || originTextElement.innerText === "Your stats are a little unrealistic, please use the reset button to start over") {
         generateText();
     }
 }, false)
@@ -486,7 +486,7 @@ function getResults() {
         "Nice!!!"
     ]
 
-    resultHeader.innerHTML = possibleHeaders[Math.floor(Math.random() * possibleHeaders.length)] + " Here is how you performed";
+    resultHeader.innerText = possibleHeaders[Math.floor(Math.random() * possibleHeaders.length)] + " Here is how you performed";
 
 
 
@@ -504,27 +504,27 @@ function getResults() {
     let wpmCheck = Number(Math.floor(wordCount/timeElapsed));
 
     if (wpmCheck > 160) {
-        originTextElement.innerHTML = "Your stats are a little unrealistic, please use the reset button to start over"
+        originTextElement.innerText = "Your stats are a little unrealistic, please use the reset button to start over"
         return;
     }
-    timeElapsedElement.innerHTML = timeElapsed + " mins";
-    sampleCharsElement.innerHTML = characterCount;
-    userCharsElement.innerHTML = userChars;
-    cpmElement.innerHTML = Math.floor(characterCount/timeElapsed);
-    sampleWordsElement.innerHTML = wordCount;
-    wpmElement.innerHTML = Math.floor(wordCount/timeElapsed);
-    errorRateElement.innerHTML = (100 - (((userChars - characterCount)/characterCount) * 100)).toFixed(2) + "%";
+    timeElapsedElement.innerText = timeElapsed + " mins";
+    sampleCharsElement.innerText = characterCount;
+    userCharsElement.innerText = userChars;
+    cpmElement.innerText = Math.floor(characterCount/timeElapsed);
+    sampleWordsElement.innerText= wordCount;
+    wpmElement.innerText = Math.floor(wordCount/timeElapsed);
+    errorRateElement.innerText = (100 - (((userChars - characterCount)/characterCount) * 100)).toFixed(2) + "%";
 
     charsInSampleText.forEach((element) => {
-        element.innerHTML = `<span class="res-number">${characterCount}</span> characters in sample text`;
+        element.innerHTML = DOMPurify.sanitize(`<span class="res-number">${characterCount}</span> characters in sample text`);
     })
-    incorrectlyTypedChars.innerHTML = `<span class="res-number">${extraCharacterCount}</span> incorrectly typed characters`;
-    backspaces.innerHTML = `<span class="res-number red">${backspaceCount}</span> backspaces`;
+    incorrectlyTypedChars.innerHTML = DOMPurify.sanitize(`<span class="res-number">${extraCharacterCount}</span> incorrectly typed characters`);
+    backspaces.innerHTML = DOMPurify.sanitize(`<span class="res-number red">${backspaceCount}</span> backspaces`);
     timeElapsedCalc.forEach((element) => {
-        element.innerHTML = `<span class="res-number">${timeElapsed}</span> minutes`;
+        element.innerHTML = DOMPurify.sanitize(`<span class="res-number">${timeElapsed}</span> minutes`);
     })
-    wordsInSampleText.innerHTML = `<span class="res-number">${wordCount}</span> words in sample text`
-    errorCalcUpper.innerHTML = `<span class="res-number">${userChars}</span> characters types - <span class="res-number">${characterCount}</span> characters in sample text`;
+    wordsInSampleText.innerHTML = DOMPurify.sanitize(`<span class="res-number">${wordCount}</span> words in sample text`)
+    errorCalcUpper.innerHTML = DOMPurify.sanitize(`<span class="res-number">${userChars}</span> characters types - <span class="res-number">${characterCount}</span> characters in sample text`);
 
     resultModal.classList.remove("hide");
     screenFade.classList.remove("hide");
@@ -550,8 +550,8 @@ function getResults() {
 
     let uniqueChars = Object.keys([...originText].reduce((res, char) => (res[char] = (res[char] || 0) + 1, res), {})).length
     let accuracy = Number((100 - (((userChars - characterCount)/characterCount) * 100)).toFixed(2));
-    let cpm = Number(cpmElement.innerHTML);
-    let wpm = Number(wpmElement.innerHTML);
+    let cpm = Number(cpmElement.innerText);
+    let wpm = Number(wpmElement.innerText);
 
 
     score = Number(1000 + (uniqueChars * 20) + (upperCaseChars * 10) + (characterCount * 10) + (accuracy * 10) + (cpm * 10) - (repeatedChars * 20) - ((backspaceCount + extraCharacterCount) * 20) - (easyChars * 10))
@@ -560,7 +560,7 @@ function getResults() {
     score = Math.floor(score);
     console.log("score", score);
 
-    sessionScore.innerHTML = `SESSION SCORE: <span class="color-blue">${appendCommas(score)} POINTS</span>`
+    sessionScore.innerHTML = DOMPurify.sanitize(`SESSION SCORE: <span class="color-blue">${appendCommas(score)} POINTS</span>`)
     generateText();
     updateUserStats(score, cpm, wpm, accuracy)
 }
@@ -574,19 +574,19 @@ closeResultModal.forEach((element) => {
 
 originTextElement.oncopy = function(){
     inputText = inputText.cloneNode(true);
-    originTextElement.innerHTML = "Please don't copy and paste. Use the reset button to start over."
+    originTextElement.innerText = "Please don't copy and paste. Use the reset button to start over."
     return false;
 }
 
 inputText.onpaste = function(){
     inputText = inputText.cloneNode(true);
-    originTextElement.innerHTML = "Please don't copy and paste. Use the reset button to start over."
+    originTextElement.innerText = "Please don't copy and paste. Use the reset button to start over."
     return false;
 }
 
 originTextElement.oncut = function(){
     inputText = inputText.cloneNode(true);
-    originTextElement.innerHTML = "Please don't copy and paste. Use the reset button to start over."
+    originTextElement.innerText = "Please don't copy and paste. Use the reset button to start over."
     return false;
 }
 
@@ -642,19 +642,19 @@ function appendCommas(x) {
 const setCurrentUser = (user) => {
     localStorage.setItem('currentUser', JSON.stringify(user));
 
-    userName.innerHTML = `Hey, <span class="color-blue name">${user.name}</span>`
+    userName.innerHTML = DOMPurify.sanitize(`Hey, <span class="color-blue name">${user.name}</span>`)
     userIcon.classList.add("color-blue");
 
     if(user.stats) {
         userSummary.classList.remove("hide");
-        userTopStats.innerHTML = `<span class="bold">YOUR STATS: </span>`;
-        userTopSpeed.innerHTML = `Top speed: <span class="bold"> ${user.cpm}  cpm</span>, <span class="bold"> ${user.wpm} wpm</span>`;
-        userAveSpeed.innerHTML = `Average speed: <span class="bold"> ${user.aveCpm}  cpm</span>, <span class="bold"> ${user.aveWpm} wpm</span>`;
-        userTopAccuracy.innerHTML = `Top accuracy: <span class="bold"> ${user.accuracy}%</span>`;
-        userAveAccuracy.innerHTML = `Average accuracy:<span class="bold"> ${user.aveAccuracy}%</span>`;
-        userTopScore.innerHTML = `Top score: <span class="bold"> <span class="bold">${appendCommas(user.topScore)}</span> points </span>`;
-        userAveScore.innerHTML = `Average score: <span class="bold"> <span class="bold">${appendCommas(user.aveScore)}</span> points </span>`;
-        userCumScore.innerHTML = `Cummulative score: <span class="bold"> <span class="bold">${appendCommas(user.score)}</span> points </span>`
+        userTopStats.innerHTML = DOMPurify.sanitize(`<span class="bold">YOUR STATS: </span>`);
+        userTopSpeed.innerHTML = DOMPurify.sanitize(`Top speed: <span class="bold"> ${user.cpm}  cpm</span>, <span class="bold"> ${user.wpm} wpm</span>`);
+        userAveSpeed.innerHTML = DOMPurify.sanitize(`Average speed: <span class="bold"> ${user.aveCpm}  cpm</span>, <span class="bold"> ${user.aveWpm} wpm</span>`);
+        userTopAccuracy.innerHTML = DOMPurify.sanitize(`Top accuracy: <span class="bold"> ${user.accuracy}%</span>`);
+        userAveAccuracy.innerHTML = DOMPurify.sanitize(`Average accuracy:<span class="bold"> ${user.aveAccuracy}%</span>`);
+        userTopScore.innerHTML = DOMPurify.sanitize(`Top score: <span class="bold"> <span class="bold">${appendCommas(user.topScore)}</span> points </span>`);
+        userAveScore.innerHTML = DOMPurify.sanitize(`Average score: <span class="bold"> <span class="bold">${appendCommas(user.aveScore)}</span> points </span>`);
+        userCumScore.innerHTML = DOMPurify.sanitize(`Cummulative score: <span class="bold"> <span class="bold">${appendCommas(user.score)}</span> points </span>`)
     }
 }
 
@@ -662,9 +662,6 @@ const retrieveCurrentUser = (user) => {
     const currentUser = JSON.parse(localStorage.getItem(user));
     return currentUser;
 }
-
-
-
 
 
 const loginLink = document.querySelectorAll(".login-link");
@@ -721,7 +718,7 @@ const settingsCancel = document.querySelectorAll(".settings-cancel");
 
 settingsCancel.forEach((cancel) => {
     cancel.addEventListener("click", function(){
-        settingsError.innerHTML = "";
+        settingsError.innerText = "";
         modalInput.forEach((input) => {
             input.value = ""
         })
@@ -796,7 +793,7 @@ function login() {
                 console.log(generateInputText)
                 generateInputText.classList.add("hide");
                 // customTextInput.value = userData.preference;
-                // originTextElement.innerHTML = userData.preference;
+                // originTextElement.innerText = userData.preference;
             }
 
             setAuthorizationHeader(token);
@@ -822,15 +819,15 @@ function login() {
             let responseError = error.response.data;
 
             if (responseError.email !== undefined) {
-               loginEmailError.innerHTML = responseError.email;
+               loginEmailError.innerText = responseError.email;
             } else {
-                loginEmailError.innerHTML = "";
+                loginEmailError.innerText = "";
             }
 
             if (responseError.password !== undefined) {
-                loginPasswordError.innerHTML = responseError.password;
+                loginPasswordError.innerText = responseError.password;
              } else {
-                 loginPasswordError.innerHTML = "";
+                 loginPasswordError.innerText = "";
              }
            
 
@@ -911,27 +908,27 @@ function signup() {
             let responseError = error.response.data;
 
             if (responseError.name !== undefined) {
-                signupNameError.innerHTML = responseError.name;
+                signupNameError.innerText = responseError.name;
              } else {
-                 signupNameError.innerHTML = "";
+                 signupNameError.innerText = "";
              }
 
             if (responseError.email !== undefined) {
-               signupEmailError.innerHTML = responseError.email;
+               signupEmailError.innerText = responseError.email;
             } else {
-                signupEmailError.innerHTML = "";
+                signupEmailError.innerText = "";
             }
 
             if (responseError.password !== undefined) {
-                signupPasswordError.innerHTML = responseError.password;
+                signupPasswordError.innerText = responseError.password;
              } else {
-                 signupPasswordError.innerHTML = "";
+                 signupPasswordError.innerText = "";
              }
 
              if (responseError.confirmPassword !== undefined) {
-                signupConfirmPasswordError.innerHTML = responseError.confirmPassword;
+                signupConfirmPasswordError.innerText = responseError.confirmPassword;
              } else {
-                 signupConfirmPasswordError.innerHTML = "";
+                 signupConfirmPasswordError.innerText = "";
              }
            
 
@@ -958,8 +955,8 @@ const messageError = document.querySelector(".message-error");
 nameInput.forEach((input) => {
     input.addEventListener("keyup", function(){
         nameError.forEach((element) => {
-            element.innerHTML = "";
-            messageError.innerHTML = "";
+            element.innerText = "";
+            messageError.innerText = "";
         })
     } , false)
 })
@@ -967,8 +964,8 @@ nameInput.forEach((input) => {
 emailInput.forEach((input) => {
     input.addEventListener("keyup", function(){
         emailError.forEach((element) => {
-            messageError.innerHTML = "";
-            element.innerHTML = "";
+            messageError.innerText = "";
+            element.innerText = "";
         })
     } , false)
 })
@@ -976,8 +973,8 @@ emailInput.forEach((input) => {
 passwordInput.forEach((input) => {
     input.addEventListener("keyup", function(){
         passwordError.forEach((element) => {
-            messageError.innerHTML = "";
-            element.innerHTML = "";
+            messageError.innerText = "";
+            element.innerText = "";
         })
     } , false)
 })
@@ -1036,7 +1033,7 @@ function checkTokenStatus() {
         localStorage.removeItem('currentUser');    
     }
     if (currentUser) {
-        // CURRENT_USER.innerHTML = `Hello, ${currentUser}`
+        // CURRENT_USER.innerHTML = DOMPurify.sanitize(`Hello, ${currentUser}`)
 
         userModal.appendChild(navLogoutBtn);
         navLoginBtn.classList.add("hide");
@@ -1047,7 +1044,7 @@ function checkTokenStatus() {
         
         let user = JSON.parse(currentUser);
 
-        userName.innerHTML = `Hey, <span class="color-blue name">${user.name}</span>`
+        userName.innerHTML = DOMPurify.sanitize(`Hey, <span class="color-blue name">${user.name}</span>`);
         userIcon.classList.add("color-blue");
 
         console.log(user);
@@ -1058,169 +1055,19 @@ function checkTokenStatus() {
 
         if(user.stats) {
             userSummary.classList.remove("hide");
-            userTopStats.innerHTML = `<span class="bold">YOUR STATS: </span>`;
-            userTopSpeed.innerHTML = `Top speed: <span class="bold"> ${user.cpm}  cpm</span>, <span class="bold"> ${user.wpm} wpm</span>`;
-            userAveSpeed.innerHTML = `Average speed: <span class="bold"> ${user.aveCpm}  cpm</span>, <span class="bold"> ${user.aveWpm} wpm</span>`;
-            userTopAccuracy.innerHTML = `Top accuracy: <span class="bold"> ${user.accuracy}%</span>`;
-            userAveAccuracy.innerHTML = `Average accuracy:<span class="bold"> ${user.aveAccuracy}%</span>`;
-            userTopScore.innerHTML = `Top score: <span class="bold"> <span class="bold">${appendCommas(user.topScore)}</span> points </span>`;
-            userAveScore.innerHTML = `Average score: <span class="bold"> <span class="bold">${appendCommas(user.aveScore)}</span> points </span>`;
-            userCumScore.innerHTML = `Cummulative score: <span class="bold"> <span class="bold">${appendCommas(user.score)}</span> points </span>`
+            userTopStats.innerHTML = DOMPurify.sanitize(`<span class="bold">YOUR STATS: </span>`);
+            userTopSpeed.innerHTML = DOMPurify.sanitize(`Top speed: <span class="bold"> ${user.cpm}  cpm</span>, <span class="bold"> ${user.wpm} wpm</span>`);
+            userAveSpeed.innerHTML = DOMPurify.sanitize(`Average speed: <span class="bold"> ${user.aveCpm}  cpm</span>, <span class="bold"> ${user.aveWpm} wpm</span>`);
+            userTopAccuracy.innerHTML = DOMPurify.sanitize(`Top accuracy: <span class="bold"> ${user.accuracy}%</span>`);
+            userAveAccuracy.innerHTML = DOMPurify.sanitize(`Average accuracy:<span class="bold"> ${user.aveAccuracy}%</span>`);
+            userTopScore.innerHTML = DOMPurify.sanitize(`Top score: <span class="bold"> <span class="bold">${appendCommas(user.topScore)}</span> points </span>`);
+            userAveScore.innerHTML = DOMPurify.sanitize(`Average score: <span class="bold"> <span class="bold">${appendCommas(user.aveScore)}</span> points </span>`);
+            userCumScore.innerHTML = DOMPurify.sanitize(`Cummulative score: <span class="bold"> <span class="bold">${appendCommas(user.score)}</span> points </span>`);
         }
     }
 };
 
 checkTokenStatus();
-
-// function getAllChats() {
-
-//     const TOKEN = localStorage.FBIdToken;
-//     config = {
-//         headers: { Authorization: `${TOKEN}` }
-//       };
-//     // getConfig();
-//     axios.post(
-//         'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/getchats',
-//         {},
-//         config
-//         )
-//         .then(function (response) {
-//             let currentUser = JSON.parse(localStorage.currentUser)
-//             let loggedinUser = currentUser.name;
-
-//             const allChatsDiv = document.querySelector(".all-chats-div");
-//             console.log(allChatsDiv.innerHTML);
-//             allChatsDiv.innerHTML = "";
-
-//             let allChats = response.data.allChats;
-
-//             for (let i = 0; i < allChats.length; i++) {
-//                 // console.log(allChats[i])
-//                 let chat = allChats[i];
-
-
-//                 const chatDiv = document.createElement("div");
-//                 chatDiv.classList.add("chat-div");
-
-
-//                 if (loggedinUser === chat.name) {
-//                     chatDiv.classList.add("owner");
-//                 }
-
-//                 const chatUser = document.createElement("p");
-//                 chatUser.classList.add("chat-user");
-//                 chatUser.innerText = chat.name;
-
-//                 const chatMessage = document.createElement("p");
-//                 chatMessage.classList.add("chat-message");
-//                 chatMessage.innerText = chat.message;
-
-//                 const chatTime = document.createElement("p");
-//                 chatTime.classList.add("chat-time");
-//                 chatTime.innerText = dayjs(chat.createdAt).format('MMM DD YYYY - (h:mm a)');
-
-//                 chatDiv.append(chatUser, chatMessage, chatTime);
-//                 allChatsDiv.append(chatDiv);
-
-//                 // chatColumnDiv.insertBefore(chatDiv, messageInputAndSendDiv)
-
-
-
-//             }
-
-
-            
-
-//         })
-//         .catch(function (error) {
-//             console.log(error.response.data.error)
-           
-//         })
-//     // setTimeout( getAllChats, 2000);
-// }
-
-// getAllChats();
-
-// // setTimeout( getAllChats, 2000);
-
-
-
-// function sendMessage() {
-//     getConfig();
-//     axios.post(
-//         'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/postchat',
-//         {
-//             "message": messageInput.value
-//         },
-//         config
-//         )
-//         .then(function (response) {
-
-//             messageInput.value = "";
-//             console.log(messageInput)
-
-//             let currentUser = JSON.parse(localStorage.currentUser)
-//             let loggedinUser = currentUser.name;
-//             console.log(loggedinUser);
-
-//             let chat = response.data.chat
-//             console.log(chat);
-
-//             const allChatsDiv = document.querySelector(".all-chats-div");
-//             const firstChild = document.querySelector(".first-child")
-
-
-//             const chatDiv = document.createElement("div");
-//             chatDiv.classList.add("chat-div");
-
-//             if (loggedinUser === chat.name) {
-//                 chatDiv.classList.add("owner");
-//             }
-
-//             const chatUser = document.createElement("p");
-//             chatUser.classList.add("chat-user");
-//             chatUser.innerText = chat.name;
-
-//             const chatMessage = document.createElement("p");
-//             chatMessage.classList.add("chat-message");
-//             chatMessage.innerText = chat.message;
-
-//             const chatTime = document.createElement("p");
-//             chatTime.classList.add("chat-time");
-//             chatTime.innerText = dayjs(chat.createdAt).format('MMM DD YYYY - (h:mm a)');
-
-//             chatDiv.append(chatUser, chatMessage, chatTime);
-//             // allChatsDiv.append(chatDiv);
-//             allChatsDiv.insertBefore(chatDiv, allChatsDiv.firstChild);
-
-//         })
-//         .catch(function (error) {
-//             console.log(error);
-//             console.log(error.response)
-//             console.log(error.response.data.error)
-//             messageInput.value = "";
-//             let responseError = error.response.data;
-
-//             if (responseError.error !== undefined) {
-//                 if (responseError.error === "Unauthorized") {
-//                     messageError.innerHTML = "Please login to use the message board"
-//                 } else if (responseError.error === "Please enter a message") {
-//                     messageError.innerHTML = "Please enter a message"
-//                 }
-//              } else {
-//                  messageError.innerHTML = "";
-//              }
-           
-//         })
-// }
-
-// sendMessageBtn.addEventListener("click", sendMessage , false);
-
-// messageInput.addEventListener("keyup", function(){
-//     messageError.innerHTML = "";
-// } , false);
-
-
 
 function updateUserStats(score, cpm, wpm, accuracy){
     getConfig();
@@ -1272,7 +1119,7 @@ function appendLeaderBoard(results){
         user = JSON.parse(user);
         identifier = user.identifier;
     }
-    tableBody.innerHTML = "";
+    tableBody.innerHTML = DOMPurify.sanitize("");
     for (let i = 0; i < results.length; i++) {
         let tRow = document.createElement("tr");
         if (identifier === results[i].identifier) {
@@ -1291,11 +1138,11 @@ function appendLeaderBoard(results){
 
         let tScore = document.createElement("td");
         tScore.classList.add("leaderboard-user-col");
-        tScore.innerHTML = appendCommas(results[i].score) + " pts";
+        tScore.innerText = appendCommas(results[i].score) + " pts";
 
         let tStats = document.createElement("td");
         tStats.classList.add("leaderboard-stats-col");
-        tStats.innerHTML = `${results[i].wpm} wpm<span class="leaderboard-extra"><span class="leaderboard-cpm">, ${results[i].cpm} cpm</span> / ${results[i].accuracy}%</span>`;
+        tStats.innerHTML = DOMPurify.sanitize(`${results[i].wpm} wpm<span class="leaderboard-extra"><span class="leaderboard-cpm">, ${results[i].cpm} cpm</span> / ${results[i].accuracy}%</span>`);
 
         tRow.append(tPosition, tUser, tScore, tStats)
         tableBody.appendChild(tRow);
