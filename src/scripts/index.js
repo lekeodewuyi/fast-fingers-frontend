@@ -1282,11 +1282,11 @@ function appendLeaderBoard(results){
 
         let tPosition = document.createElement("td");
         tPosition.classList.add("leaderboard-position-col");
-        tPosition.innerHTML = i + 1;
+        tPosition.innerText = i + 1;
 
         let tUser = document.createElement("td");
         tUser.classList.add("leaderboard-user-col");
-        tUser.innerHTML = results[i].name;
+        tUser.innerText = results[i].name;
 
         let tScore = document.createElement("td");
         tScore.classList.add("leaderboard-user-col");
