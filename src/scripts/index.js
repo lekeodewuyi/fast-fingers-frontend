@@ -1287,7 +1287,7 @@ function appendLeaderBoard(results){
 
         let tUser = document.createElement("td");
         tUser.classList.add("leaderboard-user-col");
-        tUser.innerHTML = results[i].name;
+        tUser.innerHTML = DOMpurify.sanitize(results[i].name);
 
         let tScore = document.createElement("td");
         tScore.classList.add("leaderboard-user-col");
