@@ -1196,12 +1196,15 @@ if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and 
 }
 
 const end_points = [
-    'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/setpreference',
-    'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/generatetext',
-    'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/login',
-    'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/signup',
-    'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/stats/user/update',
-    'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/leaderboard/retrieve'
+    'https://us-central1-typing-app-35c2f.cloudfunctions.net/api',
+
+
+    // 'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/setpreference',
+    // 'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/generatetext',
+    // 'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/login',
+    // 'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/signup',
+    // 'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/stats/user/update',
+    // 'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/leaderboard/retrieve'
 ]
 
 const checkEndpoint = (endpoint) => {
