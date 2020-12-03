@@ -1193,7 +1193,7 @@ const checkEndpoint = (endpoint) => {
     const no_value = [null, undefined];
     const last_woken = sessionStorage.getItem(`last_woken${endpoint}`);
     if (!no_value.includes(last_woken)) {
-        if (Date.now() - last_woken < (60000 * 10)) {
+        if (Date.now() - last_woken > (60000 * 10)) {
             wakeEndPoint(endpoint);
         }
     }
@@ -1208,6 +1208,7 @@ const wakeEndPoint = (endpoint) => {
         })
         .catch((err) => {
             console.log(err.res.data);
+            sessionStorage.setItem(`last_woken${endpoint}`, Date.now())
         })
     }
 }
