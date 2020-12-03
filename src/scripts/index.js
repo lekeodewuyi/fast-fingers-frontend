@@ -133,11 +133,10 @@ function updatePreference() {
             }
         }
     }
-
-
-
+    let url = 'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/setpreference'
+    sessionStorage.setItem(`last_woken${url}`, Date.now())
     axios.post(
-        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/setpreference',
+        url,
         {
             "preference": preference
         },
@@ -180,15 +179,17 @@ function updatePreference() {
 
 savePreference.addEventListener("click", updatePreference ,false);
 
-
-
 let originTextElement = document.querySelector(".origin-text p");
 let originText;
 
 function generateText() {
+
+    let url = 'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/generatetext'
+    sessionStorage.setItem(`last_woken${url}`, Date.now())
+
     getConfig();
     axios.post(
-        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/generatetext',
+        url,
         {
         },
         config
@@ -769,8 +770,11 @@ function login() {
     modalLoginBtn.style.width = "110px";
     loaderLogin.classList.remove("hide");
 
+    let url = 'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/login'
+    sessionStorage.setItem(`last_woken${url}`, Date.now())
+
     axios.post(
-        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/login',
+        url,
         {
             "email": loginEmail.value,
             "password": loginPassword.value
@@ -867,8 +871,11 @@ const signupConfirmPasswordError = document.querySelector(".signup-confirm-passw
 function signup() {
     modalSignupBtn.style.width = "110px";
     loaderSignup.classList.remove("hide");
+
+    let url = 'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/signup';
+    sessionStorage.setItem(`last_woken${url}`, Date.now());
     axios.post(
-        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/signup',
+        url,
         {
             "name": signupName.value,
             "email": signupEmail.value,
@@ -1072,8 +1079,12 @@ checkTokenStatus();
 
 function updateUserStats(score, cpm, wpm, accuracy){
     getConfig();
+
+    let url = 'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/stats/user/update';
+    sessionStorage.setItem(`last_woken${url}`, Date.now());
+
     axios.post(
-        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/stats/user/update',
+        url,
         {
             "score": score,
             "cpm": cpm,
@@ -1094,8 +1105,11 @@ function updateUserStats(score, cpm, wpm, accuracy){
 }
 
 function getLeaderBoard(){
+
+    let url = 'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/leaderboard/retrieve';
+    sessionStorage.setItem(`last_woken${url}`, Date.now());
     axios.post(
-        'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/leaderboard/retrieve'
+        url
         )
         .then(function (response) {
             console.log(response.data);
@@ -1200,10 +1214,9 @@ const checkEndpoint = (endpoint) => {
 }
 
 const wakeEndPoint = (endpoint) => {
-    if (!document.hidden) {
+    if (document.visibilityState === "visible") {
         axios.post(endpoint)
         .then((res) => {
-            console.log(res.data);
             sessionStorage.setItem(`last_woken${endpoint}`, Date.now())
         })
         .catch((err) => {
@@ -1221,7 +1234,7 @@ wakeAtLoad();
 
 const checkWarmStatus = () => {
     end_points.forEach((endpoint) => {
-        if(!document.hidden) {
+        if(document.visibilityState === "visible") {
             checkEndpoint(endpoint);
         } else {
             console.log("Window minimized or hidded")
@@ -1231,5 +1244,14 @@ const checkWarmStatus = () => {
 
 
 document.addEventListener('click', checkWarmStatus);
+
+document.addEventListener("visibilitychange", function() {
+    if (document.visibilityState === "visible") {
+        checkWarmStatus
+    }
+  });
+
+
+
 
 // element.dispatchEvent(new KeyboardEvent('keypress',{'key':'a'}));
