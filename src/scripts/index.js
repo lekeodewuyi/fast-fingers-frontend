@@ -1207,7 +1207,6 @@ const wakeEndPoint = (endpoint) => {
             sessionStorage.setItem(`last_woken${endpoint}`, Date.now())
         })
         .catch((err) => {
-            console.log(err.res.data);
             sessionStorage.setItem(`last_woken${endpoint}`, Date.now())
         })
     }
