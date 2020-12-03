@@ -808,6 +808,8 @@ function login() {
             userIcon.classList.remove("hide");
             notificationIcon.classList.remove("hide");
 
+            checkTokenStatus();
+
         })
         .catch(function (error) {
             modalLoginBtn.style.width = "";
@@ -895,6 +897,8 @@ function signup() {
             screenFade.classList.add("hide");
             userIcon.classList.remove("hide");
             notificationIcon.classList.remove("hide");
+
+            checkTokenStatus();
 
         })
         .catch(function (error) {
