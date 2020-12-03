@@ -1215,6 +1215,14 @@ const checkEndpoint = (endpoint) => {
 
 const wakeEndPoint = (endpoint) => {
     if (document.visibilityState === "visible") {
+        const no_value = [null, undefined];
+        const number_of_wakes = Number(sessionStorage.getItem('number_of_wakes'));
+
+        if (!no_value.includes(number_of_wakes)) {
+            sessionStorage.setItem('number_of_wakes', `${number_of_wakes + 1}`)
+        } else {
+            sessionStorage.setItem('number_of_wakes', '0');
+        }
         axios.post(endpoint)
         .then((res) => {
             sessionStorage.setItem(`last_woken${endpoint}`, Date.now())
