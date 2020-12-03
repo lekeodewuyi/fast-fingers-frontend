@@ -1205,7 +1205,7 @@ const end_points = [
 
 const checkEndpoint = (endpoint) => {
     const no_value = [null, undefined];
-    const last_woken = sessionStorage.getItem(`last_woken${endpoint}`);
+    const last_woken = sessionStorage.getItem(`last_woken${endpoint.split('https://us-central1-typing-app-35c2f.cloudfunctions.net/api/')[1]}`);
     if (!no_value.includes(last_woken)) {
         if (Date.now() - last_woken > (60000 * 10)) {
             wakeEndPoint(endpoint);
@@ -1225,10 +1225,10 @@ const wakeEndPoint = (endpoint) => {
         }
         axios.post(endpoint)
         .then((res) => {
-            sessionStorage.setItem(`last_woken${endpoint}`, Date.now())
+            sessionStorage.setItem(`last_woken${endpoint.split('https://us-central1-typing-app-35c2f.cloudfunctions.net/api/')[1]}`, Date.now())
         })
         .catch((err) => {
-            sessionStorage.setItem(`last_woken${endpoint}`, Date.now())
+            sessionStorage.setItem(`last_woken${endpoint.split('https://us-central1-typing-app-35c2f.cloudfunctions.net/api/')[1]}`, Date.now())
         })
     }
 }
