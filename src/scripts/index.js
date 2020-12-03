@@ -134,7 +134,7 @@ function updatePreference() {
         }
     }
     let url = 'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/setpreference'
-    sessionStorage.setItem(`last_woken${url.split('https://us-central1-typing-app-35c2f.cloudfunctions.net/api/')[1]}`, Date.now())
+    sessionStorage.setItem(`last_woken${url.split('https://us-central1-typing-app-35c2f.cloudfunctions.net/api')[1]}`, Date.now())
     axios.post(
         url,
         {
@@ -185,7 +185,7 @@ let originText;
 function generateText() {
 
     let url = 'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/generatetext'
-    sessionStorage.setItem(`last_woken${url.split('https://us-central1-typing-app-35c2f.cloudfunctions.net/api/')[1]}`, Date.now())
+    sessionStorage.setItem(`last_woken${url.split('https://us-central1-typing-app-35c2f.cloudfunctions.net/api')[1]}`, Date.now())
 
     getConfig();
     axios.post(
@@ -771,7 +771,7 @@ function login() {
     loaderLogin.classList.remove("hide");
 
     let url = 'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/login'
-    sessionStorage.setItem(`last_woken${url.split('https://us-central1-typing-app-35c2f.cloudfunctions.net/api/')[1]}`, Date.now())
+    sessionStorage.setItem(`last_woken${url.split('https://us-central1-typing-app-35c2f.cloudfunctions.net/api')[1]}`, Date.now())
 
     axios.post(
         url,
@@ -873,7 +873,7 @@ function signup() {
     loaderSignup.classList.remove("hide");
 
     let url = 'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/signup';
-    sessionStorage.setItem(`last_woken${url.split('https://us-central1-typing-app-35c2f.cloudfunctions.net/api/')[1]}`, Date.now());
+    sessionStorage.setItem(`last_woken${url.split('https://us-central1-typing-app-35c2f.cloudfunctions.net/api')[1]}`, Date.now());
     axios.post(
         url,
         {
@@ -1081,7 +1081,7 @@ function updateUserStats(score, cpm, wpm, accuracy){
     getConfig();
 
     let url = 'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/stats/user/update';
-    sessionStorage.setItem(`last_woken${url.split('https://us-central1-typing-app-35c2f.cloudfunctions.net/api/')[1]}`, Date.now());
+    sessionStorage.setItem(`last_woken${url.split('https://us-central1-typing-app-35c2f.cloudfunctions.net/api')[1]}`, Date.now());
 
     axios.post(
         url,
@@ -1108,7 +1108,7 @@ function getLeaderBoard(){
 
     let url = 'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/leaderboard/retrieve';
     
-    sessionStorage.setItem(`last_woken${url.split('https://us-central1-typing-app-35c2f.cloudfunctions.net/api/')[1]}`, Date.now());
+    sessionStorage.setItem(`last_woken${url.split('https://us-central1-typing-app-35c2f.cloudfunctions.net/api')[1]}`, Date.now());
     axios.post(
         url
         )
@@ -1229,10 +1229,10 @@ const wakeEndPoint = (endpoint) => {
         }
         axios.post(endpoint)
         .then((res) => {
-            sessionStorage.setItem(`last_woken${endpoint.split('https://us-central1-typing-app-35c2f.cloudfunctions.net/api/')[1]}`, Date.now())
+            sessionStorage.setItem(`last_woken${endpoint.split('https://us-central1-typing-app-35c2f.cloudfunctions.net/api')[1]}`, Date.now())
         })
         .catch((err) => {
-            sessionStorage.setItem(`last_woken${endpoint.split('https://us-central1-typing-app-35c2f.cloudfunctions.net/api/')[1]}`, Date.now())
+            sessionStorage.setItem(`last_woken${endpoint.split('https://us-central1-typing-app-35c2f.cloudfunctions.net/api')[1]}`, Date.now())
         })
     }
 }
