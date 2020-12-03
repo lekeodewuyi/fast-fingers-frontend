@@ -13,8 +13,9 @@ let body = document.querySelector("body");
 const pageLoaderDiv = document.querySelector(".page-loader-div");
 
 window.addEventListener("load", function() {
+    pageLoaderDiv.classList.add("hidden");
     setTimeout(function(){
-        pageLoaderDiv.classList.add("hidden");
+        pageLoaderDiv.classList.add("hide");
     }, 1000)
 })
 
@@ -74,8 +75,9 @@ function getConfig() {
         console.log("there is a token")
         const decodedToken = jwt_decode(TOKEN);
         if(decodedToken && (decodedToken.exp * 1000 < Date.now())){ //if TOKEN is expired
-            sessionOverModal.classList.remove("hide");
-            screenFade.classList.remove("hide");
+            logout()
+            // sessionOverModal.classList.remove("hide");
+            // screenFade.classList.remove("hide");
         } else {
           config = {
             headers: { Authorization: `${TOKEN}` }
@@ -166,12 +168,7 @@ function updatePreference() {
                 customTextInput.value = userData.preference;
                 originTextElement.innerText = userData.preference;
             }
-
-
             console.log(response.data.userData)
-
-            window.location.href = '/';
-
         })
         .catch(function (error) {
             if(error.response.data.error == "Unauthorized") {
@@ -201,8 +198,6 @@ function generateText() {
             originTextElement.innerText = response.data.result;
             console.log(originTextElement);
             originText = originTextElement.innerText
-
-            // window.location.href = '/';
 
         })
         .catch(function (error) {
@@ -813,8 +808,6 @@ function login() {
             userIcon.classList.remove("hide");
             notificationIcon.classList.remove("hide");
 
-            window.location.href = '/';
-
         })
         .catch(function (error) {
             modalLoginBtn.style.width = "";
@@ -902,8 +895,6 @@ function signup() {
             screenFade.classList.add("hide");
             userIcon.classList.remove("hide");
             notificationIcon.classList.remove("hide");
-
-            window.location.href = '/';
 
         })
         .catch(function (error) {
@@ -1172,5 +1163,69 @@ leaderboardClose.addEventListener("click", function(){
 
 
 
+let hidden, visibilityChange
+
+if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support 
+    hidden = "hidden";
+    visibilityChange = "visibilitychange";
+} else if (typeof document.msHidden !== "undefined") {
+    hidden = "msHidden";
+    visibilityChange = "msvisibilitychange";
+} else if (typeof document.webkitHidden !== "undefined") {
+    hidden = "webkitHidden";
+    visibilityChange = "webkitvisibilitychange";
+}
+
+const end_points = [
+    'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/setpreference',
+    'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/generatetext',
+    'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/login',
+    'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/signup',
+    'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/stats/user/update',
+    'https://us-central1-typing-app-35c2f.cloudfunctions.net/api/leaderboard/retrieve'
+]
+
+const checkEndpoint = (endpoint) => {
+    const no_value = [null, undefined];
+    const last_woken = sessionStorage.getItem(`last_woken${endpoint}`);
+    if (!no_value.includes(last_woken)) {
+        if (Date.now() - last_woken < (60000 * 10)) {
+            wakeEndPoint(endpoint);
+        }
+    }
+}
+
+const wakeEndPoint = (endpoint) => {
+    if (!document.hidden) {
+        axios.post(endpoint)
+        .then((res) => {
+            console.log(res.data);
+            sessionStorage.setItem(`last_woken${endpoint}`, Date.now())
+        })
+        .catch((err) => {
+            console.log(err.res.data);
+        })
+    }
+}
+
+const wakeAtLoad = () => {
+    end_points.forEach((endpoint) => {
+        wakeEndPoint(endpoint);
+    });
+};
+wakeAtLoad();
+
+const checkWarmStatus = () => {
+    end_points.forEach((endpoint) => {
+        if(!document.hidden) {
+            checkEndpoint(endpoint);
+        } else {
+            console.log("Window minimized or hidded")
+        }
+    });
+}
+
+
+document.addEventListener('click', checkWarmStatus);
 
 // element.dispatchEvent(new KeyboardEvent('keypress',{'key':'a'}));
