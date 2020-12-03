@@ -59,11 +59,9 @@ module.exports = {
           new UglifyJSPlugin({
             uglifyOptions: {
               compress: {
-                // Drop only console.logs but leave others
                 pure_funcs: ['console.log'],
               },
               mangle: {
-                // Note: I'm not certain this is needed.
                 reserved: ['console.log']
               }
             }
