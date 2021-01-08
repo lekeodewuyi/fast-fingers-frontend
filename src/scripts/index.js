@@ -1035,7 +1035,6 @@ function checkTokenStatus() {
         localStorage.removeItem('currentUser');    
     }
     if (currentUser) {
-        // CURRENT_USER.innerHTML = DOMPurify.sanitize(`Hello, ${currentUser}`)
 
         userModal.appendChild(navLogoutBtn);
         navLoginBtn.classList.add("hide");
